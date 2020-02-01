@@ -20,6 +20,7 @@
 html,
 body {
     min-height: 100%;
+    background-color: #f5f7fa;
 }
 body {
     font-family: Roboto;
@@ -108,11 +109,11 @@ section {
     background: transparent;
 }
 
-@media (min-width: 320px) and (max-width: 768px) {
+/* @media (min-width: 320px) and (max-width: 768px) {
     .navbar-search-form {
         width: 30%;
     }
-}
+} */
 /* .navbar-search::placeholder{
   font-style: italic;
   float: right;
