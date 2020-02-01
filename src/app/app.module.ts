@@ -9,6 +9,9 @@ import { PatientsComponent } from './patients/patients.component';
 import { AnalyticsComponent } from './analytics/analytics.component';
 import { AdminComponent } from './admin/admin.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { PatientDetailsComponent } from './patients/tabs/view/patient-details/patient-details.component';
+import { NotesDetailsComponent } from './patients/tabs/notes/notes-details/notes-details.component';
+import { TimelineDetailsComponent } from './patients/tabs/timeline/timeline-details/timeline-details.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +21,10 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     PatientsComponent,
     AnalyticsComponent,
     AdminComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    PatientDetailsComponent,
+    NotesDetailsComponent,
+    TimelineDetailsComponent
   ],
   imports: [
     BrowserModule,

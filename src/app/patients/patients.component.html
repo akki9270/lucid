@@ -6,6 +6,8 @@
     </form>
   </nav>  
   <section class="pt-3 content-section">    
-    <ng2-smart-table [settings]="settings" [source]="myData"></ng2-smart-table>    
+    <ng2-smart-table [settings]="settings" [source]="myData" 
+      (rowSelect) = "render($event)" >      
+    </ng2-smart-table>    
   </section>
 </div>

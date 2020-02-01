@@ -37,13 +37,25 @@ export class PatientsComponent implements OnInit {
     filter: false,
     pager: {
       perPage: 5
+    },
+    rowClassFunction: (row) => {
+      // console.log('row: ', row)
+      if (row.index % 2 === 0) {
+        return 'even-row';
+      } else {
+        return 'odd-row';
+      }
     }
   };
 
   constructor() { }
 
-  ngOnInit() {    
+  ngOnInit() {
     this.myData = data
+  }
+
+  render(data){
+    console.log('-data: ', data)
   }
 
 }

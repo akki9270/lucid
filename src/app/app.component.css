@@ -1,3 +1,5 @@
-body {    
-  background-color: #f5f7fa;
+.bodyContainer {    
+  height: calc(100vh - 76px); 
+  /* background-color: red; */
+  /* background-color: #f5f7fa; */
 }

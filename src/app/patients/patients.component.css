@@ -1,12 +1,16 @@
-.page-wrap {    
-   /* background-color: red; */
+.page-wrap {
+  height: 100%;  
+  background-color: #f5f7fa;  
 }
 
-.content-section {
-    /* min-height: 100%; */   
+.content-section{
+  /* background-color: #f5f7fa;   */
 }
 
-/* .content-section.claim-scroll{
-    height: 80vh;
-    overflow-y: auto;
-} */
+.even-row{
+  background: #f5f7fa;  
+}
+
+.odd-row{
+  background: #ccd6e5;
+}
