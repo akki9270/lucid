@@ -1,1 +1,120 @@
 /* You can add global styles to this file, and also import other style files */
+:root {
+    --charcoal-grey: #434a54;
+    --warm-grey: #7f7f7f5c;
+    --soft-green: #6bc076;
+    --dull-yellow: #ebb463;
+    --rust-red: #b01700;
+    --pale-grey: #f5f7fa;
+    --tealish: #35d4c7;
+    --silver: #ccd1d9;
+    --bright-sky-blue: #00bcfa;
+    --purple: #9442d5;
+    --dull-purple: #4b1e6e;
+    --purple-theme: #78346c;
+    --orange-theme: #f69e3c;
+    --medium-pink: #ec658e;
+    --right-panel-width: 350px;
+}
+
+html,
+body {
+    min-height: 100%;
+}
+body {
+    font-family: Roboto;
+}
+.no-padding {
+    padding: 0 !important;
+}
+.no-margin {
+    margin: 0 !important;
+}
+
+/* Font Weight */
+.fw-100 {
+    font-weight: 100;
+}
+.fw-200 {
+    font-weight: 200;
+}
+.fw-300 {
+    font-weight: 300;
+}
+.fw-400 {
+    font-weight: 400;
+}
+.fw-500 {
+    font-weight: 500;
+}
+.fw-600 {
+    font-weight: 600;
+}
+/* END - Font Weight */
+
+/* Font Family */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+div,
+label,
+section {
+    font-family: 'Open Sans', Roboto;
+}
+/* END - Font Family */
+
+/* Header */
+.navbar {
+    background-color: var(--purple-theme);
+}
+.navbar.secondary-navbar {
+    background-color: var(--warm-grey);
+}
+.navbar-brand {
+    font-family: 'Open Sans',Roboto;
+    margin-right: 2rem;
+    font-size: 1.65rem;
+}
+.navbar-dark .navbar-nav .nav-link {
+    font-family: 'Open Sans', Roboto;
+    font-size: 12px;
+    color: #ffffff;
+    text-transform: uppercase;
+    margin-right: 10px;
+    margin-left: 10px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+.navbar-dark .navbar-nav .active > .nav-link,
+.navbar-dark .navbar-nav .nav-link.active,
+.navbar-dark .navbar-nav .nav-link.show,
+.navbar-dark .navbar-nav .show > .nav-link {
+    color: var(--orange-theme);
+}
+
+.navbar-search,
+.navbar-search:focus {
+    font-family: "Font Awesome\ 5 Free";
+    content: "\f007";
+    color: #fff;
+    text-align: right;
+    border: none;
+    border-radius: 0px;
+    /* border-bottom: 1px solid #fff; */
+    background: transparent;
+}
+
+@media (min-width: 320px) and (max-width: 768px) {
+    .navbar-search-form {
+        width: 30%;
+    }
+}
+/* .navbar-search::placeholder{
+  font-style: italic;
+  float: right;
+} */
+/* END - Header */

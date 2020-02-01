@@ -1,0 +1,49 @@
+<nav class="navbar navbar-expand-lg navbar-dark">
+  <div class="container" style="margin:0 20px">
+    <a class="navbar-brand" href="index.html">
+      <img src="../../assets/carecentrix-logo@2x.png" class="navbar-brand-anchor"
+        style="width: 120px; height: 50px; object-fit: contain;">
+      <span style="vertical-align: middle">F11 Notes</span>
+    </a>
+    
+    <div ng-if="isAuthenticated()" class="navbar-collapse collapse" id="navbarsExample07">
+      <ul class="navbar-nav mr-auto">       
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/']" 
+          [routerLinkActiveOptions]="{ exact: true }">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/patients']">Patients</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/analytics']">Analytics</a>
+        </li>
+        <li class="nav-item" ng-if="user && user.is_admin">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/admin']">Admin</a>
+        </li>        
+      </ul>
+    
+      <ul class="navbar-nav bd-navbar-nav flex-row">
+        <li class="nav-item align-self-center">
+          <a class="nav-link custom-link mr-0" href="#">
+            <span>
+              <i class="far fa-user-circle"></i> UserName
+            </span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <div class="dropdown">
+            <button type="button" class="btn" style="background: transparent; color: white" data-toggle="dropdown">
+              <i class="fa fa-1x fa-chevron-circle-down"></i>
+            </button>
+            <div class="arrow-up"></div>
+            <div class="dropdown-menu profile-menu" style="left: -150%">
+              <a class="dropdown-item" href="#" style="color: var(--purple-theme)" ng-click="openProfile()">Settings</a>
+              <a class="dropdown-item" href="#" style="color: var(--purple-theme)" ng-click="signOut()">Sign Out</a>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
