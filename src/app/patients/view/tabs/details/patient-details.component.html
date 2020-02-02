@@ -157,7 +157,12 @@
       <fieldset class="outer-field-set">
         <legend class="w-auto px-3 d-inline-block">Service Details</legend>
         <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0">
-          <ngb-panel title="Service code 2512">
+          <ngb-panel id="panel1">
+            <ng-template ngbPanelHeader>
+              <div (click)="acc.toggle('panel1')" class="w-100" ngbPanelToggle>
+                <h1>Service 1111</h1>
+              </div>
+            </ng-template>
             <ng-template ngbPanelContent>
               <app-service-accordion></app-service-accordion>
             </ng-template>
