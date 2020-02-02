@@ -1,9 +1,21 @@
 <div class="page-wrap">
   <nav class="navbar navbar-expand-lg navbar-dark justify-content-center secondary-navbar">
     <div class="btn-group">
-      <button type="button" class="btn btn-outline-secondary">Patient View</button>
-      <button type="button" class="btn btn-outline-secondary">F11 Notes</button>
-      <button type="button" class="btn btn-outline-secondary">Analytics</button>
+      <button type="button" class="btn btn-outline-secondary" active="currentTab === 'PATIENT_TAB'"
+        (click)="onSelectTab($event, 'PATIENT_TAB')">Patient View</button>
+      <button type="button" class="btn btn-outline-secondary" active="currentTab === 'F11_NOTES_TAB'"
+        (click)="onSelectTab($event, 'F11_NOTES_TAB')">F11 Notes</button>
+      <button type="button" class="btn btn-outline-secondary" active="currentTab === 'TIMELINE_TAB'"
+        (click)="onSelectTab($event, 'TIMELINE_TAB')">Timeline</button>
     </div>
   </nav>
+  <div *ngIf="currentTab === 'PATIENT_TAB'">
+    <app-patient-details></app-patient-details>
+  </div>
+  <div *ngIf="currentTab === 'F11_NOTES_TAB'">
+    <app-notes-details></app-notes-details>
+  </div>
+  <div *ngIf="currentTab === 'TIMELINE_TAB'">
+    <app-timeline-details></app-timeline-details>    
+  </div>
 </div>
