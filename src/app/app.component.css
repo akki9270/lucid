@@ -1,5 +1,7 @@
 .bodyContainer {    
+  /* height: calc(100vh - 76px);  */
   height: calc(100vh - 76px); 
+  margin-top: 67px;
   /* background-color: red; */
   /* background-color: #f5f7fa; */
 }
