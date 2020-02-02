@@ -159,26 +159,54 @@
         <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0">
           <ngb-panel id="panel1">
             <ng-template ngbPanelHeader>
-              <div (click)="acc.toggle('panel1')" class="w-100" ngbPanelToggle>
-                <h1>Service 1111</h1>
+              <div (click)="acc.toggle('panel1')" class="w-100 card-header d-flex justify-content-between"
+                ngbPanelToggle>
+                <div>
+                  <h5 class="card-header-text">Service 2512</h5>
+                </div>
+                <div>
+                  <i class="fa fa-caret-down" style="color: white;" aria-hidden="true"></i>
+                </div>
               </div>
             </ng-template>
             <ng-template ngbPanelContent>
               <app-service-accordion></app-service-accordion>
             </ng-template>
           </ngb-panel>
-          <ngb-panel title="Service code 2513">
+          <ngb-panel id="panel2">
+            <ng-template ngbPanelHeader>
+              <div (click)="acc.toggle('panel2')" class="w-100 card-header d-flex justify-content-between"
+                ngbPanelToggle>
+                <div>
+                  <h5 class="card-header-text">Service 2513</h5>
+                </div>
+                <div>
+                  <i class="fa fa-caret-down" style="color: white;" aria-hidden="true"></i>
+                </div>
+              </div>
+            </ng-template>
             <ng-template ngbPanelContent>
               <app-service-accordion></app-service-accordion>
             </ng-template>
-          </ngb-panel>      
-          <ngb-panel title="Service code 2514">
+          </ngb-panel>
+          <ngb-panel id="panel3">
+            <ng-template ngbPanelHeader>
+              <div (click)="acc.toggle('panel3')" class="w-100 card-header d-flex justify-content-between"
+                ngbPanelToggle>
+                <div>
+                  <h5 class="card-header-text">Service 2514</h5>
+                </div>
+                <div>
+                  <i class="fa fa-caret-down" style="color: white;" aria-hidden="true"></i>
+                </div>
+              </div>
+            </ng-template>
             <ng-template ngbPanelContent>
               <app-service-accordion></app-service-accordion>
             </ng-template>
-          </ngb-panel>               
+          </ngb-panel>
         </ngb-accordion>
       </fieldset>
-    </div>    
+    </div>
   </section>
 </div>

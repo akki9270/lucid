@@ -26,10 +26,10 @@
   background-color: var(--purple-theme);
 }
 
-.btn-link{
-  color: white;
+.card-header-text{
+  color:  var(--white-theme);
 }
 
-.btn-link:hover{
-  color: white;
+.card-header-text:hover{
+  color:  var(--white-theme);
 }
