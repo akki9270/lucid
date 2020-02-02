@@ -4,10 +4,11 @@
       <input class="form-control mr-sm-2" type="search" placeholder="Patient Number" aria-label="Search">
       <input class="form-control mr-sm-2" type="search" placeholder="Intake Id" aria-label="Search">
     </form>
-  </nav>  
-  <section class="pt-3 content-section">    
-    <ng2-smart-table [settings]="settings" [source]="myData" 
-      (userRowSelect) = "onPatientView($event)" >      
-    </ng2-smart-table>    
-  </section>
+  </nav>
+  <div class="main-container">
+    <section>
+      <ng2-smart-table [settings]="settings" [source]="myData" (userRowSelect)="onPatientView($event)">
+      </ng2-smart-table>
+    </section>
+  </div>
 </div>
