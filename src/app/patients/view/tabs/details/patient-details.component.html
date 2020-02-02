@@ -1,45 +1,162 @@
-<div id="accordion">
-    <div class="card">
-      <div class="card-header" id="headingOne">
-        <h5 class="mb-0">
-          <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-            Collapsible Group Item #1
-          </button>
-        </h5>
-      </div>
-  
-      <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
-        <div class="card-body">
-          Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+<div class="main-container">
+  <section class="content-section px-2">
+    <div style="padding: 2px">
+      <fieldset class="outer-field-set">
+        <legend class="w-auto px-3 d-inline-block">Paient Info</legend>
+        <div style="margin: 5px;">
+          <div class="row">
+            <div class="d-flex">
+              <div class="p-2">
+                <label class="purple-theme">First Name: </label>
+              </div>
+              <div class="p-2">sgfsdgbsgbsdsgfdgsg</div>
+            </div>
+            <div class="d-flex">
+              <div class="p-2 ml-3">
+                <label class="purple-theme">Last Name: </label>
+              </div>
+              <div class="p-2">sdfdsfdsfsd</div>
+            </div>
+            <div class="d-flex">
+              <div class="p-2 ml-3">
+                <label class="purple-theme">DOB: </label>
+              </div>
+              <div class="p-2">17/15/2014</div>
+            </div>
+            <div class="d-flex">
+              <div class="p-2 ml-3">
+                <label class="purple-theme">Gender: </label>
+              </div>
+              <div class="p-2">M</div>
+            </div>
+            <div class="d-flex">
+              <div class="p-2">
+                <label class="purple-theme">Phone Number: </label>
+              </div>
+              <div class="p-2">(222)-746-8558</div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="d-flex">
+              <div class="p-2">
+                <label class="purple-theme">Address: </label>
+              </div>
+              <div class="p-2">sdfdsf sdsd sfdd fddfddsf sddsfsd</div>
+            </div>
+            <div class="d-flex">
+              <div class="p-2 ml-3">
+                <label class="purple-theme">City: </label>
+              </div>
+              <div class="p-2">sdfdsf</div>
+            </div>
+            <div class="d-flex">
+              <div class="p-2 ml-3">
+                <label class="purple-theme">State: </label>
+              </div>
+              <div class="p-2">sdfdsfdsfds</div>
+            </div>
+            <div class="d-flex">
+              <div class="p-2 ml-3">
+                <label class="purple-theme">Zip Code: </label>
+              </div>
+              <div class="p-2">394210</div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="d-flex">
+              <div class="p-2">
+                <label class="purple-theme">Insurance Name: </label>
+              </div>
+              <div class="p-2">sdfdsf sdsd sfdd fddfddsf sddsfsd</div>
+            </div>
+            <div class="d-flex">
+              <div class="p-2 ml-3">
+                <label class="purple-theme">Subscriber Id: </label>
+              </div>
+              <div class="p-2">0HDSNKJCCJH455</div>
+            </div>
+          </div>
         </div>
-      </div>
+      </fieldset>
+      <fieldset id='key-indicator' class="outer-field-set mt-2">
+        <legend class="w-auto px-3 d-inline-block">Key Indicator</legend>
+        <div class="d-flex" style="margin: 5px;">
+          <div class="left-section">
+            <div class="row">
+              <div class="d-flex">
+                <div class="p-2">
+                  <input type="checkbox" /> Pediatric Patient
+                </div>
+              </div>
+              <div class="d-flex">
+                <div class="p-2 ml-3">
+                  <input type="checkbox" /> Urgent
+                </div>
+              </div>
+              <div class="d-flex">
+                <div class="p-2 ml-3">
+                  <input type="checkbox" /> Engaged by Escalation Team
+                </div>
+              </div>
+              <div class="d-flex">
+                <div class="p-2 ml-3">
+                  <input type="checkbox" /> ReStaff/Turnback
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="d-flex">
+                <div class="p-2">
+                  <input type="checkbox" /> Primary Care Physician
+                </div>
+              </div>
+              <div class="d-flex">
+                <div class="p-2 ml-3">
+                  <input type="checkbox" /> Following Physician
+                </div>
+              </div>
+              <div class="d-flex">
+                <div class="p-2 ml-3">
+                  <input type="checkbox" /> Wound Care
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="d-flex">
+                <div class="p-2">
+                  <input type="checkbox" /> Facility Discharge
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class='d-flex flex-column justify-content-center align-content-center right-section'>
+            <div class="align-self-center">
+              <label>
+                <span class="fa fa-phone purple-theme" style="transform: rotateY(180deg);"></span>
+                Call Count
+              </label>
+            </div>
+            <div class="d-flex align-items-center justify-content-center">
+              <select class="form-control" style="max-width: 100px;">
+                <option value="day">Day</option>
+                <option value="week">Week</option>
+                <option value="month">Month</option>
+                <option value="year">Year</option>
+              </select>
+              <div>
+                <input type="number" value="3" style="width: 40px; margin-left: 10px;">
+              </div>
+            </div>
+          </div>
+        </div>
+      </fieldset>
+    </div>
+  </section>
+  <section id="service-details" class="content-section px-2 mt-2">
+    <div style="padding: 2px">
+      <fieldset class="outer-field-set">
+        <legend class="w-auto px-3 d-inline-block">Service Details</legend>
+      </fieldset>
     </div>    
-    <div class="card">
-      <div class="card-header" id="headingTwo">
-        <h5 class="mb-0">
-          <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-            Collapsible Group Item #2
-          </button>
-        </h5>
-      </div>
-      <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
-        <div class="card-body">
-          Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-        </div>
-      </div>
-    </div>
-    <div class="card">
-      <div class="card-header" id="headingThree">
-        <h5 class="mb-0">
-          <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-            Collapsible Group Item #3
-          </button>
-        </h5>
-      </div>
-      <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
-        <div class="card-body">
-          Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-        </div>
-      </div>
-    </div>
-  </div>
+  </section>
+</div>

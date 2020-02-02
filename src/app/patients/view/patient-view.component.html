@@ -1,12 +1,19 @@
 <div class="page-wrap">
-  <nav class="navbar navbar-expand-lg navbar-dark justify-content-center secondary-navbar">
-    <div class="btn-group">
-      <button type="button" class="btn btn-default tabButton" [class.active]="currentTab === 'PATIENT_TAB'"
-        (click)="onSelectTab($event, 'PATIENT_TAB')">Patient View</button>
-      <button type="button" class="btn btn-default tabButton " [class.active]="currentTab === 'F11_NOTES_TAB'"
-        (click)="onSelectTab($event, 'F11_NOTES_TAB')">F11 Notes</button>
-      <button type="button" class="btn btn-default tabButton" [class.active]="currentTab === 'TIMELINE_TAB'"
-        (click)="onSelectTab($event, 'TIMELINE_TAB')">Timeline</button>
+  <nav class="navbar navbar-expand-lg navbar-dark d-flex secondary-navbar">
+    <div>
+      <button type="button" class="btn btn-default" style="background-color: var(--purple-theme)">
+        <span style="color: white">< 2445050</span>
+      </button>
+    </div>
+    <div class="d-flex justify-content-center" style="flex: auto; margin-left: -70px;">
+      <div class="btn-group">
+        <button type="button" class="btn btn-default tabButton" [class.active]="currentTab === 'PATIENT_TAB'"
+          (click)="onSelectTab($event, 'PATIENT_TAB')">Patient View</button>
+        <button type="button" class="btn btn-default tabButton " [class.active]="currentTab === 'F11_NOTES_TAB'"
+          (click)="onSelectTab($event, 'F11_NOTES_TAB')">F11 Notes</button>
+        <button type="button" class="btn btn-default tabButton" [class.active]="currentTab === 'TIMELINE_TAB'"
+          (click)="onSelectTab($event, 'TIMELINE_TAB')">Timeline</button>
+      </div>
     </div>
   </nav>
   <div *ngIf="currentTab === 'PATIENT_TAB'">
@@ -16,6 +23,6 @@
     <app-notes-details></app-notes-details>
   </div>
   <div *ngIf="currentTab === 'TIMELINE_TAB'">
-    <app-timeline-details></app-timeline-details>    
+    <app-timeline-details></app-timeline-details>
   </div>
 </div>

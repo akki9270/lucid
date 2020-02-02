@@ -1,0 +1,23 @@
+.main-container{
+  padding: 5px;  
+  /* background-color: yellow; */
+}
+
+.outer-field-set{
+  border: 1px solid black; 
+  padding-left: 15px; 
+  padding-right: 15px; 
+  padding-bottom: 15px;  
+}
+
+#key-indicator .left-section{
+  flex: 0 0 70%;
+  box-sizing: border-box;
+  max-width: 70%;
+}
+
+#key-indicator .right-section{
+  flex: 0 0 30%;
+  box-sizing: border-box;
+  max-width: 30%;
+}

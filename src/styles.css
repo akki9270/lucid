@@ -32,6 +32,66 @@ body {
     margin: 0 !important;
 }
 
+/* Colors */
+.charcoal-grey {
+    color: #434a54;
+}
+.warm-grey {
+    color: #7f7f7f;
+}
+.soft-green {
+    color: #6bc076;
+}
+.dull-yellow {
+    color: #ebb463;
+}
+.rust-red {
+    color: #b01700;
+}
+.pale-grey {
+    color: #f5f7fa;
+}
+.tealish {
+    color: #35d4c7;
+}
+.silver {
+    color: #ccd1d9;
+}
+.bright-sky-blue {
+    color: #00bcfa;
+}
+.purple {
+    color: #9442d5;
+}
+.medium-pink {
+    color: #ec658e;
+}
+.orange-theme {
+    color: var(--orange-theme);
+}
+
+.purple-theme {
+    color: var(--purple-theme);
+}
+
+.bg-purple-theme {
+    background-color: var(--purple-theme);
+}
+.bg-red-theme {
+    background-color: #ff3b00cf;
+}
+/* END - Colors */
+
+/* Slice Spacing */
+.slice-sm {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+.slice {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+}
+
 /* Font Weight */
 .fw-100 {
     font-weight: 100;
