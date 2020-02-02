@@ -1,21 +1,9 @@
 <div class="main-container">
-  <section class="content-section px-1 my-2">
-    <textarea class="form-control" aria-label="With textarea" rows="15">
-      Notes: 
-      Was the service or item for which you are now requesting authorization initiated prior to submitting this request for
-      authorization?: No
-      Notes:- Be sure to staff
-      HCPC S9501/SERVICE CODE 1017/ANTIBIOTIC THERAPY Q12 - PHARMACY ONLY - PD,SQ FROM 03/08/2018 TO
-      03/19/2018
-      Missed Start of Care (MSOC) related notes.
-      Notes:- PT was requesting
-      THE ABOVE PROVIDER PORTAL REFERRAL REQUEST WAS ROUTED TO THE HIT QUEUE WITH A ROUTE REASON OF
-      Portal - Clin Rev BECAUSE OF THE FOLLOWING RULE FAILURES:
-      Working on staffing
-      • PT was requesting
-      THE ABOVE PROVIDER PORTAL REFERRAL REQUEST WAS ROUTED TO THE HIT QUEUE WITH A ROUTE REASON OF
-      Portal - Clin Rev BECAUSE OF THE FOLLOWING RULE FAILURES:
-      </textarea>
+  <section class="content-section px-1 my-2">   
+    <angular-editor autofocus="true" id="editor1" 
+      (ngModel)="htmlContent" [config]="editorConfig"      
+      (ngModelChange)="onChange($event)">
+    </angular-editor>   
   </section>
   <section class="content-section px-1 my-2">
     <div class="d-flex align-items-center">
@@ -36,7 +24,7 @@
       </div>
       <div class="ml-5">
         <select class="form-control" style="border-color: green;">
-          <option value="msoc">Missed Start of Care (MSOC)</option>          
+          <option value="msoc">Missed Start of Care (MSOC)</option>
         </select>
       </div>
     </div>

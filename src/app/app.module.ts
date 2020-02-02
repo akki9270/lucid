@@ -2,6 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { NgbModule, NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap';
+import { HttpClientModule} from '@angular/common/http';
+import { AngularEditorModule } from '@kolkov/angular-editor';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -38,6 +40,8 @@ import { DatepickerRangePopupComponent } from '../components/datepicker-range-po
     Ng2SmartTableModule,
     NgbModule,
     NgbAccordionModule,
+    HttpClientModule, 
+    AngularEditorModule,
     AppRoutingModule
   ],
   providers: [],
