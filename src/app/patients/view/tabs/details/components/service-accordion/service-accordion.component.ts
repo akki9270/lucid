@@ -10,7 +10,7 @@ export class ServiceAccordionComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    console.log('Loade service accord')
+    // console.log('Loade service accord')
   }
 
 }

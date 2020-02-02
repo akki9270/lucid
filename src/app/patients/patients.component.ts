@@ -57,7 +57,7 @@ export class PatientsComponent implements OnInit {
   }
 
   onPatientView(event){
-    console.log('-data: ', event)    
+    // console.log('-data: ', event)    
     this.router.navigateByUrl(`patients/${event.data.patientId}/view`);
   }
 

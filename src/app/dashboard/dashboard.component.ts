@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class DashboardComponent implements OnInit {
 
   constructor() { 
-    console.log('--load Dashboard')
+    // console.log('--load Dashboard')
   }
 
   ngOnInit() {

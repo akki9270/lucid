@@ -9,6 +9,6 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'lucid';
   constructor() { 
-    console.log('--load App: ')
+    // console.log('--load App: ')
   }
 }
