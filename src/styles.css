@@ -170,6 +170,11 @@ section {
     background: transparent;
 }
 
+.page-wrap {
+    height: 100%;  
+    background-color:  var(--pale-grey);
+  }
+
 .tabButton.active {
     background-color: var(--purple-theme);
     color: white;

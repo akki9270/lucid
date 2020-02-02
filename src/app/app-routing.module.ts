@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { PatientsComponent } from './patients/patients.component';
 // import { AdminComponent } from './admin/admin.component';
-// import { AnalyticsComponent } from './analytics/analytics.component';
+import { AnalyticsComponent } from './analytics/analytics.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { PatientViewComponent } from './patients/view/patient-view.component';
 
@@ -25,10 +25,10 @@ const routes: Routes = [
   //   path: 'admin',
   //   component: AdminComponent
   // },
-  // {
-  //   path: 'analytics',
-  //   component: AnalyticsComponent
-  // },
+  {
+    path: 'analytics',
+    component: AnalyticsComponent
+  },
   { 
     path: '**',
     component: PageNotFoundComponent
