@@ -109,6 +109,17 @@ section {
     background: transparent;
 }
 
+.tabButton.active {
+    background-color: var(--purple-theme);
+    color: white;
+}
+
+.tabButton {
+    color: var(--purple-theme);
+    background-color: white;
+    border-color: var(--purple-theme);
+}
+
 /* @media (min-width: 320px) and (max-width: 768px) {
     .navbar-search-form {
         width: 30%;

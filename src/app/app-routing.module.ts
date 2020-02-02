@@ -5,7 +5,6 @@ import { PatientsComponent } from './patients/patients.component';
 // import { AdminComponent } from './admin/admin.component';
 // import { AnalyticsComponent } from './analytics/analytics.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { PatientDetailsComponent } from './patients/view/tabs/details/patient-details.component';
 import { PatientViewComponent } from './patients/view/patient-view.component';
 
 const routes: Routes = [
