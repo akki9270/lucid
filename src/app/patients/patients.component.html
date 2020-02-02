@@ -7,7 +7,7 @@
   </nav>  
   <section class="pt-3 content-section">    
     <ng2-smart-table [settings]="settings" [source]="myData" 
-      (rowSelect) = "render($event)" >      
+      (userRowSelect) = "onPatientView($event)" >      
     </ng2-smart-table>    
   </section>
 </div>

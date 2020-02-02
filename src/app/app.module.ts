@@ -9,9 +9,10 @@ import { PatientsComponent } from './patients/patients.component';
 import { AnalyticsComponent } from './analytics/analytics.component';
 import { AdminComponent } from './admin/admin.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { PatientDetailsComponent } from './patients/tabs/view/patient-details/patient-details.component';
-import { NotesDetailsComponent } from './patients/tabs/notes/notes-details/notes-details.component';
-import { TimelineDetailsComponent } from './patients/tabs/timeline/timeline-details/timeline-details.component';
+import { PatientDetailsComponent } from './patients/view/tabs/details/patient-details.component';
+import { NotesDetailsComponent } from './patients/view/tabs/notes/notes-details.component';
+import { TimelineDetailsComponent } from './patients/view/tabs/timeline/timeline-details.component';
+import { PatientViewComponent } from './patients/view/patient-view.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { TimelineDetailsComponent } from './patients/tabs/timeline/timeline-deta
     PageNotFoundComponent,
     PatientDetailsComponent,
     NotesDetailsComponent,
-    TimelineDetailsComponent
+    TimelineDetailsComponent,
+    PatientViewComponent
   ],
   imports: [
     BrowserModule,

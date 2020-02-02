@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { data } from './patients.json';
 
 @Component({
@@ -48,14 +49,16 @@ export class PatientsComponent implements OnInit {
     }
   };
 
-  constructor() { }
+  constructor(private router: Router) {    
+  }
 
   ngOnInit() {
     this.myData = data
   }
 
-  render(data){
-    console.log('-data: ', data)
+  onPatientView(event){
+    console.log('-data: ', event)    
+    this.router.navigateByUrl(`patients/${event.data.patientId}/view`);
   }
 
 }
