@@ -156,6 +156,23 @@
     <div style="padding: 2px">
       <fieldset class="outer-field-set">
         <legend class="w-auto px-3 d-inline-block">Service Details</legend>
+        <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0">
+          <ngb-panel title="Service code 2512">
+            <ng-template ngbPanelContent>
+              <app-service-accordion></app-service-accordion>
+            </ng-template>
+          </ngb-panel>
+          <ngb-panel title="Service code 2513">
+            <ng-template ngbPanelContent>
+              <app-service-accordion></app-service-accordion>
+            </ng-template>
+          </ngb-panel>      
+          <ngb-panel title="Service code 2514">
+            <ng-template ngbPanelContent>
+              <app-service-accordion></app-service-accordion>
+            </ng-template>
+          </ngb-panel>               
+        </ngb-accordion>
       </fieldset>
     </div>    
   </section>

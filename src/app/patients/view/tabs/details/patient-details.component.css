@@ -21,3 +21,15 @@
   box-sizing: border-box;
   max-width: 30%;
 }
+
+.card-header{
+  background-color: var(--purple-theme);
+}
+
+.btn-link{
+  color: white;
+}
+
+.btn-link:hover{
+  color: white;
+}

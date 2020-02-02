@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
+import { NgbModule, NgbPanel, NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -13,6 +14,7 @@ import { PatientDetailsComponent } from './patients/view/tabs/details/patient-de
 import { NotesDetailsComponent } from './patients/view/tabs/notes/notes-details.component';
 import { TimelineDetailsComponent } from './patients/view/tabs/timeline/timeline-details.component';
 import { PatientViewComponent } from './patients/view/patient-view.component';
+import { ServiceAccordionComponent } from './patients/view/tabs/details/components/service-accordion/service-accordion.component';
 
 @NgModule({
   declarations: [
@@ -26,11 +28,14 @@ import { PatientViewComponent } from './patients/view/patient-view.component';
     PatientDetailsComponent,
     NotesDetailsComponent,
     TimelineDetailsComponent,
-    PatientViewComponent
+    PatientViewComponent,
+    ServiceAccordionComponent
   ],
   imports: [
     BrowserModule,
     Ng2SmartTableModule,
+    NgbModule,
+    NgbAccordionModule,    
     AppRoutingModule
   ],
   providers: [],

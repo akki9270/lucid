@@ -180,6 +180,14 @@ section {
     border-color: var(--purple-theme);
 }
 
+/* .card-header{
+    background-color: var(--purple-theme);
+}
+
+.btn-link{
+    color: white;
+}   */
+
 /* @media (min-width: 320px) and (max-width: 768px) {
     .navbar-search-form {
         width: 30%;
