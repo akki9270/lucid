@@ -1,10 +1,5 @@
 <div class="page-wrap">
-  <nav class="navbar navbar-expand-lg navbar-dark d-flex secondary-navbar">
-    <div>
-      <button type="button" class="btn btn-default" style="background-color: var(--purple-theme)">
-        <span style="color: white">< 2445050</span>
-      </button>
-    </div>
+  <nav class="navbar navbar-expand-lg navbar-dark d-flex secondary-navbar">   
     <div class="d-flex justify-content-center" style="flex: auto; margin-left: -70px;">
       <div class="btn-group">
         <button type="button" class="btn btn-default tabButton" [class.active]="currentTab === 'PATIENT_TAB'"
@@ -14,6 +9,11 @@
         <button type="button" class="btn btn-default tabButton" [class.active]="currentTab === 'TIMELINE_TAB'"
           (click)="onSelectTab($event, 'TIMELINE_TAB')">Timeline</button>
       </div>
+    </div>
+    <div>
+      <button type="button" class="btn btn-default back-button" (click)="onBackClicked()">
+        <span style="color: white">< 2445050</span>
+      </button>
     </div>
   </nav>
   <div *ngIf="currentTab === 'PATIENT_TAB'">

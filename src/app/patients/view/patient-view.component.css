@@ -3,3 +3,9 @@
   background-color: #f5f7fa;  
 }
   
+.back-button{
+  position: absolute; 
+  left: 15px; 
+  top: 8px; 
+  background-color: var(--purple-theme)
+}

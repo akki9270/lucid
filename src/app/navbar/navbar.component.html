@@ -1,23 +1,17 @@
-<nav class="navbar navbar-expand-lg navbar-dark">
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark">
   <div class="container" style="margin:0 20px">
     <a class="navbar-brand" href="index.html">
-      <!-- <img src="../../assets/carecentrix-logo@2x.png" class="navbar-brand-anchor"
-        style="width: 120px; height: 50px; object-fit: contain;">
-      <span style="vertical-align: middle">
-          <i class="fa fa-align-left pl-1 pr-1" aria-hidden="true"></i>F11 Notes
-      </span> -->
-      
       <img src="../../assets/carecentrix-logo@2x.png" class="navbar-brand-anchor"
-      style="width: 200px; clip: rect(0px,40px,45px,3px); position: absolute; background: transparent;">
+        style="width: 200px; clip: rect(0px,40px,45px,3px); position: absolute; background: transparent;">
       <span class="fa fa-align-right fa-xs" style="margin-left: 55px;"></span>
       <span style="vertical-align: middle; "> F11 Notes</span>
     </a>
-    
+
     <div ng-if="isAuthenticated()" class="navbar-collapse collapse" id="navbarsExample07">
-      <ul class="navbar-nav mr-auto">       
+      <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-          <a class="nav-link" routerLinkActive="active" [routerLink]="['/']" 
-          [routerLinkActiveOptions]="{ exact: true }">Home</a>
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/']"
+            [routerLinkActiveOptions]="{ exact: true }">Home</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" routerLinkActive="active" [routerLink]="['/patients']">Patients</a>
@@ -27,9 +21,9 @@
         </li>
         <li class="nav-item" ng-if="user && user.is_admin">
           <a class="nav-link" routerLinkActive="active" [routerLink]="['/admin']">Admin</a>
-        </li>        
+        </li>
       </ul>
-    
+
       <ul class="navbar-nav bd-navbar-nav flex-row">
         <li class="nav-item align-self-center">
           <a class="nav-link custom-link mr-0" href="#">

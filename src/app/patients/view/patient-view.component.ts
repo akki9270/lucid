@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Location } from '@angular/common';
 import { PATIENT_TAB } from '../../constants'
+
 @Component({
   selector: 'app-patient-view',
   templateUrl: './patient-view.component.html',
@@ -7,15 +9,19 @@ import { PATIENT_TAB } from '../../constants'
 })
 export class PatientViewComponent implements OnInit {
   currentTab = PATIENT_TAB
-  constructor() { }
+  constructor(private location: Location) { }
 
   ngOnInit() {
     this.currentTab = PATIENT_TAB
   }
 
-  onSelectTab(event, tab){
+  onSelectTab(event, tab) {
     this.currentTab = tab
     // console.log('---tab: ', this.currentTab)
+  }
+
+  onBackClicked() {
+    this.location.back();
   }
 
 }
