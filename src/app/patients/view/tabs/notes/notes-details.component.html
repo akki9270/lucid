@@ -1,10 +1,8 @@
 <div class="main-container">
-  <section class="content-section px-1 my-2">   
-    <angular-editor autofocus="true" id="editor1" 
-      (ngModel)="htmlContent" [config]="editorConfig"      
-      (ngModelChange)="onChange($event)">
-    </angular-editor>   
-  </section>
+  <section class="content-section px-1 my-2">    
+    <angular-editor autofocus="true" [(ngModel)]="htmlContent" [config]="editorConfig"></angular-editor>
+    <!-- (ngModelChange)="onChange($event)" -->
+  </section> 
   <section class="content-section px-1 my-2">
     <div class="d-flex align-items-center">
       <div class="d-flex align-items-center" style="max-width: 100px;">

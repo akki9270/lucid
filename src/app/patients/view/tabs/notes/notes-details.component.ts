@@ -13,8 +13,16 @@ export class NotesDetailsComponent implements OnInit {
 
   form: FormGroup;
 
-  htmlContent = '';
-
+  htmlContent = '<b>Notes</b>' + 
+  '<p><b>Was the service or item for which you are now requesting authorization initiated prior to submitting this request for authorization?: No</b></p>' +
+  '<p><b>Notes:- </b><b style="color: #007bff">Be sure to staff</b></p>' +
+  '<p><b>HCPCS9501/SERVICE CODE 1017/ANTIBIOTIC THERAPY Q12 - PHARMACY ONLY - PD,SQ FROM 03/08/2018 TO 03/19/2018</b><p>' +
+  '<p><b>Notes:- </b><b style="color: #007bff">PT was requesting</b></p>' +
+  '<p><b>THE ABOVE PROVIDER PORTAL REFERRAL REQUEST WAS ROUTED TO THE HIT QUEUE WITH A ROUTE REASON OF Portal - Clin Rev BECAUSE OF THE FOLLOWING RULE FAILURES:</b><p>' +
+  '<p><b style="color: #007bff">Working on staffing</b><p>' +
+  '<p><ul><li><b style="color: #007bff">PT was requesting</b></li></ul><p>' +
+  '<p><b>THE ABOVE PROVIDER PORTAL REFERRAL REQUEST WAS ROUTED TO THE HIT QUEUE WITH A ROUTE REASON OF Portal - Clin Rev BECAUSE OF THE FOLLOWING RULE FAILURES:</b></p>';
+  
   editorConfig: AngularEditorConfig = {
     editable: true,
       spellcheck: true,
@@ -54,10 +62,10 @@ export class NotesDetailsComponent implements OnInit {
     uploadUrl: 'v1/image',
     sanitize: true,
     toolbarPosition: 'top',
-    toolbarHiddenButtons: [
-      ['bold', 'italic'],
-      ['fontSize']
-    ]
+    // toolbarHiddenButtons: [
+    //   ['bold', 'italic'],
+    //   ['fontSize']
+    // ]
   };
 
   constructor(private formBuilder: FormBuilder) {}
@@ -66,10 +74,10 @@ export class NotesDetailsComponent implements OnInit {
     this.form = this.formBuilder.group({
       signature: ['', Validators.required]
     });
-    console.log('this.htmlContent: ', this.htmlContent);
+    // console.log('this.htmlContent: ', this.htmlContent);
   }
 
-  onChange(event) {
-    console.log('changed: ', event);
-  }
+  // onChange(event) {
+  //   console.log('changed: ', event);
+  // }
 }

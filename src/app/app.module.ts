@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { NgbModule, NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule} from '@angular/common/http';
@@ -37,6 +38,7 @@ import { DatepickerRangePopupComponent } from '../components/datepicker-range-po
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     Ng2SmartTableModule,
     NgbModule,
     NgbAccordionModule,
