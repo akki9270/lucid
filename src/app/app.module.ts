@@ -34,7 +34,7 @@ import { DatepickerRangePopupComponent } from '../components/datepicker-range-po
     TimelineDetailsComponent,
     PatientViewComponent,
     ServiceAccordionComponent,
-    DatepickerRangePopupComponent
+    DatepickerRangePopupComponent    
   ],
   imports: [
     BrowserModule,

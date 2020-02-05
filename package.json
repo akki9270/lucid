@@ -21,6 +21,7 @@
     "@angular/router": "~7.2.0",
     "@kolkov/angular-editor": "^0.18.8",
     "@ng-bootstrap/ng-bootstrap": "^4.2.2",
+    "@types/jquery": "^3.3.32",
     "bootstrap": "^4.4.1",
     "core-js": "^2.5.4",
     "jquery": "^3.4.1",

@@ -1,10 +1,82 @@
-<div class="main-container d-flex flex-row align-items-center">
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-md-12 text-center">
-        <span class="display-3 d-block">Timeline</span>
-        <div class="mb-4 lead">Work in progress.</div>
+<div class="main-container">
+  <div class="row justify-content-center align-items-center">
+    <div class="col-md-12 text-center">
+      <h1><i class="far fa-clock"></i><label class="pl-2">Events</label></h1>
+      <div class="timeline-wrapper">
+        <div class="timeline">
+          <div (click)="onEventClick(longContent, '#ProviderCall')" class="event">
+            <h2>ProviderCall</h2>
+          </div>
+          <div (click)="onEventClick(longContent, '#1stPatientCall')" class="event">
+            <h2>1st Patient Call</h2>
+          </div>
+          <div (click)="onEventClick(longContent, '#2ndPatientCall')" class="event">
+            <h2>2nd Patient Call</h2>
+          </div>
+          <div (click)="onEventClick(longContent, '#PTwasrequesting')" class="event">
+            <h2>PT was requesting</h2>
+          </div>
+          <div (click)="onEventClick(longContent, '#NotesUpdated')" class="event">
+            <h2>Notes Updated</h2>
+          </div>
+        </div>
       </div>
     </div>
   </div>
+  <ng-template #longContent let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title">Event Timeline</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div id="header">
+        <b>Notes</b>
+        <p>
+          <b>Was the service or item for which you are now requesting authorization initiated prior to submitting this
+            request for authorization?: No</b>
+        </p>
+      </div>
+      <div id="BeSureToStaff">
+        <p><b>Notes:- </b><b style="color: #007bff">Be sure to staff</b></p>
+        <p><b>HCPCS9501/SERVICE CODE 1017/ANTIBIOTIC THERAPY Q12 - PHARMACY ONLY - PD,SQ FROM 03/08/2018 TO
+            03/19/2018</b>
+        </p>
+      </div>
+      <div id="NotesUpdated">
+        <p><b>Notes:- </b><b style="color: #007bff">NotesUpdated</b></p>
+        <p><b>THE ABOVE PROVIDER PORTAL REFERRAL REQUEST WAS ROUTED TO THE HIT QUEUE WITH A ROUTE REASON OF Portal -
+            Clin Rev BECAUSE OF THE FOLLOWING RULE FAILURES:</b></p>
+      </div>
+      <div id="WorkingOnStaffing">
+        <p><b style="color: #007bff">Working on staffing</b></p>
+      </div>
+      <div id="PTwasrequesting">
+        <ul>
+          <li><b style="color: #007bff">PT was requesting</b></li>
+        </ul>
+        <p><b>THE ABOVE PROVIDER PORTAL REFERRAL REQUEST WAS ROUTED TO THE HIT QUEUE WITH A ROUTE REASON
+            OF Portal - Clin Rev BECAUSE OF THE FOLLOWING RULE FAILURES:</b></p>
+      </div>
+      <div id="ProviderCall">
+        <p><b>Notes:- </b><b style="color: #007bff">Provider Call</b></p>
+        <p><b>THE ABOVE PROVIDER PORTAL REFERRAL REQUEST WAS ROUTED TO THE HIT QUEUE WITH A ROUTE REASON OF Portal -
+            Clin Rev BECAUSE OF THE FOLLOWING RULE FAILURES:</b></p>
+      </div>
+      <div id="1stPatientCall">
+        <p><b>Notes:- </b><b style="color: #007bff">1st Patient Call</b></p>
+        <p><b>THE ABOVE PROVIDER PORTAL REFERRAL REQUEST WAS ROUTED TO THE HIT QUEUE WITH A ROUTE REASON OF Portal -
+            Clin Rev BECAUSE OF THE FOLLOWING RULE FAILURES:</b></p>
+      </div>
+      <div id="2ndPatientCall">
+        <p><b>Notes:- </b><b style="color: #007bff">2nd Patient Call</b></p>
+        <p><b>THE ABOVE PROVIDER PORTAL REFERRAL REQUEST WAS ROUTED TO THE HIT QUEUE WITH A ROUTE REASON OF Portal -
+            Clin Rev BECAUSE OF THE FOLLOWING RULE FAILURES:</b></p>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+    </div>
+  </ng-template>
 </div>
