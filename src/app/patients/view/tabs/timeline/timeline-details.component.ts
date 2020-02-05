@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 // import * as $ from 'jquery';
 
 @Component({
@@ -16,9 +16,9 @@ export class TimelineDetailsComponent implements OnInit {
 
   onEventClick(longContent, $scrollElementId) {
     this.modalService.open(longContent);
-    $('html, body').animate({
-      scrollTop: $scrollElementId.offset().top
-    }, 1000);
-    return false;
+    // $('html, body').animate({
+    //   scrollTop: $scrollElementId.offset().top
+    // }, 1000);
+    // return false;
   }
 }
