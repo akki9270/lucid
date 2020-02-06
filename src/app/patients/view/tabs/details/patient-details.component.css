@@ -4,12 +4,16 @@
 }
 
 .outer-field-set{
-  border: 1px solid black; 
+  border: 1px solid grey;
   padding-left: 15px; 
   padding-right: 15px; 
   padding-bottom: 15px;  
+  background-color: white;
+  color: #7f7f7f;
 }
-
+.w-auto.px-3.d-inline-block {
+  color: rgb(33,37,41);
+}
 #key-indicator .left-section{
   flex: 0 0 70%;
   box-sizing: border-box;
@@ -32,4 +36,7 @@
 
 .card-header-text:hover{
   color:  var(--white-theme);
+}
+input[type="checkbox"], input, select {
+  pointer-events: none;
 }
