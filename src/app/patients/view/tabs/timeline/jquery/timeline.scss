@@ -92,6 +92,7 @@ button {
 .timeline ol li div {
   position: absolute;
   left: calc(100% + 7px);
+  margin-left: -50px;
   width: 280px;
   padding: 15px;
   font-size: 1rem;
@@ -104,7 +105,8 @@ button {
   content: '';
   position: absolute;
   top: 100%;
-  left: 0;
+  // left: 0;
+  right: 38%;
   width: 0;
   height: 0;
   border-style: solid;
