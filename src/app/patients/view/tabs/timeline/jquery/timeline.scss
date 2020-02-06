@@ -1,157 +1,222 @@
-@import url("https://fonts.googleapis.com/css?family=Dosis");
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-$blue: #78346c;
+button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  outline: none;
+}
 
-* {
-	box-sizing: border-box;
-}
-body {
-	font-family: Helvetica, Arial;
-	margin: 1em 0;
-	text-align: center;
-}
-h1 {
-	font-family: Dosis;
-	color: darken($blue, 20);
-	text-align: center;
-	font-size: 3em;
-	i {
-		color: lighten($blue, 40);
-	}
-}
-.timeline-wrapper {
-	position: relative;
+// body {
+//   font: normal 16px/1.5 "Helvetica Neue", sans-serif;
+//   background: #456990;
+//   color: #fff;
+// }
 
-	&::after {
-		content: "";
-		position: absolute;
-		height: 10px;
-		transition: 0.75s ease-out;
-		background: lighten($blue, 30);
-		// background: linear-gradient(90deg,lighten($blue,50),white);
-		width: 0px;
-		z-index: 0 !important;
-		left: 0;
-		bottom: 0px;
-	}
+
+/* .section SECTION
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+.section {
+  background: #F45B69;
+  padding: 50px 0;
 }
+
+.section .container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.section h1 {
+  font-size: 2.5rem;
+}
+
+.section h2 {
+  font-size: 1.3rem;
+}
+
+
+/* TIMELINE
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
 .timeline {
-	display: flex;
-	transition: all 0.3s;
-	justify-content: center;
-	padding-bottom: 30px;
-	border-bottom: 10px solid $blue;
-	margin: 0 0 50px 0;
+  white-space: nowrap;
+  overflow-x: hidden;
+}
 
-	.event {
-		background: lighten($blue, 50);
-		cursor: pointer;
-		padding: 1em;
-		border-radius: 5px;
-		position: relative;
-		margin: 0 1em 0 1em;
-		transition: all 0.3s;
-		box-shadow: 0 0 5px #ccc;
-		color: darken($blue, 20);
-		text-align: center;
+.timeline ol {
+  font-size: 0;
+  width: 100vw;
+  padding: 250px 0;
+  transition: all 1s;
+}
 
-		.close {
-			position: absolute;
-			bottom: 10px;
-			right: 10px;
-			text-align: center;
-			border-radius: 3px;
-			width: 20px;
-			height: 20px;
-			cursor: pointer;
-			transition: 0.2s;
-			&:hover {
-				color: darkred;
+.timeline ol li {
+  position: relative;
+  display: inline-block;
+  list-style-type: none;
+  width: 160px;
+  height: 3px;
+  background: #fff;
+}
 
-				background: #fff;
-			}
-		}
+.timeline ol li:last-child {
+  width: 280px;
+}
 
-		h2 {
-			font-family: Dosis;
-			position: relative;
-			z-index: 1;
+.timeline ol li:not(:first-child) {
+  margin-left: 14px;
+}
 
-			&::before {
-				content: "\f073";
-				display: block;
-				position: absolute;
-				top: 50px;
-				left: calc(50% - 15px);
-				font-size: 30px;
-				font-family: "FontAwesome";
-				color: $blue;
-				opacity: 0.1;
-				z-index: 0;
-			}
-		}
+.timeline ol li:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: calc(100% + 1px);
+  bottom: 0;
+  width: 12px;
+  height: 12px;
+  transform: translateY(-50%);
+  border-radius: 50%;
+  background: #F45B69;
+}
 
-		p {
-			color: $blue;
-		}
+.timeline ol li div {
+  position: absolute;
+  left: calc(100% + 7px);
+  width: 280px;
+  padding: 15px;
+  font-size: 1rem;
+  white-space: normal;
+  color: black;
+  background: white;
+}
 
-		* {
-			padding: 0;
-			margin: 0;
-		}
+.timeline ol li div::before {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-style: solid;
+}
 
-		&:hover {
-			// color:lighten($blue,10);
-			background: lighten($blue, 40);
-			box-shadow: 0px 0px 10px #ccc;
-			  transform-origin: 100px 0px;
-			transform: rotate(-3deg);
-			z-index: 2;
-		}
-		&:hover::after {
-			// transform: scale(1.1);
-			border-color: darken($blue, 10);
-			z-index: 2;
-		}
+.timeline ol li:nth-child(odd) div {
+  top: -16px;
+  transform: translateY(-100%);
+}
 
-		&::after {
-			// position: absolute;
-			margin: 0 auto;
-			position: relative;
-			bottom: -65px;
-			content: "";
-			display: block;
-			border-radius: 15px;
-			height: 30px;
-			width: 30px;
-			box-sizing: border-box;
-			box-shadow: 0 0 5px darken($blue, 10);
-			background: #fff;
-			border: 5px solid $blue;
-			transition: all 0.25s;
-			z-index: 2;
-		}
+.timeline ol li:nth-child(odd) div::before {
+  top: 100%;
+  border-width: 8px 8px 0 0;
+  border-color: white transparent transparent transparent;
+}
 
-		&.active {
-			background: lighten(yellow, 44);
-			transform: scale(1.1) translateY(-5px);
-			box-shadow: 0 0 10px #ccc;
-			z-index: 2;
-		}
-		&.active::after {
-			border-color: lighten($blue, 30);
-			transform: scale(1.1);
-		}
-		
-		&.previous {
-			background: rgba(0,0,0,0.05);
-						color: rgba(0,0,0,0.1);
-			p {
-										color: rgba(0,0,0,0.1);
-			}
-			&:hover {
-				opacity:1;
-			}
-		}
-	}
+.timeline ol li:nth-child(even) div {
+  top: calc(100% + 16px);
+}
+
+.timeline ol li:nth-child(even) div::before {
+  top: -8px;
+  border-width: 8px 0 0 8px;
+  border-color: transparent transparent transparent white;
+}
+
+.timeline time {
+  display: block;
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+
+/* TIMELINE ARROWS
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+.timeline .arrows {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.timeline .arrows .arrow__prev {
+  margin-right: 20px;
+}
+
+.timeline .disabled {
+  opacity: .5;
+}
+
+.timeline .arrows img {
+  width: 45px;
+  height: 45px;
+}
+
+
+/* GENERAL MEDIA QUERIES
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+@media screen and (max-width: 599px) {
+  .timeline ol,
+  .timeline ol li {
+    width: auto; 
+  }
+  
+  .timeline ol {
+    padding: 0;
+    transform: none !important;
+  }
+  
+  .timeline ol li {
+    display: block;
+    height: auto;
+    background: transparent;
+  }
+  
+  .timeline ol li:first-child {
+    margin-top: 25px;
+  }
+  
+  .timeline ol li:not(:first-child) {
+    margin-left: auto;
+  }
+  
+  .timeline ol li div {
+    width: 94%;
+    height: auto !important;
+    margin: 0 auto 25px;
+  }
+  
+  .timeline ol li div {
+    position: static;
+  }
+  
+  .timeline ol li:nth-child(odd) div {
+    transform: none;
+  }
+  
+  .timeline ol li:nth-child(odd) div::before,
+  .timeline ol li:nth-child(even) div::before {
+    left: 50%;
+    top: 100%;
+    transform: translateX(-50%);
+    border: none;
+    border-left: 1px solid white;
+    height: 25px;
+  }
+  
+  .timeline ol li:last-child,
+  .timeline ol li:nth-last-child(2) div::before,
+  .timeline ol li:not(:last-child)::after,
+  .timeline .arrows {
+    display: none;
+  }
 }
