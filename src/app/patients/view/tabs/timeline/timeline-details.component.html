@@ -1,67 +1,47 @@
 <div class="main-container">
-  <!-- <div class="row justify-content-center align-items-center"> -->
+  <!-- <div class="row justify-content-center align-items-center"> -->      
     <section class="timeline">
       <ol>
         <li>
-          <div>
-            <time>1934</time> At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium
+          <div (click)="onEventClick(longContent, '#ProviderCall')">
+            <time><i style='color: green;' class="fa fa-phone fa-rotate-90 px-2" aria-hidden="true"></i>ProviderCall</time> 02/07/2018
           </div>
         </li>
         <li>
-          <div>
-            <time>1937</time> Proin quam velit, efficitur vel neque vitae, rhoncus commodo mi. Suspendisse finibus mauris et bibendum molestie. Aenean ex augue, varius et pulvinar in, pretium non nisi.
+          <div (click)="onEventClick(longContent, '#PatinetRecordCreated')">
+            <time><i class="fa fa-user-plus px-2" aria-hidden="true"></i>02/07/2018</time> Patient Record Created
           </div>
         </li>
         <li>
-          <div>
-            <time>1940</time> Proin iaculis, nibh eget efficitur varius, libero tellus porta dolor, at pulvinar tortor ex eget ligula. Integer eu dapibus arcu, sit amet sollicitudin eros.
+          <div (click)="onEventClick(longContent, '#1stPatientCall')">
+            <time><i style='color: green;' class="fa fa-phone fa-rotate-90 px-2" aria-hidden="true"></i>1st Patient Call</time>02/15/2018
           </div>
         </li>
         <li>
-          <div>
-            <time>1943</time> In mattis elit vitae odio posuere, nec maximus massa varius. Suspendisse varius volutpat mattis. Vestibulum id magna est.
+          <div (click)="onEventClick(longContent, '#StartOfCare')">
+            <time>03/09/2018</time><i class="fa fa-suitcase px-2" aria-hidden="true"></i>Start of Care
           </div>
         </li>
         <li>
-          <div>
-            <time>1946</time> In mattis elit vitae odio posuere, nec maximus massa varius. Suspendisse varius volutpat mattis. Vestibulum id magna est.
+          <div (click)="onEventClick(longContent, '#2ndPatientCall')">
+            <time><i style='color: green;' class="fa fa-phone fa-rotate-90 px-2" aria-hidden="true"></i>2nd Patient Call</time> 02/15/2018
           </div>
         </li>
         <li>
-          <div>
-            <time>1956</time> In mattis elit vitae odio posuere, nec maximus massa varius. Suspendisse varius volutpat mattis. Vestibulum id magna est.
+          <div (click)="onEventClick(longContent, '#NotesUpdated')">
+            <time><i class="fa fa-edit px-2" aria-hidden="true"></i>03/16/2018</time> Notes Updated (Latest)
           </div>
         </li>
         <li>
-          <div>
-            <time>1957</time> In mattis elit vitae odio posuere, nec maximus massa varius. Suspendisse varius volutpat mattis. Vestibulum id magna est.
+          <div (click)="onEventClick(longContent, '#EscaltedToAdmin')">
+            <time>Escalted to Admin</time><i style="color: orange;" class="fa fa-level-up px-2" aria-hidden="true"></i>03/16/2018
           </div>
         </li>
         <li>
-          <div>
-            <time>1967</time> Aenean condimentum odio a bibendum rhoncus. Ut mauris felis, volutpat eget porta faucibus, euismod quis ante.
+          <div (click)="onEventClick(longContent, '#AltStartOfCare')">
+            <time>03/17/2018<i style="color: green" class="fa fa-suitcase px-2" aria-hidden="true"></i></time> Alternative Start of Care
           </div>
-        </li>
-        <li>
-          <div>
-            <time>1977</time> Vestibulum porttitor lorem sed pharetra dignissim. Nulla maximus, dui a tristique iaculis, quam dolor convallis enim, non dignissim ligula ipsum a turpis.
-          </div>
-        </li>
-        <li>
-          <div>
-            <time>1985</time> In mattis elit vitae odio posuere, nec maximus massa varius. Suspendisse varius volutpat mattis. Vestibulum id magna est.
-          </div>
-        </li>
-        <li>
-          <div>
-            <time>2000</time> In mattis elit vitae odio posuere, nec maximus massa varius. Suspendisse varius volutpat mattis. Vestibulum id magna est.
-          </div>
-        </li>
-        <li>
-          <div>
-            <time>2005</time> In mattis elit vitae odio posuere, nec maximus massa varius. Suspendisse varius volutpat mattis. Vestibulum id magna est.
-          </div>
-        </li>
+        </li>       
         <li></li>
       </ol>
       
@@ -76,59 +56,79 @@
     </section>
   <!-- </div> -->
   <ng-template #longContent let-modal>
-    <div class="modal-header">
+    <div class="modal-header p-2">
       <h4 class="modal-title">Event Timeline</h4>
       <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
-    <div class="modal-body" id="myModal" style="height: 70vh; overflow: auto;"> 
-      <div id="header">
+    <div class="modal-body p-2" id="myModal" style="height: 70vh; overflow: auto;"> 
+      <div class="my-2" id="header">
         <b>Notes</b>
         <p>
           <b>Was the service or item for which you are now requesting authorization initiated prior to submitting this
             request for authorization?: No</b>
         </p>
       </div>
-      <div id="BeSureToStaff">
+      <div class="my-2" id="BeSureToStaff">
         <p><b>Notes:- </b><b style="color: #007bff">Be sure to staff</b></p>
         <p><b>HCPCS9501/SERVICE CODE 1017/ANTIBIOTIC THERAPY Q12 - PHARMACY ONLY - PD,SQ FROM 03/08/2018 TO
             03/19/2018</b>
         </p>
       </div>
-      <div id="NotesUpdated">
+      <div class="my-2" id="NotesUpdated">
         <p><b>Notes:- </b><b style="color: #007bff">NotesUpdated</b></p>
         <p><b>THE ABOVE PROVIDER PORTAL REFERRAL REQUEST WAS ROUTED TO THE HIT QUEUE WITH A ROUTE REASON OF Portal -
             Clin Rev BECAUSE OF THE FOLLOWING RULE FAILURES:</b></p>
       </div>
-      <div id="WorkingOnStaffing">
+      <div class="my-2" id="WorkingOnStaffing">
         <p><b style="color: #007bff">Working on staffing</b></p>
       </div>
-      <div id="PTwasrequesting">
+      <div class="my-2" id="PTwasrequesting">
         <ul>
           <li><b style="color: #007bff">PT was requesting</b></li>
         </ul>
-        <p><b>THE ABOVE PROVIDER PORTAL REFERRAL REQUEST WAS ROUTED TO THE HIT QUEUE WITH A ROUTE REASON
+        <p><b>THE ABOVE PT REQUEST WAS ROUTED TO THE HIT QUEUE WITH A ROUTE REASON
             OF Portal - Clin Rev BECAUSE OF THE FOLLOWING RULE FAILURES:</b></p>
       </div>
-      <div id="ProviderCall">
+      <div class="my-2" id="ProviderCall">
         <p><b>Notes:- </b><b style="color: #007bff">Provider Call</b></p>
         <p><b>THE ABOVE PROVIDER PORTAL REFERRAL REQUEST WAS ROUTED TO THE HIT QUEUE WITH A ROUTE REASON OF Portal -
             Clin Rev BECAUSE OF THE FOLLOWING RULE FAILURES:</b></p>
       </div>
-      <div id="1stPatientCall">
+      <div class="my-2" id="1stPatientCall">
         <p><b>Notes:- </b><b style="color: #007bff">1st Patient Call</b></p>
-        <p><b>THE ABOVE PROVIDER PORTAL REFERRAL REQUEST WAS ROUTED TO THE HIT QUEUE WITH A ROUTE REASON OF Portal -
+        <p><b>THE ABOVE 1st Patient Call REQUEST WAS ROUTED TO THE HIT QUEUE WITH A ROUTE REASON OF Portal -
+            Clin Rev BECAUSE OF THE FOLLOWING RULE FAILURES:</b></p>
+      </div>     
+      <div class="my-2" id="2ndPatientCall">
+        <p><b>Notes:- </b><b style="color: #007bff">2nd Patient Call</b></p>
+        <p><b>THE ABOVE 2nd Patient Call REQUEST WAS ROUTED TO THE HIT QUEUE WITH A ROUTE REASON OF Portal -
             Clin Rev BECAUSE OF THE FOLLOWING RULE FAILURES:</b></p>
       </div>
-      <div id="2ndPatientCall">
-        <p><b>Notes:- </b><b style="color: #007bff">2nd Patient Call</b></p>
-        <p><b>THE ABOVE PROVIDER PORTAL REFERRAL REQUEST WAS ROUTED TO THE HIT QUEUE WITH A ROUTE REASON OF Portal -
+      <div class="my-2" id="PatinetRecordCreated">
+        <p><b>Notes:- </b><b style="color: #007bff">Patinet Record Created</b></p>
+        <p><b>THE ABOVE Patinet Record Created REQUEST WAS ROUTED TO THE HIT QUEUE WITH A ROUTE REASON OF Portal -
+            Clin Rev BECAUSE OF THE FOLLOWING RULE FAILURES:</b></p>
+      </div>
+      <div class="my-2" id="StartOfCare">
+        <p><b>Notes:- </b><b style="color: #007bff">Start Of Care</b></p>
+        <p><b>THE ABOVE Start Of Care REQUEST WAS ROUTED TO THE HIT QUEUE WITH A ROUTE REASON OF Portal -
+            Clin Rev BECAUSE OF THE FOLLOWING RULE FAILURES:</b></p>
+      </div>
+      <div class="my-2" id="EscaltedToAdmin">
+        <p><b>Notes:- </b><b style="color: #007bff">Escalted To Admin</b></p>
+        <p><b>THE ABOVE Escalted To Admin REQUEST WAS ROUTED TO THE HIT QUEUE WITH A ROUTE REASON OF Portal -
+            Clin Rev BECAUSE OF THE FOLLOWING RULE FAILURES:</b></p>
+      </div>
+      <div class="my-2" id="AltStartOfCare">
+        <p><b>Notes:- </b><b style="color: #007bff">Alt Start Of Care</b></p>
+        <p><b>THE ABOVE Alt Start Of Care REQUEST WAS ROUTED TO THE HIT QUEUE WITH A ROUTE REASON OF Portal -
             Clin Rev BECAUSE OF THE FOLLOWING RULE FAILURES:</b></p>
       </div>
     </div>
     <div class="modal-footer">
-      <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+      <button type="button" class="btn btn-light p-2" (click)="modal.close('Close click')">Close</button>
     </div>
   </ng-template>
 </div>
