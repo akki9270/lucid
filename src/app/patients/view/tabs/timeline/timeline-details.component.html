@@ -1,59 +1,39 @@
 <div class="main-container">
-  <!-- <div class="row justify-content-center align-items-center"> -->      
-    <section class="timeline">
-      <ol>
-        <li>
-          <div (click)="onEventClick(longContent, '#ProviderCall')">
-            <time><i style='color: green;' class="fa fa-phone fa-rotate-90 px-2" aria-hidden="true"></i>ProviderCall</time> 02/07/2018
-          </div>
-        </li>
-        <li>
-          <div (click)="onEventClick(longContent, '#PatinetRecordCreated')">
-            <time><i class="fa fa-user-plus px-2" aria-hidden="true"></i>02/07/2018</time> Patient Record Created
-          </div>
-        </li>
-        <li>
-          <div (click)="onEventClick(longContent, '#1stPatientCall')">
-            <time><i style='color: green;' class="fa fa-phone fa-rotate-90 px-2" aria-hidden="true"></i>1st Patient Call</time>02/15/2018
-          </div>
-        </li>
-        <li>
-          <div (click)="onEventClick(longContent, '#StartOfCare')">
-            <time>03/09/2018</time><i class="fa fa-suitcase px-2" aria-hidden="true"></i>Start of Care
-          </div>
-        </li>
-        <li>
-          <div (click)="onEventClick(longContent, '#2ndPatientCall')">
-            <time><i style='color: green;' class="fa fa-phone fa-rotate-90 px-2" aria-hidden="true"></i>2nd Patient Call</time> 02/15/2018
-          </div>
-        </li>
-        <li>
-          <div (click)="onEventClick(longContent, '#NotesUpdated')">
-            <time><i class="fa fa-edit px-2" aria-hidden="true"></i>03/16/2018</time> Notes Updated (Latest)
-          </div>
-        </li>
-        <li>
-          <div (click)="onEventClick(longContent, '#EscaltedToAdmin')">
-            <time>Escalted to Admin</time><i style="color: orange;" class="fa fa-level-up px-2" aria-hidden="true"></i>03/16/2018
-          </div>
-        </li>
-        <li>
-          <div (click)="onEventClick(longContent, '#AltStartOfCare')">
-            <time>03/17/2018<i style="color: green" class="fa fa-suitcase px-2" aria-hidden="true"></i></time> Alternative Start of Care
-          </div>
-        </li>       
-        <li></li>
-      </ol>
-      
-      <div class="arrows">
-        <button class="arrow arrow__prev disabled" disabled>
-          <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/162656/arrow_prev.svg" alt="prev timeline arrow">
-        </button>
-        <button class="arrow arrow__next">
-          <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/162656/arrow_next.svg" alt="next timeline arrow">
-        </button>
-      </div>
-    </section>
+  <!-- <div class="row justify-content-center align-items-center"> -->
+  <div *ngIf="showChildEvents">
+    <button type="button" class="btn btn-default" (click)="onBackButtonClick(!showChildEvents)">
+      <i class="fa fa-chevron-left"></i> Back
+    </button>
+  </div>
+
+  <section class="timeline">
+    <ol *ngIf="!showChildEvents">
+      <li *ngFor="let event of patientEvents; trackBy: trackByFn;">
+        <div (click)="onParentEventClick(event)">
+          <time><i style='color: green;' class="fa fa-phone fa-rotate-90 px-2"
+              aria-hidden="true"></i>{{event.event_name}}</time> {{event.date}}
+        </div>
+      </li>
+    </ol>
+
+    <ol *ngIf="showChildEvents">
+      <li *ngFor="let event of childEvents; trackBy: trackByFn;">
+        <div (click)="onEventClick(longContent, event.event_id)">
+          <time><i style='color: green;' class="fa fa-phone fa-rotate-90 px-2"
+              aria-hidden="true"></i>{{event.event_name}}</time> {{event.date}}
+        </div>
+      </li>
+    </ol>
+
+    <div class="arrows">
+      <button class="arrow arrow__prev disabled" disabled>
+        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/162656/arrow_prev.svg" alt="prev timeline arrow">
+      </button>
+      <button class="arrow arrow__next">
+        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/162656/arrow_next.svg" alt="next timeline arrow">
+      </button>
+    </div>
+  </section>
   <!-- </div> -->
   <ng-template #longContent let-modal>
     <div class="modal-header p-2">
@@ -62,69 +42,16 @@
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
-    <div class="modal-body p-2" id="myModal" style="height: 70vh; overflow: auto;"> 
-      <div class="my-2" id="header">
-        <b>Notes</b>
-        <p>
-          <b>Was the service or item for which you are now requesting authorization initiated prior to submitting this
-            request for authorization?: No</b>
-        </p>
-      </div>
-      <div class="my-2" id="BeSureToStaff">
-        <p><b>Notes:- </b><b style="color: #007bff">Be sure to staff</b></p>
-        <p><b>HCPCS9501/SERVICE CODE 1017/ANTIBIOTIC THERAPY Q12 - PHARMACY ONLY - PD,SQ FROM 03/08/2018 TO
-            03/19/2018</b>
-        </p>
-      </div>
-      <div class="my-2" id="NotesUpdated">
-        <p><b>Notes:- </b><b style="color: #007bff">NotesUpdated</b></p>
-        <p><b>THE ABOVE PROVIDER PORTAL REFERRAL REQUEST WAS ROUTED TO THE HIT QUEUE WITH A ROUTE REASON OF Portal -
-            Clin Rev BECAUSE OF THE FOLLOWING RULE FAILURES:</b></p>
-      </div>
-      <div class="my-2" id="WorkingOnStaffing">
-        <p><b style="color: #007bff">Working on staffing</b></p>
-      </div>
-      <div class="my-2" id="PTwasrequesting">
-        <ul>
-          <li><b style="color: #007bff">PT was requesting</b></li>
-        </ul>
-        <p><b>THE ABOVE PT REQUEST WAS ROUTED TO THE HIT QUEUE WITH A ROUTE REASON
-            OF Portal - Clin Rev BECAUSE OF THE FOLLOWING RULE FAILURES:</b></p>
-      </div>
-      <div class="my-2" id="ProviderCall">
-        <p><b>Notes:- </b><b style="color: #007bff">Provider Call</b></p>
-        <p><b>THE ABOVE PROVIDER PORTAL REFERRAL REQUEST WAS ROUTED TO THE HIT QUEUE WITH A ROUTE REASON OF Portal -
-            Clin Rev BECAUSE OF THE FOLLOWING RULE FAILURES:</b></p>
-      </div>
-      <div class="my-2" id="1stPatientCall">
-        <p><b>Notes:- </b><b style="color: #007bff">1st Patient Call</b></p>
-        <p><b>THE ABOVE 1st Patient Call REQUEST WAS ROUTED TO THE HIT QUEUE WITH A ROUTE REASON OF Portal -
-            Clin Rev BECAUSE OF THE FOLLOWING RULE FAILURES:</b></p>
-      </div>     
-      <div class="my-2" id="2ndPatientCall">
-        <p><b>Notes:- </b><b style="color: #007bff">2nd Patient Call</b></p>
-        <p><b>THE ABOVE 2nd Patient Call REQUEST WAS ROUTED TO THE HIT QUEUE WITH A ROUTE REASON OF Portal -
-            Clin Rev BECAUSE OF THE FOLLOWING RULE FAILURES:</b></p>
-      </div>
-      <div class="my-2" id="PatinetRecordCreated">
-        <p><b>Notes:- </b><b style="color: #007bff">Patinet Record Created</b></p>
-        <p><b>THE ABOVE Patinet Record Created REQUEST WAS ROUTED TO THE HIT QUEUE WITH A ROUTE REASON OF Portal -
-            Clin Rev BECAUSE OF THE FOLLOWING RULE FAILURES:</b></p>
-      </div>
-      <div class="my-2" id="StartOfCare">
-        <p><b>Notes:- </b><b style="color: #007bff">Start Of Care</b></p>
-        <p><b>THE ABOVE Start Of Care REQUEST WAS ROUTED TO THE HIT QUEUE WITH A ROUTE REASON OF Portal -
-            Clin Rev BECAUSE OF THE FOLLOWING RULE FAILURES:</b></p>
-      </div>
-      <div class="my-2" id="EscaltedToAdmin">
-        <p><b>Notes:- </b><b style="color: #007bff">Escalted To Admin</b></p>
-        <p><b>THE ABOVE Escalted To Admin REQUEST WAS ROUTED TO THE HIT QUEUE WITH A ROUTE REASON OF Portal -
-            Clin Rev BECAUSE OF THE FOLLOWING RULE FAILURES:</b></p>
-      </div>
-      <div class="my-2" id="AltStartOfCare">
-        <p><b>Notes:- </b><b style="color: #007bff">Alt Start Of Care</b></p>
-        <p><b>THE ABOVE Alt Start Of Care REQUEST WAS ROUTED TO THE HIT QUEUE WITH A ROUTE REASON OF Portal -
-            Clin Rev BECAUSE OF THE FOLLOWING RULE FAILURES:</b></p>
+    <div class="modal-body p-2" id="myModal" style="height: 70vh; overflow: auto;">
+      <div class="my-2" *ngFor="let patientEvent of patientEvents; trackBy: trackByFn;" id="{{patientEvent.event_id}}">
+        <div>
+          <p><b>Event: </b><b style="color: #007bff">{{patientEvent.event_name}}</b></p>        
+        </div>
+        <div class="my-1" *ngFor="let event of patientEvent.data; trackBy: trackByFn;" id="{{event.event_id}}">
+          <p><b>Sub Event: </b><b style="color: #007bff">{{event.event_name}}</b></p>     
+          <p><b>THE ABOVE Alt Start Of Care REQUEST WAS ROUTED TO THE HIT QUEUE WITH A ROUTE REASON OF Portal -
+              Clin Rev BECAUSE OF THE FOLLOWING RULE FAILURES:</b></p>     
+        </div>
       </div>
     </div>
     <div class="modal-footer">

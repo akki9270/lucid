@@ -12,6 +12,7 @@
     --purple: #9442d5;
     --dull-purple: #4b1e6e;
     --purple-theme: #78346c;
+    --light-purple-theme: #f7edf5;
     --orange-theme: #f69e3c;
     --medium-pink: #ec658e;
     --white-theme: #ffffff;
@@ -39,6 +40,9 @@ body {
 }
 .warm-grey {
     color: #7f7f7f;
+}
+.light-grey {
+    color: #d9d9d9;
 }
 .soft-green {
     color: #6bc076;
@@ -184,6 +188,31 @@ section {
     color: var(--purple-theme);
     background-color: white;
     border-color: var(--purple-theme);
+}
+
+.btn {    
+    /* background-color: var(--purple-theme); */
+    color: black;
+    cursor: pointer;
+}
+
+.even-row:hover{
+    cursor: pointer;
+    background-color: #e6e6e6;
+}
+
+.even-row{
+    cursor: pointer;
+    background-color: #f2f2f2;    
+}
+
+.odd-row{
+    cursor: pointer;    
+}
+
+.odd-row:hover{
+    cursor: pointer;
+    background-color: #e6e6e6; 
 }
 
 /* .card-header{

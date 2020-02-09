@@ -2,6 +2,7 @@ import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 // import * as $ from 'jquery';
 // import { timeModule } from '../../../../../assets/timeline.js/index.js'; 
+import * as data from './event.json'
 
 @Component({
   selector: 'app-timeline-details',
@@ -20,13 +21,34 @@ export class TimelineDetailsComponent implements OnInit, AfterViewInit {
   disabledClass: string;
   constructor(private modalService: NgbModal) { }
 
+  patientEvents: any = (data as any).default;
+  showChildEvents: boolean = false; 
+  childEvents = []
+
   ngOnInit() {
     // this.loadScript();
     // START
+    // console.log('-----data: ', data)
+    this.showChildEvents = false;
   }
 
   ngAfterViewInit() {
     // VARIABLES
+    // this.timeline = document.querySelector(".timeline ol");
+    // this.elH = document.querySelectorAll(".timeline li > div");
+    // this.arrows = document.querySelectorAll(".timeline .arrows .arrow");
+    // this.arrowPrev = document.querySelector(".timeline .arrows .arrow__prev");
+    // this.arrowNext = document.querySelector(".timeline .arrows .arrow__next");
+    // this.firstItem = document.querySelector(".timeline li:first-child");
+    // this.lastItem = document.querySelector(".timeline li:last-child");
+    // this.xScrolling = 280;
+    // this.disabledClass = "disabled";
+    // window.addEventListener("load", this.init);
+    // this.init();
+    this.loadScript();
+  }
+
+  loadScript(){
     this.timeline = document.querySelector(".timeline ol");
     this.elH = document.querySelectorAll(".timeline li > div");
     this.arrows = document.querySelectorAll(".timeline .arrows .arrow");
@@ -148,7 +170,9 @@ export class TimelineDetailsComponent implements OnInit, AfterViewInit {
     backdrop: true,
     size: 'lg'
   }
+  
   onEventClick(longContent, $scrollElementId) {
+    console.log('$event click: ', $scrollElementId)
     this.modalService.open(longContent, this.modalOption);
     setTimeout(() => {
       let scrollPosition = $('#myModal div' + $scrollElementId).position().top;
@@ -156,5 +180,20 @@ export class TimelineDetailsComponent implements OnInit, AfterViewInit {
         scrollTop: scrollPosition
       }, 1000);
     }, 0);
+  }
+
+  trackByFn(index, item) {
+    return item.id;
+  }
+
+  onParentEventClick(event){
+    this.childEvents = event.data;
+    this.showChildEvents = true;
+    // this.loadScript();
+  }
+
+  onBackButtonClick(showHideFlag){
+    this.showChildEvents = showHideFlag;
+    // this.loadScript();
   }
 }
