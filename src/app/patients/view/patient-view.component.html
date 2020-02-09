@@ -12,12 +12,12 @@
     </div>
     <div>
       <button type="button" class="btn btn-default back-button" (click)="onBackClicked()">
-        <span style="color: white">< 2445050</span>
+        <span style="color: white"><i class="fa fa-chevron-left"></i> {{patientDetails.patientId}}</span>
       </button>
     </div>
   </nav>
   <div *ngIf="currentTab === 'PATIENT_TAB'">
-    <app-patient-details></app-patient-details>
+    <app-patient-details [patientDetails]="patientDetails"></app-patient-details>
   </div>
   <div *ngIf="currentTab === 'F11_NOTES_TAB'">
     <app-notes-details></app-notes-details>

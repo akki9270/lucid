@@ -32,19 +32,7 @@ export class TimelineDetailsComponent implements OnInit, AfterViewInit {
     this.showChildEvents = false;
   }
 
-  ngAfterViewInit() {
-    // VARIABLES
-    // this.timeline = document.querySelector(".timeline ol");
-    // this.elH = document.querySelectorAll(".timeline li > div");
-    // this.arrows = document.querySelectorAll(".timeline .arrows .arrow");
-    // this.arrowPrev = document.querySelector(".timeline .arrows .arrow__prev");
-    // this.arrowNext = document.querySelector(".timeline .arrows .arrow__next");
-    // this.firstItem = document.querySelector(".timeline li:first-child");
-    // this.lastItem = document.querySelector(".timeline li:last-child");
-    // this.xScrolling = 280;
-    // this.disabledClass = "disabled";
-    // window.addEventListener("load", this.init);
-    // this.init();
+  ngAfterViewInit() {    
     this.loadScript();
   }
 
@@ -172,10 +160,10 @@ export class TimelineDetailsComponent implements OnInit, AfterViewInit {
   }
   
   onEventClick(longContent, $scrollElementId) {
-    console.log('$event click: ', $scrollElementId)
+    // console.log('$event click: ', $scrollElementId)
     this.modalService.open(longContent, this.modalOption);
     setTimeout(() => {
-      let scrollPosition = $('#myModal div' + $scrollElementId).position().top;
+      let scrollPosition = $('#myModal div#' + $scrollElementId).position().top;
       $('#myModal').animate({
         scrollTop: scrollPosition
       }, 1000);
@@ -189,11 +177,15 @@ export class TimelineDetailsComponent implements OnInit, AfterViewInit {
   onParentEventClick(event){
     this.childEvents = event.data;
     this.showChildEvents = true;
-    // this.loadScript();
+    setTimeout(()=>{
+      this.loadScript();
+    },500)
   }
 
   onBackButtonClick(showHideFlag){
     this.showChildEvents = showHideFlag;
-    // this.loadScript();
+    setTimeout(()=>{
+      this.loadScript();
+    },1000)
   }
 }

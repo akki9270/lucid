@@ -25,7 +25,7 @@ body {
     background-color: #f5f7fa;
 }
 body {
-    font-family: Roboto;
+    font-family: 'Open Sans', Roboto;
 }
 .no-padding {
     padding: 0 !important;

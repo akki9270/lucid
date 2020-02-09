@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, Input } from '@angular/core';
 
 @Component({
   selector: 'app-patient-details',
@@ -10,7 +10,9 @@ export class PatientDetailsComponent implements OnInit {
 
   constructor() { }
 
+  @Input('patientDetails') patientDetails
   ngOnInit() {
+    // console.log('-----patientDetails: ', this.patientDetails)
   }
 
 }

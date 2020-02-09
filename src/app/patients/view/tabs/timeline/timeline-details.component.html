@@ -7,6 +7,7 @@
   </div>
 
   <section class="timeline">
+    <!-- parent events -->
     <ol *ngIf="!showChildEvents">
       <li *ngFor="let event of patientEvents; trackBy: trackByFn;">
         <div (click)="onParentEventClick(event)">
@@ -14,8 +15,9 @@
               aria-hidden="true"></i>{{event.event_name}}</time> {{event.date}}
         </div>
       </li>
+      <li></li>
     </ol>
-
+     <!-- child events -->
     <ol *ngIf="showChildEvents">
       <li *ngFor="let event of childEvents; trackBy: trackByFn;">
         <div (click)="onEventClick(longContent, event.event_id)">
@@ -23,6 +25,7 @@
               aria-hidden="true"></i>{{event.event_name}}</time> {{event.date}}
         </div>
       </li>
+      <li></li>
     </ol>
 
     <div class="arrows">
