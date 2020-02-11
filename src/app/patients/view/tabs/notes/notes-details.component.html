@@ -1,6 +1,15 @@
 <div class="main-container">
   <section class="content-section px-1 my-2">    
-    <angular-editor autofocus="true" [(ngModel)]="htmlContent" [config]="editorConfig"></angular-editor>
+    <!-- <angular-editor autofocus="true" [(ngModel)]="htmlContent" [config]="editorConfig"></angular-editor> -->
+    <div class="main">
+    <div class="form-group has-search">
+      <span class="fa fa-search form-control-feedback"></span>
+      <input type="text" class="form-control" placeholder="Search">
+    </div>
+  </div>
+    <div class="col-md-12">
+      <textarea rows="15" class="form-control" [innerHtml]="htmlContent"></textarea>
+    </div>
     <!-- (ngModelChange)="onChange($event)" -->
   </section> 
   <section class="content-section px-1 my-2">
