@@ -1,20 +1,19 @@
 <div class="main-container">
-  <section class="content-section px-1 my-2">    
-    <!-- <angular-editor autofocus="true" [(ngModel)]="htmlContent" [config]="editorConfig"></angular-editor> -->
+  <section class="content-section px-1 my-2">
     <div class="main">
-    <div class="form-group has-search">
-      <span class="fa fa-search form-control-feedback"></span>
-      <input type="text" class="form-control" placeholder="Search">
+      <div class="form-group has-search">
+        <span class="fa fa-search form-control-feedback"></span>
+        <input type="text" class="form-control" placeholder="Search" [(ngModel)]="search">
+      </div>
     </div>
-  </div>
     <div class="col-md-12">
-      <textarea rows="15" class="form-control" [innerHtml]="htmlContent"></textarea>
+      <textarea rows="15" class="form-control" innerHtml="{{htmlContent | highlight : 'search'}}"></textarea>
+      <!-- | 'highlight' : 'search' -->
     </div>
-    <!-- (ngModelChange)="onChange($event)" -->
-  </section> 
+  </section>
   <section class="content-section px-1 my-2">
     <div class="d-flex align-items-center">
-      <div class="d-flex align-items-center" style="max-width: 100px;">        
+      <div class="d-flex align-items-center" style="max-width: 100px;">
         <span class="badge badge-secondary p-2">Match on tags</span>
       </div>
       <div class="ml-5">
@@ -26,7 +25,7 @@
   </section>
   <section class="content-section px-1 my-2">
     <div class="d-flex align-items-center">
-      <div class="d-flex align-items-center" style="max-width: 100px;">        
+      <div class="d-flex align-items-center" style="max-width: 100px;">
         <span class="badge badge-secondary p-2">Add Flags to Match</span>
       </div>
       <div class="ml-5">

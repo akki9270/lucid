@@ -19,6 +19,7 @@ import { TimelineDetailsComponent } from './patients/view/tabs/timeline/timeline
 import { PatientViewComponent } from './patients/view/patient-view.component';
 import { ServiceAccordionComponent } from './patients/view/tabs/details/components/service-accordion/service-accordion.component';
 import { DatepickerRangePopupComponent } from '../components/datepicker-range-popup/datepicker-range-popup.component';
+import { HighlightSearch } from 'src/CustomPipes/HighlightSearch/HighlightSearch';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { DatepickerRangePopupComponent } from '../components/datepicker-range-po
     TimelineDetailsComponent,
     PatientViewComponent,
     ServiceAccordionComponent,
-    DatepickerRangePopupComponent    
+    DatepickerRangePopupComponent,
+    HighlightSearch    
   ],
   imports: [
     BrowserModule,
