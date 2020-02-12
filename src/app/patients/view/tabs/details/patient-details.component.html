@@ -4,77 +4,56 @@
       <fieldset class="outer-field-set bg-white">
         <legend class="w-auto px-3 d-inline-block lengend-title py-1">Patient Info</legend>
         <div style="margin: 5px;">
-          <div class="row">
-            <div class="d-flex">
-              <div class="p-2">
-                <label class="purple-theme">First Name: </label>
-              </div>
-              <div class="p-2">{{patientDetails.firstName}}</div>
+          <div class="row details-content-bar">
+            <!-- <form novalidate>
+              <div class="row"> -->
+            <div class="col-lg-3 form-group">
+              <label for="firstName">First Name</label>
+              <input type="text" class="form-control" id="firstName" value="{{patientDetails.firstName}}" readonly>
             </div>
-            <div class="d-flex">
-              <div class="p-2 ml-3">
-                <label class="purple-theme">Last Name: </label>
-              </div>
-              <div class="p-2">{{patientDetails.lastName}}</div>
+            <div class="col-lg-3 form-group">
+              <label for="lastName">Last Name</label>
+              <input type="text" class="form-control" id="lastName" value="{{patientDetails.lastName}}" readonly>
             </div>
-            <div class="d-flex">
-              <div class="p-2 ml-3">
-                <label class="purple-theme">DOB: </label>
-              </div>
-              <div class="p-2">{{patientDetails.dob}}</div>
+            <div class="col-lg-3 form-group">
+              <label for="dob">DOB</label>
+              <input type="text" class="form-control" id="dob" value="{{patientDetails.dob}}" readonly>
             </div>
-            <div class="d-flex">
-              <div class="p-2 ml-3">
-                <label class="purple-theme">Gender: </label>
-              </div>
-              <div class="p-2">{{patientDetails.gender}}</div>
+            <div class="col-lg-3 form-group">
+              <label for="gender">Gender</label>
+              <input type="text" class="form-control" id="gender" value="{{patientDetails.gender}}" readonly>
             </div>
-            <div class="d-flex">
-              <div class="p-2">
-                <label class="purple-theme">Phone Number: </label>
-              </div>
-              <div class="p-2">{{patientDetails.phoneNumber}}</div>
+            <div class="col-lg-3 form-group">
+              <label for="phoneNumber">Phone Number</label>
+              <input type="text" class="form-control" id="phoneNumber" value="{{patientDetails.phoneNumber}}" readonly>
             </div>
-          </div>
-          <div class="row">
-            <div class="d-flex">
-              <div class="p-2">
-                <label class="purple-theme">Address: </label>
-              </div>
-              <div class="p-2">{{patientDetails.Address}}</div>
+            <div class="col-lg-3 form-group">
+              <label for="address">Address</label>
+              <input type="text" class="form-control" id="address" value="{{patientDetails.Address}}" readonly>
             </div>
-            <div class="d-flex">
-              <div class="p-2 ml-3">
-                <label class="purple-theme">City: </label>
-              </div>
-              <div class="p-2">{{patientDetails.city}}</div>
+            <div class="col-lg-3 form-group">
+              <label for="city">City</label>
+              <input type="text" class="form-control" id="city" value="{{patientDetails.city}}" readonly>
             </div>
-            <div class="d-flex">
-              <div class="p-2 ml-3">
-                <label class="purple-theme">State: </label>
-              </div>
-              <div class="p-2">{{patientDetails.state}}</div>
+            <div class="col-lg-3 form-group">
+              <label for="state">State</label>
+              <input type="text" class="form-control" id="state" value="{{patientDetails.state}}" readonly>
             </div>
-            <div class="d-flex">
-              <div class="p-2 ml-3">
-                <label class="purple-theme">Zip Code: </label>
-              </div>
-              <div class="p-2">{{patientDetails.zipCode}}</div>
+            <div class="col-lg-3 form-group">
+              <label for="zipCode">Zip Code</label>
+              <input type="text" class="form-control" id="zipCode" value="{{patientDetails.zipCode}}" readonly>
             </div>
-          </div>
-          <div class="row">
-            <div class="d-flex">
-              <div class="p-2">
-                <label class="purple-theme">Insurance Name: </label>
-              </div>
-              <div class="p-2">{{patientDetails.insuranceName}}</div>
+            <div class="col-lg-3 form-group">
+              <label for="insuranceName">Insurance Name</label>
+              <input type="text" class="form-control" id="insuranceName" value="{{patientDetails.insuranceName}}"
+                readonly>
             </div>
-            <div class="d-flex">
-              <div class="p-2 ml-3">
-                <label class="purple-theme">Subscriber Id: </label>
-              </div>
-              <div class="p-2">{{patientDetails.subscribeId}}</div>
+            <div class="col-lg-3 form-group">
+              <label for="subscribeId">Subscriber Id</label>
+              <input type="text" class="form-control" id="subscribeId" value="{{patientDetails.subscribeId}}" readonly>
             </div>
+            <!-- </div>
+            </form> -->
           </div>
         </div>
       </fieldset>
@@ -85,17 +64,17 @@
             <div class="row">
               <div class="d-flex">
                 <div class="p-2">
-                  <input type="checkbox"/> Pediatric Patient
+                  <input type="checkbox" /> Pediatric Patient
                 </div>
               </div>
               <div class="d-flex">
                 <div class="p-2 ml-3">
-                  <input type="checkbox" checked/> Urgent
+                  <input type="checkbox" checked /> Urgent
                 </div>
               </div>
               <div class="d-flex">
                 <div class="p-2 ml-3">
-                  <input type="checkbox" checked/> Engaged by Escalation Team
+                  <input type="checkbox" checked /> Engaged by Escalation Team
                 </div>
               </div>
               <div class="d-flex">
@@ -107,7 +86,7 @@
             <div class="row">
               <div class="d-flex">
                 <div class="p-2">
-                  <input type="checkbox" checked/> Primary Care Physician
+                  <input type="checkbox" checked /> Primary Care Physician
                 </div>
               </div>
               <div class="d-flex">

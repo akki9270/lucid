@@ -216,6 +216,30 @@ section {
     background-color: #e6e6e6; 
 }
 
+.details-content-bar {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background-color: #ffffff;
+}
+.details-content-bar h5 {
+    margin-bottom: 0;
+}
+
+.details-content-bar label {
+    font-size: 12px;
+    /* color: #ccd1d9; */
+    color: #7f7f7f;
+    text-transform: uppercase;
+    margin-bottom: 0;
+}
+.details-content-bar input {
+    border: 0;
+    outline: 0;
+    border-radius: 0;
+    background: transparent;
+    border-bottom: 2px solid #ccd1d9;
+}
+
 /* .card-header{
     background-color: var(--purple-theme);
 }
