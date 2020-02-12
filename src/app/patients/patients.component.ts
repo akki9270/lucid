@@ -27,7 +27,7 @@ export class PatientsComponent implements OnInit {
         title: 'Health Plan'
       },
       daysOfSoc: {
-        title: 'Days Of Soc'
+        title: 'Days to SOC'
       }
     },
     actions: {
@@ -42,9 +42,9 @@ export class PatientsComponent implements OnInit {
     rowClassFunction: (row) => {
       // console.log('row: ', row)
       if (row.index % 2 === 0) {
-        return 'even-row';
+        return 'even-row font-styles';
       } else {
-        return 'odd-row';
+        return 'odd-row font-styles';
       }
     }
   };

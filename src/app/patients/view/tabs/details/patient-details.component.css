@@ -37,6 +37,7 @@
 
 .card-header-text{
   color:  var(--white-theme);
+  font-size: 1rem;
 }
 
 .card-header-text:hover{
@@ -47,10 +48,12 @@ input[type="checkbox"], input, select {
 }
 
 .lengend-title{
-  background-color: var(--purple-theme);
+  background-color: var(--white-theme);
     border-radius: 10px;
     border: 0.5px solid lightgrey;
-    color: white !important;
-    font-weight: 500;
-    font-size: 20px;
+    color: #212529 !important;
+    font-weight: 500 !important;
+    font-size: 1.25rem;
+    text-transform: uppercase;
+    box-shadow: 0px 1px 1px 0px black
 }

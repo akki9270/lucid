@@ -50,12 +50,12 @@
       <div class="card my-2" *ngFor="let patientEvent of patientEvents; trackBy: trackByFn;"
         id="{{patientEvent.event_id}}">
         <div class="card-header px-2 py-3">
-          <h5 class="card-title"><b class="purple">{{patientEvent.event_name}}</b></h5>
+          <h5 class="card-title"><b class="title">{{patientEvent.event_name}}</b></h5>
         </div>
         <div class="my-1" *ngFor="let event of patientEvent.data; trackBy: trackByFn;" id="{{event.event_id}}">
           <div class="card-body">
             <blockquote class="blockquote m-2">
-              <p><b class="purple">{{event.event_name}}</b></p>
+              <p><b class="title">{{event.event_name}}</b></p>
               <footer class="blockquote-footer">THE ABOVE Alt Start Of Care REQUEST WAS ROUTED TO THE HIT QUEUE WITH A
                 ROUTE REASON OF Portal -
                 Clin Rev BECAUSE OF THE FOLLOWING RULE FAILURES:</footer>

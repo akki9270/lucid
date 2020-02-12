@@ -22,3 +22,8 @@
 ol li:hover {
   cursor: pointer;
 }
+
+.title {
+  color: #495057;
+  font-weight: 500;
+}
