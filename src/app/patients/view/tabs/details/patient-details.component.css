@@ -4,12 +4,13 @@
 }
 
 .outer-field-set{
-  border: 1px solid grey;
+  border: 1px solid lightgrey;
   padding-left: 15px; 
   padding-right: 15px; 
   padding-bottom: 15px;  
   background-color: white;
   color: #7f7f7f;
+  border-radius: 5px;
 }
 .w-auto.px-3.d-inline-block {
   color: rgb(33,37,41);
@@ -50,4 +51,6 @@ input[type="checkbox"], input, select {
     border-radius: 10px;
     border: 0.5px solid lightgrey;
     color: white !important;
+    font-weight: 500;
+    font-size: 20px;
 }

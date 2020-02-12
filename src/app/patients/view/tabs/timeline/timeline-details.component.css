@@ -18,3 +18,7 @@
   background-color: var(--purple-theme);
   color: white;
 }
+
+ol li:hover {
+  cursor: pointer;
+}

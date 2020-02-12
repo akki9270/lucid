@@ -19,6 +19,7 @@ export class TimelineDetailsComponent implements OnInit, AfterViewInit {
   lastItem: any;
   xScrolling: number;
   disabledClass: string;
+  currentEvent: any;
   constructor(private modalService: NgbModal) { }
 
   patientEvents: any = (data as any).default;
@@ -178,6 +179,7 @@ export class TimelineDetailsComponent implements OnInit, AfterViewInit {
 
   onParentEventClick(event){
     this.childEvents = event.data;
+    this.currentEvent = event;
     this.showChildEvents = true;
     setTimeout(()=>{
       this.loadScript();
