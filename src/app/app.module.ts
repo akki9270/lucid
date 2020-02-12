@@ -19,7 +19,7 @@ import { TimelineDetailsComponent } from './patients/view/tabs/timeline/timeline
 import { PatientViewComponent } from './patients/view/patient-view.component';
 import { ServiceAccordionComponent } from './patients/view/tabs/details/components/service-accordion/service-accordion.component';
 import { DatepickerRangePopupComponent } from '../components/datepicker-range-popup/datepicker-range-popup.component';
-import { HighlightSearch } from 'src/CustomPipes/HighlightSearch/HighlightSearch';
+import { HighlightSearch, SafeHtmlPipe } from 'src/CustomPipes/HighlightSearch/HighlightSearch';
 
 @NgModule({
   declarations: [
@@ -36,7 +36,8 @@ import { HighlightSearch } from 'src/CustomPipes/HighlightSearch/HighlightSearch
     PatientViewComponent,
     ServiceAccordionComponent,
     DatepickerRangePopupComponent,
-    HighlightSearch    
+    HighlightSearch,
+    SafeHtmlPipe    
   ],
   imports: [
     BrowserModule,

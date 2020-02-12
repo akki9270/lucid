@@ -22,3 +22,10 @@
   pointer-events: none;
   color: #aaa;
 }
+.contentDiv {
+  max-height: 300px;
+  min-height: 300px;
+  overflow-y: auto;
+  border: 1px solid lightgray;
+  border-radius: 10px;
+}

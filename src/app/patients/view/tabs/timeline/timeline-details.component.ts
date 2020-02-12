@@ -163,9 +163,11 @@ export class TimelineDetailsComponent implements OnInit, AfterViewInit {
     // console.log('$event click: ', $scrollElementId)
     this.modalService.open(longContent, this.modalOption);
     setTimeout(() => {
+      let parentId = $('#'+$scrollElementId).parent().attr('id');
+      let parentPos = $('#myModal div#'+parentId).position().top;
       let scrollPosition = $('#myModal div#' + $scrollElementId).position().top;
       $('#myModal').animate({
-        scrollTop: scrollPosition
+        scrollTop: scrollPosition + parentPos
       }, 1000);
     }, 0);
   }

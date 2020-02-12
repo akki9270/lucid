@@ -30,6 +30,10 @@
   background-color: var(--purple-theme);
 }
 
+.card-header:hover {
+  cursor: pointer;
+}
+
 .card-header-text{
   color:  var(--white-theme);
 }
@@ -39,4 +43,11 @@
 }
 input[type="checkbox"], input, select {
   pointer-events: none;
+}
+
+.lengend-title{
+  background-color: var(--purple-theme);
+    border-radius: 10px;
+    border: 0.5px solid lightgrey;
+    color: white !important;
 }
