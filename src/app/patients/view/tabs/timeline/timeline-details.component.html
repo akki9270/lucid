@@ -17,7 +17,7 @@
       </li>
       <li></li>
     </ol>
-     <!-- child events -->
+    <!-- child events -->
     <ol *ngIf="showChildEvents">
       <li *ngFor="let event of childEvents; trackBy: trackByFn;">
         <div (click)="onEventClick(longContent, event.event_id)">
@@ -40,25 +40,34 @@
   <!-- </div> -->
   <ng-template #longContent let-modal>
     <div class="modal-header p-2">
-      <h4 class="modal-title">Event Timeline</h4>
-      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <h4 class="modal-title p-2 purple">Event Timeline</h4>
+      <button type="button" class="close m-0" aria-label="Close" (click)="modal.dismiss('Cross click')">
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
     <div class="modal-body p-2" id="myModal" style="height: 70vh; overflow: auto;">
-      <div class="my-2" *ngFor="let patientEvent of patientEvents; trackBy: trackByFn;" id="{{patientEvent.event_id}}">
-        <div>
-          <p><b>Event: </b><b style="color: #007bff">{{patientEvent.event_name}}</b></p>        
+      <div class="card my-2" *ngFor="let patientEvent of patientEvents; trackBy: trackByFn;"
+        id="{{patientEvent.event_id}}">
+        <div class="card-header px-2 py-3">
+          <h5 class="card-title"><b class="purple">{{patientEvent.event_name}}</b></h5>
         </div>
         <div class="my-1" *ngFor="let event of patientEvent.data; trackBy: trackByFn;" id="{{event.event_id}}">
-          <p><b>Sub Event: </b><b style="color: #007bff">{{event.event_name}}</b></p>     
-          <p><b>THE ABOVE Alt Start Of Care REQUEST WAS ROUTED TO THE HIT QUEUE WITH A ROUTE REASON OF Portal -
-              Clin Rev BECAUSE OF THE FOLLOWING RULE FAILURES:</b></p>     
+          <div class="card-body">
+            <blockquote class="blockquote m-2">
+              <p><b class="purple">{{event.event_name}}</b></p>
+              <footer class="blockquote-footer">THE ABOVE Alt Start Of Care REQUEST WAS ROUTED TO THE HIT QUEUE WITH A
+                ROUTE REASON OF Portal -
+                Clin Rev BECAUSE OF THE FOLLOWING RULE FAILURES:</footer>
+            </blockquote>
+          </div>
         </div>
       </div>
     </div>
     <div class="modal-footer">
-      <button type="button" class="btn btn-light p-2" (click)="modal.close('Close click')">Close</button>
+      <div class="p-2 m-2">
+        <button type="button" class="btn close-btn p-2"
+          (click)="modal.close('Close click')">Close</button>
+      </div>
     </div>
   </ng-template>
 </div>

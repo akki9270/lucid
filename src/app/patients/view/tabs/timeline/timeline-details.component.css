@@ -13,3 +13,8 @@
 .light-blue-backdrop {
   background-color: #5cb3fd;
 }
+
+.close-btn{
+  background-color: var(--purple-theme);
+  color: white;
+}
