@@ -4,7 +4,7 @@
     <button type="button" class="btn btn-default" (click)="onBackButtonClick(!showChildEvents)">
       <i class="fa fa-chevron-left"></i> Back
     </button>
-    <h5 class="ml-4 purple-theme">{{currentEvent.event_name + ' | ' + currentEvent.date}}</h5>
+    <!-- <h5 class="ml-4 purple-theme">{{currentEvent.event_name + ' | ' + currentEvent.date}}</h5> -->
   </div>
 
   <section class="timeline">
@@ -13,7 +13,7 @@
       <li *ngFor="let event of patientEvents; trackBy: trackByFn;">
         <div (click)="onParentEventClick(event)">
           <time><i style='color: green;' class="fa fa-phone fa-rotate-90 px-2"
-              aria-hidden="true"></i>{{event.date}}</time> {{event.event_name}}
+              aria-hidden="true"></i>{{event.date}}</time>
         </div>
       </li>
       <li></li>
@@ -23,7 +23,7 @@
       <li *ngFor="let event of childEvents; trackBy: trackByFn;">
         <div (click)="onEventClick(longContent, event.event_id)">
           <time><i style='color: green;' class="fa fa-phone fa-rotate-90 px-2"
-              aria-hidden="true"></i>{{event.event_name}}</time> {{event.date}}
+              aria-hidden="true"></i>{{event.event_name}}</time> {{event.time}}
         </div>
       </li>
       <li></li>

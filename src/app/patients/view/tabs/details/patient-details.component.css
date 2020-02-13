@@ -28,7 +28,7 @@
 }
 
 .card-header{
-  background-color: var(--purple-theme);
+  background-color: var(--dark-grey);
 }
 
 .card-header:hover {
