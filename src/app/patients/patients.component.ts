@@ -12,22 +12,27 @@ export class PatientsComponent implements OnInit {
   settings = {
     columns: {
       patientId: {
-        title: 'Patient Id'
+        title: 'Patient Id',
+        sort: false
       },
       intakeId: {
-        title: 'Intake Id'
+        title: 'Intake Id',
+        sort: false
       },
       firstName: {
-        title: 'First Name'
+        title: 'First Name',
+        sort: false
       },
       lastName: {
-        title: 'Last Name'
+        title: 'Last Name',
+        sort: false
       },
       healthPlan: {
-        title: 'Health Plan'
+        title: 'Health Plan',
+        sort: false
       },
       daysOfSoc: {
-        title: 'Days to SOC'
+        title: 'Days to SOC'        
       }
     },
     actions: {
@@ -36,9 +41,9 @@ export class PatientsComponent implements OnInit {
       delete: false
     },
     filter: false,
-    pager: {
-      perPage: 5
-    },
+    // pager: {
+    //   perPage: 10
+    // },
     rowClassFunction: (row) => {
       // console.log('row: ', row)
       if (row.index % 2 === 0) {
@@ -53,7 +58,7 @@ export class PatientsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.myData = data
+    this.myData = data.slice(0,10)
   }
 
   onPatientView(event) {

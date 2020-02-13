@@ -1,11 +1,12 @@
 .main-container{
   padding: 10px;
   color: var(--font-grey);
-  font-size: 16px;
+  font-size: 14px;
 }
+
 .font-styles {
-  color: var(--font-grey);
-  font-size: 16px;
+  color: var(--worm-grey);
+  font-size: 14px;
 }
 
 .even-row{
@@ -15,6 +16,7 @@
 .odd-row{
   background: #ccd6e5;
 }
+
 a.ng2-smart-sort-link {
-  color: var(--font-grey);
+  color: var(--warm-grey);
 }

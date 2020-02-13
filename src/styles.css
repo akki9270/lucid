@@ -180,6 +180,27 @@ section {
     background-color:  var(--pale-grey);
   }
 
+/* Top Bar */
+.topbar-title {
+    font-family: 'Open Sans', Roboto;
+    font-size: 1.4rem;
+    color: var(--purple-theme);
+    font-weight: 500;
+    text-transform: capitalize;
+    margin-bottom: 0;
+}
+a.topbar-back-btn:hover {
+    text-decoration: none;
+}
+.topbar-title i {
+    vertical-align: middle;
+}
+.topbar-back-btn,
+.topbar-back-btn:hover {
+    color: #ffffff;
+}
+/* END - Top Bar */  
+
 .tabButton.active {
     background-color: var(--purple-theme);
     color: white;
