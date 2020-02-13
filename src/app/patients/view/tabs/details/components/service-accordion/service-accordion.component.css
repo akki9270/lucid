@@ -1,0 +1,14 @@
+.form-control:disabled, .form-control[readonly] {
+    background-color: transparent;
+  }
+  h5 {
+      color: #212529;
+  }
+
+  .bg-lightgrey {
+      background-color: lightgray;
+  }
+
+  .form-control:disabled, .form-control[readonly] {
+    padding-left: 0px;
+  }

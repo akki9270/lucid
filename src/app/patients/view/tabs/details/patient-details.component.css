@@ -57,3 +57,7 @@ input[type="checkbox"], input, select {
     text-transform: uppercase;
     box-shadow: 0px 1px 1px 0px black
 }
+.form-control:disabled, .form-control[readonly] {
+  background-color: transparent;
+  padding-left: 0px;
+}
