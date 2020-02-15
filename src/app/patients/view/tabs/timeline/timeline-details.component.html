@@ -21,7 +21,7 @@
     <!-- child events -->
     <ol *ngIf="showChildEvents">
       <li *ngFor="let event of childEvents; trackBy: trackByFn;">
-        <div (click)="onEventClick(longContent, event.event_id)">
+        <div (click)="onEventClick(longContent, event.event_id, event)">
           <time><i style='color: green;' class="fa fa-phone fa-rotate-90 px-2"
               aria-hidden="true"></i>{{event.event_name}}</time> {{event.time}}
         </div>
@@ -41,7 +41,7 @@
   <!-- </div> -->
   <ng-template #longContent let-modal>
     <div class="modal-header p-2 bg-purple-theme align-items-center">
-      <h5 class="modal-title p-2 purple text-white">Event View</h5>
+      <h5 class="modal-title p-2 purple text-white">Event View ( {{clickedChildEvent.event_name}} )</h5>
       <button type="button" class="close m-0 text-white" aria-label="Close" (click)="modal.dismiss('Cross click')">
         <span aria-hidden="true">&times;</span>
       </button>

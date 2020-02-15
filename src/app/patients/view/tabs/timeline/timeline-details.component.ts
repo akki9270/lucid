@@ -20,6 +20,7 @@ export class TimelineDetailsComponent implements OnInit, AfterViewInit {
   xScrolling: number;
   disabledClass: string;
   currentEvent: any;
+  clickedChildEvent: any;
   constructor(private modalService: NgbModal) { }
 
   patientEvents: any = (data as any).default;
@@ -160,7 +161,8 @@ export class TimelineDetailsComponent implements OnInit, AfterViewInit {
     size: 'lg'
   }
   
-  onEventClick(longContent, $scrollElementId) {
+  onEventClick(longContent, $scrollElementId, event) {
+    this.clickedChildEvent = event;
     // console.log('$event click: ', $scrollElementId)
     this.modalService.open(longContent, this.modalOption);
     setTimeout(() => {
