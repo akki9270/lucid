@@ -20,3 +20,10 @@
 a.ng2-smart-sort-link {
   color: var(--warm-grey);
 }
+::ng-deep a.sort.asc::after,
+::ng-deep a.sort.desc::after {
+  border-bottom: 4px solid black !important;
+}
+::ng-deep div.ng2-smart-title {
+  font-weight: 400;
+}

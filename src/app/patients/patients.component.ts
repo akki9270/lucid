@@ -12,27 +12,27 @@ export class PatientsComponent implements OnInit {
   settings = {
     columns: {
       patientId: {
-        title: 'Patient Id',
+        title: 'PATIENT ID',
         sort: false
       },
       intakeId: {
-        title: 'Intake Id',
+        title: 'INTAKE ID',
         sort: false
       },
       firstName: {
-        title: 'First Name',
+        title: 'FIRST NAME',
         sort: false
       },
       lastName: {
-        title: 'Last Name',
+        title: 'LAST NAME',
         sort: false
       },
       healthPlan: {
-        title: 'Health Plan',
+        title: 'HEALTH PLAN',
         sort: false
       },
       daysOfSoc: {
-        title: 'Days to SOC'        
+        title: 'DAYS TO SOC'        
       }
     },
     actions: {
