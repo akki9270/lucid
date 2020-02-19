@@ -10,7 +10,7 @@ import { PATIENT_TAB } from '../../constants'
 })
 export class PatientViewComponent implements OnInit {
   currentTab = PATIENT_TAB
-  patientDetails = {}
+  patientDetails: any = {}
   constructor(private location: Location, private router: Router) { }
 
   ngOnInit() {
