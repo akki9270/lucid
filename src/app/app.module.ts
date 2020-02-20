@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { NgbModule, NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap';
-import { HttpClientModule} from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -37,7 +37,7 @@ import { HighlightSearch, SafeHtmlPipe } from 'src/CustomPipes/HighlightSearch/H
     ServiceAccordionComponent,
     DatepickerRangePopupComponent,
     HighlightSearch,
-    SafeHtmlPipe    
+    SafeHtmlPipe
   ],
   imports: [
     BrowserModule,
@@ -45,7 +45,7 @@ import { HighlightSearch, SafeHtmlPipe } from 'src/CustomPipes/HighlightSearch/H
     Ng2SmartTableModule,
     NgbModule,
     NgbAccordionModule,
-    HttpClientModule, 
+    HttpClientModule,
     AngularEditorModule,
     AppRoutingModule
   ],

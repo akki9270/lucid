@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { data } from './patients.json';
+// import { data } from './patients.json';
+import { RestApiService } from "../shared/rest-api.service";
+import { Patient } from '../models/patient'
 
 @Component({
   selector: 'app-patients',
@@ -11,28 +13,28 @@ export class PatientsComponent implements OnInit {
   myData = []
   settings = {
     columns: {
-      patientId: {
+      patient_id: {
         title: 'PATIENT ID',
         sort: false
       },
-      intakeId: {
+      intake_id: {
         title: 'INTAKE ID',
         sort: false
       },
-      firstName: {
+      first_name: {
         title: 'FIRST NAME',
         sort: false
       },
-      lastName: {
+      last_name: {
         title: 'LAST NAME',
         sort: false
       },
-      healthPlan: {
+      health_plan: {
         title: 'HEALTH PLAN',
         sort: false
       },
-      daysOfSoc: {
-        title: 'DAYS TO SOC'        
+      days_of_soc: {
+        title: 'DAYS TO SOC'
       }
     },
     actions: {
@@ -54,16 +56,50 @@ export class PatientsComponent implements OnInit {
     }
   };
 
-  constructor(private router: Router) {
+  constructor(
+    public restApi: RestApiService,
+    private router: Router
+  ) {
   }
 
   ngOnInit() {
-    this.myData = data.slice(0,10)
+    // this.myData = data.slice(0,10)
+    this.getPatientData()
+  }
+
+  getPatientData() {
+    this.restApi.getPatients().subscribe((data) => {
+      // console.log('data: ', data)
+      this.myData = data.map(item => {
+        return new Patient(
+          item.patient_id,
+          item.intake_id,
+          item.first_name,
+          item.last_name,
+          item.health_plan,
+          item.days_of_soc,
+          item.dob,
+          item.gender,
+          item.phone_number,
+          item.address,
+          item.city,
+          item.state,
+          item.zipcode,
+          item.insurance_name,
+          item.subscribe_id,
+          item.createdAt,
+          item.updatedAt,
+          item.deletedAt,
+          item.key_indicator,
+          item.service
+        );
+      });
+    });
   }
 
   onPatientView(event) {
     if (event && event.data) {
-      // console.log('-data: ', event)
+      console.log('-data: ', event)
       this.router.navigate([`patients/${event.data.patientId}/view`], { state: { patientDetails: event.data } });
     }
   }
