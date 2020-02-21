@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { PATIENT_TAB } from '../../constants'
 
 @Component({
@@ -11,10 +11,21 @@ import { PATIENT_TAB } from '../../constants'
 export class PatientViewComponent implements OnInit {
   currentTab = PATIENT_TAB
   patientDetails: any = {}
-  constructor(private location: Location, private router: Router) { }
+  patientId: string;
+  constructor(
+    private location: Location, 
+    private router: Router,
+    private activeRoute: ActivatedRoute
+    ) { }
 
   ngOnInit() {
     this.currentTab = PATIENT_TAB;
+    this.activeRoute.paramMap.subscribe(data => {
+      let patientId = data.get('patientId');
+      if (patientId) {
+        this.patientId = patientId;
+      }
+    })
     if (this.router.getCurrentNavigation() && this.router.getCurrentNavigation().extras) {
       this.patientDetails = this.router.getCurrentNavigation().extras.state;
     } else if (history.state && history.state.patientDetails) {
