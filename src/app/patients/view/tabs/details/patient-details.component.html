@@ -1,4 +1,4 @@
-<div class="main-container">
+<div class="main-container" *ngIf="patientDetails">
   <section class="content-section px-2 my-2">
     <div style="padding: 2px">
       <fieldset class="outer-field-set bg-white">
@@ -57,7 +57,7 @@
           </div>
         </div>
       </fieldset>
-      <fieldset id='key-indicator' class="outer-field-set mt-2">
+      <fieldset id='key-indicator' *ngIf="patientDetails.key_indicator" class="outer-field-set mt-2">
         <legend class="w-auto px-3 d-inline-block lengend-title py-1">Key Indicator</legend>
         <div class="d-flex" style="margin: 5px;">
           <div class="left-section">

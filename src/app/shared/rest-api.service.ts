@@ -30,9 +30,10 @@ export class RestApiService {
   }  
 
   // HttpClient API get() method => Fetch employees list
-  getPatients(): Observable<Patient> {
-    console.log('----this.apiURL: ', this.apiURL)
-    return this.http.get<Patient>(this.apiURL + '/getPatients')
+  getPatients(patientId?: string): Observable<Patient> {
+    let url = this.apiURL + '/getPatients' + (patientId ? '/' + patientId : '');
+    console.log('----this.apiURL: ', url)
+    return this.http.get<Patient>(url)
     .pipe(
       retry(1),
       catchError(this.handleError)
