@@ -63,32 +63,32 @@
           <div class="left-section">
             <div class="row">
               <div class="col-lg-3 form-group">
-                <input type="checkbox" value="{{patientDetails.key_indicator.pediatric_patient}}" /> PEDIATRIC PATIENT
+                <input type="checkbox" [checked]="patientDetails.key_indicator.pediatric_patient" /> PEDIATRIC PATIENT
               </div>
               <div class="col-lg-3 form-group">
-                <input type="checkbox" value="{{patientDetails.key_indicator.urgent}}" /> URGENT
+                <input type="checkbox" [checked]="patientDetails.key_indicator.urgent" /> URGENT
               </div>
               <div class="col-lg-3 form-group">
-                <input type="checkbox" value="{{patientDetails.key_indicator.engaged_by_escalation_team}}" /> ENGAGED BY ESCALATION TEAM
+                <input type="checkbox" [checked]="patientDetails.key_indicator.engaged_by_escalation_team" /> ENGAGED BY ESCALATION TEAM
               </div>
               <div class="col-lg-3 form-group">
-                <input type="checkbox" value="{{patientDetails.key_indicator.restaff_turnback}}" /> RESTAFF/TURNBACK
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-lg-3 form-group">
-                <input type="checkbox" value="{{patientDetails.key_indicator.primary_care_physician}}" /> PRIMARY CARE PHYSICIAN
-              </div>
-              <div class="col-lg-3 form-group">
-                <input type="checkbox" value="{{patientDetails.key_indicator.following_physician}}" /> FOLLOWING PHYSICIAN
-              </div>
-              <div class="col-lg-3 form-group">
-                <input type="checkbox" value="{{patientDetails.key_indicator.wound_care}}" /> WOUND CARE
+                <input type="checkbox" [checked]="patientDetails.key_indicator.restaff_turnback" /> RESTAFF/TURNBACK
               </div>
             </div>
             <div class="row">
               <div class="col-lg-3 form-group">
-                <input type="checkbox" value="{{patientDetails.key_indicator.facility_discharge}}"/> FACILITY DISCHARGE
+                <input type="checkbox" [checked]="patientDetails.key_indicator.primary_care_physician" /> PRIMARY CARE PHYSICIAN
+              </div>
+              <div class="col-lg-3 form-group">
+                <input type="checkbox" [checked]="patientDetails.key_indicator.following_physician" /> FOLLOWING PHYSICIAN
+              </div>
+              <div class="col-lg-3 form-group">
+                <input type="checkbox" [checked]="patientDetails.key_indicator.wound_care" /> WOUND CARE
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-3 form-group">
+                <input type="checkbox" [checked]="patientDetails.key_indicator.facility_discharge"/> FACILITY DISCHARGE
               </div>
             </div>
           </div>
@@ -120,12 +120,12 @@
       <fieldset class="outer-field-set">
         <legend class="w-auto px-3 d-inline-block lengend-title py-1">Service Details</legend>
         <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0">
-          <ngb-panel *ngFor="let service of patientDetails.service; trackBy: trackByFn;" id="panel1">
+          <ngb-panel *ngFor="let service of patientDetails.service; let i = index; trackBy: trackByFn;" [id]="'panel'+i">
             <ng-template ngbPanelHeader>
-              <div (click)="acc.toggle('panel1')" class="w-100 card-header d-flex justify-content-between"
+              <div (click)="acc.toggle('panel'+i)" class="w-100 card-header d-flex justify-content-between"
                 ngbPanelToggle>
                 <div>
-                  <h5 class="card-header-text pt-1">{{service.service_code}}</h5>
+                  <h5 class="card-header-text pt-1">Service Code #{{service.service_code}}</h5>
                 </div>
                 <div>
                   <i class="fa fa-caret-down" style="color: white; margin-top: 10px;" aria-hidden="true"></i>
@@ -133,7 +133,7 @@
               </div>
             </ng-template>
             <ng-template ngbPanelContent>
-              <app-service-accordion [serviceDetails]="patientDetails.service"></app-service-accordion>
+              <app-service-accordion [serviceDetails]="service"></app-service-accordion>
             </ng-template>
           </ngb-panel>
           <!-- <ngb-panel id="panel2">

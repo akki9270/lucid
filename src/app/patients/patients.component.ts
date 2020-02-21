@@ -68,7 +68,7 @@ export class PatientsComponent implements OnInit {
   }
 
   getPatientData() {
-    this.restApi.getPatients().subscribe((data) => {
+    this.restApi.getPatients().subscribe((data: any) => {
       // console.log('data: ', data)
       this.myData = data.map(item => {
         return new Patient(
