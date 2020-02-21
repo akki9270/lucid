@@ -4,152 +4,153 @@
         <div class="row"> -->
     <div class="col-lg-3 form-group">
       <label for="hcpcCode">HCPC Code</label>
-      <input type="text" class="form-control" id="hcpcCode" value="A7037" readonly>
+      <input type="text" class="form-control" id="hcpcCode" value="{{serviceDetails.hcpc_code}}" readonly>
     </div>
     <div class="col-lg-3 form-group">
       <label for="startDate">Start Date</label>
-      <input type="text" class="form-control" id="startDate" value="04/04/2018" readonly>
+      <input type="text" class="form-control" id="startDate" value="{{serviceDetails.start_date}}" readonly>
     </div>
     <div class="col-lg-3 form-group">
       <label for="endDate">End Date</label>
-      <input type="text" class="form-control" id="endDate" value="10/31/2018" readonly>
+      <input type="text" class="form-control" id="endDate" value="{{serviceDetails.end_date}}" readonly>
     </div>
     <div class="col-lg-3 form-group">
       <label for="noOfUnits">Number of Units</label>
-      <input type="text" class="form-control" id="noOfUnits" value="1" readonly>
+      <input type="text" class="form-control" id="noOfUnits" value="{{serviceDetails.unit}}" readonly>
     </div>
     <div class="col-lg-3 form-group">
       <label for="description">Description</label>
-      <input type="text" class="form-control" id="description" value="CPAP Tubing" readonly>
+      <input type="text" class="form-control" id="description" value="{{serviceDetails.description}}" readonly>
     </div>
     <div class="col-lg-3 form-group">
       <label for="primaryDiagnosis">Primary Diagnosis</label>
-      <input type="text" class="form-control" id="primaryDiagnosis" value="E70319" readonly>
+      <input type="text" class="form-control" id="primaryDiagnosis" value="{{serviceDetails.primary_diagnosis}}"
+        readonly>
     </div>
     <div class="col-lg-3 form-group">
       <label for="refSource">Ref. Source</label>
-      <input type="text" class="form-control" id="refSource" value="Facility - ABC Facility" readonly>
-    </div>
-    <div class="col-lg-3 form-group">
-      <label for="hcpcCode">Number of Units</label>
-      <input type="text" class="form-control" id="hcpcCode" value="Facility - ABC Facility" readonly>
+      <input type="text" class="form-control" id="refSource" value="{{serviceDetails.ref_source}}" readonly>
     </div>
     <!-- </div> -->
     <!-- </form> -->
   </div>
-  <div class="row bg-lightgrey">
+  <div *ngIf="serviceDetails.orderingPhysician" class="row bg-lightgrey">
     <div class="col-lg-12 d-flex justify-content-start align-items-center">
       <h5 class="text-uppercase mb-0 py-2">Ordering Physician Name</h5>
     </div>
   </div>
-  <div class="row details-content-bar">
+  <div *ngIf="serviceDetails.orderingPhysician" class="row details-content-bar">
     <div class="col-lg-3 form-group">
       <label for="name">Name</label>
-      <input type="text" class="form-control" id="name" value="Shara Bowerman" readonly>
+      <input type="text" class="form-control" id="name" value="{{serviceDetails.orderingPhysician.name}}" readonly>
     </div>
     <div class="col-lg-3 form-group">
       <label for="address">Address</label>
-      <input type="text" class="form-control" id="address" value="6116 E ARBOR AVE SUITE 112" readonly>
+      <input type="text" class="form-control" id="address" value="{{serviceDetails.orderingPhysician.address}}"
+        readonly>
     </div>
     <div class="col-lg-3 form-group">
       <label for="city">City</label>
-      <input type="text" class="form-control" id="city" value="REHOBOTH BEACH" readonly>
+      <input type="text" class="form-control" id="city" value="{{serviceDetails.orderingPhysician.city}}" readonly>
     </div>
     <div class="col-lg-3 form-group">
       <label for="state">State</label>
-      <input type="text" class="form-control" id="state" value="NM" readonly>
+      <input type="text" class="form-control" id="state" value="{{serviceDetails.orderingPhysician.state}}" readonly>
     </div>
     <div class="col-lg-3 form-group">
       <label for="zip">Zip</label>
-      <input type="text" class="form-control" id="zip" value="95972-3338" readonly>
+      <input type="text" class="form-control" id="zip" value="{{serviceDetails.orderingPhysician.zipcode}}" readonly>
     </div>
     <div class="col-lg-3 form-group">
       <label for="phone">Phone</label>
-      <input type="text" class="form-control" id="phone" value="2358441258" readonly>
+      <input type="text" class="form-control" id="phone" value="{{serviceDetails.orderingPhysician.phone_number}}"
+        readonly>
     </div>
     <div class="col-lg-3 form-group">
       <label for="fax">Fax</label>
-      <input type="text" class="form-control" id="fax" value="(913)161-6663" readonly>
+      <input type="text" class="form-control" id="fax" value="{{serviceDetails.orderingPhysician.fax}}" readonly>
     </div>
   </div>
-  <div class="row bg-lightgrey">
+  <div *ngIf="serviceDetails.orderingPhysician" class="row bg-lightgrey">
     <div class="col-lg-12 d-flex justify-content-start align-items-center">
       <h5 class="text-uppercase mb-0 py-2">Primary Physician</h5>
     </div>
   </div>
-  <div class="row details-content-bar">
+  <div *ngIf="serviceDetails.orderingPhysician" class="row details-content-bar">
     <div class="col-lg-3 form-group">
       <label for="name">Name</label>
-      <input type="text" class="form-control" id="name" value="BRONX LEBANON HOSP FULTON" readonly>
+      <input type="text" class="form-control" id="name" value="{{serviceDetails.primaryPhysician.name}}" readonly>
     </div>
     <div class="col-lg-3 form-group">
       <label for="address">Address</label>
-      <input type="text" class="form-control" id="address" value="1703 W. OWASSA ROAD" readonly>
+      <input type="text" class="form-control" id="address" value="{{serviceDetails.primaryPhysician.address}}" readonly>
     </div>
     <div class="col-lg-3 form-group">
       <label for="city">City</label>
-      <input type="text" class="form-control" id="city" value="ABINGTON" readonly>
+      <input type="text" class="form-control" id="city" value="{{serviceDetails.primaryPhysician.city}}" readonly>
     </div>
     <div class="col-lg-3 form-group">
       <label for="state">State</label>
-      <input type="text" class="form-control" id="state" value="WY" readonly>
+      <input type="text" class="form-control" id="state" value="{{serviceDetails.primaryPhysician.state}}" readonly>
     </div>
     <div class="col-lg-3 form-group">
       <label for="zip">Zip</label>
-      <input type="text" class="form-control" id="zip" value="491960745" readonly>
+      <input type="text" class="form-control" id="zip" value="{{serviceDetails.primaryPhysician.zipcode}}" readonly>
     </div>
     <div class="col-lg-3 form-group">
       <label for="phone">Phone</label>
-      <input type="text" class="form-control" id="phone" value="(450)609-1613" readonly>
+      <input type="text" class="form-control" id="phone" value="{{serviceDetails.primaryPhysician.phone_number}}"
+        readonly>
     </div>
     <div class="col-lg-3 form-group">
       <label for="fax">Fax</label>
-      <input type="text" class="form-control" id="fax" value="(569)689-3492" readonly>
+      <input type="text" class="form-control" id="fax" value="{{serviceDetails.primaryPhysician.fax}}" readonly>
     </div>
   </div>
-  <div class="row bg-lightgrey">
+  <div *ngIf="serviceDetails.servicingProvider" class="row bg-lightgrey">
     <div class="col-lg-12 d-flex justify-content-start align-items-center">
       <h5 class="text-uppercase mb-0 py-2">Servicing Provider</h5>
     </div>
   </div>
-  <div class="row details-content-bar">
+  <div *ngIf="serviceDetails.servicingProvider" class="row details-content-bar">
     <div class="col-lg-3 form-group">
       <label for="name">Name</label>
-      <input type="text" class="form-control" id="name" value="Shara Bowerman" readonly>
+      <input type="text" class="form-control" id="name" value="{{serviceDetails.servicingProvider.name}}" readonly>
     </div>
     <div class="col-lg-3 form-group">
       <label for="address">Address</label>
-      <input type="text" class="form-control" id="address" value="6116 E ARBOR AVE SUITE 112" readonly>
+      <input type="text" class="form-control" id="address" value="{{serviceDetails.servicingProvider.address}}" readonly>
     </div>
     <div class="col-lg-3 form-group">
       <label for="city">City</label>
-      <input type="text" class="form-control" id="city" value="REHOBOTH BEACH" readonly>
+      <input type="text" class="form-control" id="city" value="{{serviceDetails.servicingProvider.city}}" readonly>
     </div>
     <div class="col-lg-3 form-group">
       <label for="state">State</label>
-      <input type="text" class="form-control" id="state" value="NM" readonly>
+      <input type="text" class="form-control" id="state" value="{{serviceDetails.servicingProvider.state}}" readonly>
     </div>
     <div class="col-lg-3 form-group">
       <label for="zip">Zip</label>
-      <input type="text" class="form-control" id="zip" value="95972-3338" readonly>
+      <input type="text" class="form-control" id="zip" value="{{serviceDetails.servicingProvider.zipcode}}" readonly>
     </div>
     <div class="col-lg-3 form-group">
       <label for="phone">Phone</label>
-      <input type="text" class="form-control" id="phone" value="2358441258" readonly>
+      <input type="text" class="form-control" id="phone" value="{{serviceDetails.servicingProvider.phone_number}}"
+        readonly>
     </div>
     <div class="col-lg-3 form-group">
       <label for="fax">Fax</label>
-      <input type="text" class="form-control" id="fax" value="(913)161-6663" readonly>
+      <input type="text" class="form-control" id="fax" value="{{serviceDetails.servicingProvider.fax}}" readonly>
     </div>
   </div>
-  <div class="row details-content-bar">
+  <div *ngIf="serviceDetails.servicingProvider" class="row details-content-bar">
     <div class="col-lg-3 form-group">
       <label for="refferalType">Referral Type</label>
-      <input type="text" class="form-control" id="refferalType" value="Auth Edit" readonly>
+      <input type="text" class="form-control" id="refferalType" value="{{serviceDetails.servicingProvider.referral_type}}" readonly>
     </div>
     <div class="col-lg-3 form-group">
       <label for="refferalMethod">Referral Method</label>
-      <input type="text" class="form-control" id="refferalMethod" value="Online - Provider Portal" readonly>
+      <input type="text" class="form-control" id="refferalMethod" value="{{serviceDetails.servicingProvider.referral_method}}" readonly>
     </div>
   </div>
 </div>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-service-accordion',
@@ -9,8 +9,9 @@ export class ServiceAccordionComponent implements OnInit {
 
   constructor() { }
 
+  @Input('serviceDetails') serviceDetails
   ngOnInit() {
-    // console.log('Loade service accord')
+    console.log('Loade service accord: ', this.serviceDetails)
   }
 
 }

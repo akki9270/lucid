@@ -12,7 +12,11 @@ export class PatientDetailsComponent implements OnInit {
 
   @Input('patientDetails') patientDetails
   ngOnInit() {
-    // console.log('-----patientDetails: ', this.patientDetails)
+    console.log('-----patientDetails: ', this.patientDetails)
+  }
+
+  trackByFn(index, item) {
+    return item.id;
   }
 
 }

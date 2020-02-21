@@ -9,11 +9,11 @@
               <div class="row"> -->
             <div class="col-lg-3 form-group">
               <label for="firstName">First Name</label>
-              <input type="text" class="form-control" id="firstName" value="{{patientDetails.firstName}}" readonly>
+              <input type="text" class="form-control" id="firstName" value="{{patientDetails.first_name}}" readonly>
             </div>
             <div class="col-lg-3 form-group">
               <label for="lastName">Last Name</label>
-              <input type="text" class="form-control" id="lastName" value="{{patientDetails.lastName}}" readonly>
+              <input type="text" class="form-control" id="lastName" value="{{patientDetails.last_name}}" readonly>
             </div>
             <div class="col-lg-3 form-group">
               <label for="dob">DOB</label>
@@ -25,11 +25,11 @@
             </div>
             <div class="col-lg-3 form-group">
               <label for="phoneNumber">Phone Number</label>
-              <input type="text" class="form-control" id="phoneNumber" value="{{patientDetails.phoneNumber}}" readonly>
+              <input type="text" class="form-control" id="phoneNumber" value="{{patientDetails.phone_number}}" readonly>
             </div>
             <div class="col-lg-3 form-group">
               <label for="address">Address</label>
-              <input type="text" class="form-control" id="address" value="{{patientDetails.Address}}" readonly>
+              <input type="text" class="form-control" id="address" value="{{patientDetails.address}}" readonly>
             </div>
             <div class="col-lg-3 form-group">
               <label for="city">City</label>
@@ -41,16 +41,16 @@
             </div>
             <div class="col-lg-3 form-group">
               <label for="zipCode">Zip Code</label>
-              <input type="text" class="form-control" id="zipCode" value="{{patientDetails.zipCode}}" readonly>
+              <input type="text" class="form-control" id="zipCode" value="{{patientDetails.zipcode}}" readonly>
             </div>
             <div class="col-lg-3 form-group">
               <label for="insuranceName">Insurance Name</label>
-              <input type="text" class="form-control" id="insuranceName" value="{{patientDetails.insuranceName}}"
+              <input type="text" class="form-control" id="insuranceName" value="{{patientDetails.insurance_name}}"
                 readonly>
             </div>
             <div class="col-lg-3 form-group">
               <label for="subscribeId">Subscriber Id</label>
-              <input type="text" class="form-control" id="subscribeId" value="{{patientDetails.subscribeId}}" readonly>
+              <input type="text" class="form-control" id="subscribeId" value="{{patientDetails.subscribe_id}}" readonly>
             </div>
             <!-- </div>
             </form> -->
@@ -63,32 +63,32 @@
           <div class="left-section">
             <div class="row">
               <div class="col-lg-3 form-group">
-                <input type="checkbox" /> PEDIATRIC PATIENT
+                <input type="checkbox" value="{{patientDetails.key_indicator.pediatric_patient}}" /> PEDIATRIC PATIENT
               </div>
               <div class="col-lg-3 form-group">
-                <input type="checkbox" checked /> URGENT
+                <input type="checkbox" value="{{patientDetails.key_indicator.urgent}}" /> URGENT
               </div>
               <div class="col-lg-3 form-group">
-                <input type="checkbox" checked /> ENGAGED BY ESCALATION TEAM
+                <input type="checkbox" value="{{patientDetails.key_indicator.engaged_by_escalation_team}}" /> ENGAGED BY ESCALATION TEAM
               </div>
               <div class="col-lg-3 form-group">
-                <input type="checkbox" /> RESTAFF/TURNBACK
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-lg-3 form-group">
-                <input type="checkbox" checked /> PRIMARY CARE PHYSICIAN
-              </div>
-              <div class="col-lg-3 form-group">
-                <input type="checkbox" /> FOLLOWING PHYSICIAN
-              </div>
-              <div class="col-lg-3 form-group">
-                <input type="checkbox" /> WOUND CARE
+                <input type="checkbox" value="{{patientDetails.key_indicator.restaff_turnback}}" /> RESTAFF/TURNBACK
               </div>
             </div>
             <div class="row">
               <div class="col-lg-3 form-group">
-                <input type="checkbox" /> FACILITY DISCHARGE
+                <input type="checkbox" value="{{patientDetails.key_indicator.primary_care_physician}}" /> PRIMARY CARE PHYSICIAN
+              </div>
+              <div class="col-lg-3 form-group">
+                <input type="checkbox" value="{{patientDetails.key_indicator.following_physician}}" /> FOLLOWING PHYSICIAN
+              </div>
+              <div class="col-lg-3 form-group">
+                <input type="checkbox" value="{{patientDetails.key_indicator.wound_care}}" /> WOUND CARE
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-3 form-group">
+                <input type="checkbox" value="{{patientDetails.key_indicator.facility_discharge}}"/> FACILITY DISCHARGE
               </div>
             </div>
           </div>
@@ -120,12 +120,12 @@
       <fieldset class="outer-field-set">
         <legend class="w-auto px-3 d-inline-block lengend-title py-1">Service Details</legend>
         <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0">
-          <ngb-panel id="panel1">
+          <ngb-panel *ngFor="let service of patientDetails.service; trackBy: trackByFn;" id="panel1">
             <ng-template ngbPanelHeader>
               <div (click)="acc.toggle('panel1')" class="w-100 card-header d-flex justify-content-between"
                 ngbPanelToggle>
                 <div>
-                  <h5 class="card-header-text pt-1">Service Code 2512</h5>
+                  <h5 class="card-header-text pt-1">{{service.service_code}}</h5>
                 </div>
                 <div>
                   <i class="fa fa-caret-down" style="color: white; margin-top: 10px;" aria-hidden="true"></i>
@@ -133,10 +133,10 @@
               </div>
             </ng-template>
             <ng-template ngbPanelContent>
-              <app-service-accordion></app-service-accordion>
+              <app-service-accordion [serviceDetails]="patientDetails.service"></app-service-accordion>
             </ng-template>
           </ngb-panel>
-          <ngb-panel id="panel2">
+          <!-- <ngb-panel id="panel2">
             <ng-template ngbPanelHeader>
               <div (click)="acc.toggle('panel2')" class="w-100 card-header d-flex justify-content-between"
                 ngbPanelToggle>
@@ -167,7 +167,7 @@
             <ng-template ngbPanelContent>
               <app-service-accordion></app-service-accordion>
             </ng-template>
-          </ngb-panel>
+          </ngb-panel> -->
         </ngb-accordion>
       </fieldset>
     </div>

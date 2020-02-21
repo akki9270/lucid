@@ -99,8 +99,8 @@ export class PatientsComponent implements OnInit {
 
   onPatientView(event) {
     if (event && event.data) {
-      console.log('-data: ', event)
-      this.router.navigate([`patients/${event.data.patientId}/view`], { state: { patientDetails: event.data } });
+      // console.log('-data: ', event)
+      this.router.navigate([`patients/${event.data.patient_id}/view`], { state: { patientDetails: event.data } });
     }
   }
 
