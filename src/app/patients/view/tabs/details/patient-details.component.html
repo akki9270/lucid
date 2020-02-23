@@ -1,5 +1,8 @@
 <div class="main-container" *ngIf="patientDetails">
   <section class="content-section px-2 my-2">
+    <div class="alert alert-dark" role="alert">
+        <b>{{patientDetails.patient_id}} - {{patientDetails.intake_id}}</b>
+    </div>
     <div style="padding: 2px">
       <fieldset class="outer-field-set bg-white">
         <legend class="w-auto px-3 d-inline-block lengend-title py-1">Patient Info</legend>
@@ -69,7 +72,8 @@
                 <input type="checkbox" [checked]="patientDetails.key_indicator.urgent" /> URGENT
               </div>
               <div class="col-lg-3 form-group">
-                <input type="checkbox" [checked]="patientDetails.key_indicator.engaged_by_escalation_team" /> ENGAGED BY ESCALATION TEAM
+                <input type="checkbox" [checked]="patientDetails.key_indicator.engaged_by_escalation_team" /> ENGAGED BY
+                ESCALATION TEAM
               </div>
               <div class="col-lg-3 form-group">
                 <input type="checkbox" [checked]="patientDetails.key_indicator.restaff_turnback" /> RESTAFF/TURNBACK
@@ -77,10 +81,12 @@
             </div>
             <div class="row">
               <div class="col-lg-3 form-group">
-                <input type="checkbox" [checked]="patientDetails.key_indicator.primary_care_physician" /> PRIMARY CARE PHYSICIAN
+                <input type="checkbox" [checked]="patientDetails.key_indicator.primary_care_physician" /> PRIMARY CARE
+                PHYSICIAN
               </div>
               <div class="col-lg-3 form-group">
-                <input type="checkbox" [checked]="patientDetails.key_indicator.following_physician" /> FOLLOWING PHYSICIAN
+                <input type="checkbox" [checked]="patientDetails.key_indicator.following_physician" /> FOLLOWING
+                PHYSICIAN
               </div>
               <div class="col-lg-3 form-group">
                 <input type="checkbox" [checked]="patientDetails.key_indicator.wound_care" /> WOUND CARE
@@ -88,7 +94,7 @@
             </div>
             <div class="row">
               <div class="col-lg-3 form-group">
-                <input type="checkbox" [checked]="patientDetails.key_indicator.facility_discharge"/> FACILITY DISCHARGE
+                <input type="checkbox" [checked]="patientDetails.key_indicator.facility_discharge" /> FACILITY DISCHARGE
               </div>
             </div>
           </div>
@@ -120,15 +126,18 @@
       <fieldset class="outer-field-set">
         <legend class="w-auto px-3 d-inline-block lengend-title py-1">Service Details</legend>
         <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0">
-          <ngb-panel *ngFor="let service of patientDetails.service; let i = index; trackBy: trackByFn;" [id]="'panel'+i">
+          <ngb-panel *ngFor="let service of patientDetails.service; let i = index; trackBy: trackByFn;"
+            [id]="'panel'+i">
             <ng-template ngbPanelHeader>
               <div (click)="acc.toggle('panel'+i)" class="w-100 card-header d-flex justify-content-between"
                 ngbPanelToggle>
                 <div class="long-and-truncated-with-child-corrected">
-                  <h5 class="card-header-text pt-1">Service Code #{{service.service_code}} - {{service.description}}</h5>
+                  <h5 class="card-header-text pt-1">Service Code #{{service.service_code}} - {{service.description}}
+                  </h5>
                 </div>
                 <div>
-                  <i class="fa fa-caret-down" style="color: white; margin-top: 10px; margin-left: 10px;" aria-hidden="true"></i>
+                  <i class="fa fa-caret-down" style="color: white; margin-top: 10px; margin-left: 10px;"
+                    aria-hidden="true"></i>
                 </div>
               </div>
             </ng-template>
