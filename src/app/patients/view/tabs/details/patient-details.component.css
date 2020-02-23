@@ -61,3 +61,14 @@ input[type="checkbox"], input, select {
   background-color: transparent;
   padding-left: 0px;
 }
+
+.long-and-truncated-with-child-corrected {
+  flex: 1;
+  min-width: 0;
+}
+
+.long-and-truncated-with-child-corrected h5 {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
