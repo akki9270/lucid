@@ -40,7 +40,7 @@ export class NotesDetailsComponent implements OnInit {
       </div>`
         } else if (this.patientEvents[i].data[j].event_name === 'Working on staffing') {
           htmlContent += `<div class="my-1" id="${this.patientEvents[i].data[j].event_id}">        
-        <p class="m-0"><b style="color: #ffc107;">${this.patientEvents[i].data[j].event_name}</b></p>     
+        <p class="m-0"><b style="color: #17a2b8;">${this.patientEvents[i].data[j].event_name}</b></p>     
         <p>THE ABOVE Alt Start Of Care REQUEST WAS ROUTED TO THE HIT QUEUE WITH A ROUTE REASON OF Portal -
             Clin Rev BECAUSE OF THE FOLLOWING RULE FAILURES:</p>     
       </div>`
