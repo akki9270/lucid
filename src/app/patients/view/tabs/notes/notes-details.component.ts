@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import * as data from '../timeline/event.json'
 import { HighlightSearch, SafeHtmlPipe } from 'src/CustomPipes/HighlightSearch/HighlightSearch.js';
+import { RestApiService } from 'src/app/shared/rest-api.service.js';
+import { Tag } from '../../../../models/tag'
 
 @Component({
   selector: 'app-notes-details',
@@ -14,14 +16,24 @@ export class NotesDetailsComponent implements OnInit {
 
   patientEvents: any = (data as any).default;
 
+  tags: []
+
   htmlContent = null
 
   search = ''
 
-  constructor(public highlightText: HighlightSearch, public safeHtml: SafeHtmlPipe) { }
+  constructor(public highlightText: HighlightSearch, public safeHtml: SafeHtmlPipe, public restApi: RestApiService) { }
 
   ngOnInit() {
+    this.getTags()
     this.getInitNotes();
+  }
+
+  getTags() {
+    this.restApi.getTags().subscribe((data: any) => {
+      this.tags = data
+      console.log('--data: ', this.tags)
+    });
   }
 
   getInitNotes() {
