@@ -5,8 +5,11 @@ import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { NgbModule, NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule } from '@angular/common/http';
 import { AngularEditorModule } from '@kolkov/angular-editor';
+import { NgxUiLoaderModule, NgxUiLoaderConfig, SPINNER, POSITION,
+  PB_DIRECTION, NgxUiLoaderRouterModule, NgxUiLoaderHttpModule } from 'ngx-ui-loader';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { NgxUiLoaderServices } from './ngx-ui-loader.service'
 import { NavbarComponent } from './navbar/navbar.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { PatientsComponent } from './patients/patients.component';
@@ -46,10 +49,14 @@ import { HighlightSearch, SafeHtmlPipe } from 'src/CustomPipes/HighlightSearch/H
     NgbModule,
     NgbAccordionModule,
     HttpClientModule,
+    NgxUiLoaderModule, // import NgxUiLoaderModule
+    NgxUiLoaderHttpModule, // import NgxUiLoaderHttpModule. By default, it will show background loader.
+    // If you need to show foreground spinner, do as follow:
+    NgxUiLoaderHttpModule.forRoot({ showForeground: true }),
     AngularEditorModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [NgxUiLoaderServices],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

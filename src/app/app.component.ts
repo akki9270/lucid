@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 
+import { NgxUiLoaderServices } from './ngx-ui-loader.service';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -8,7 +10,6 @@ import { Component } from '@angular/core';
 
 export class AppComponent {
   title = 'lucid';
-  constructor() { 
-    // console.log('--load App: ')
+  constructor(public demoService: NgxUiLoaderServices) {
   }
 }
