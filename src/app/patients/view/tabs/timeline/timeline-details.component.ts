@@ -1,8 +1,13 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, Input } from '@angular/core';
 import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
+import _ from 'underscore';
+import * as uuid from 'uuid';
 // import * as $ from 'jquery';
 // import { timeModule } from '../../../../../assets/timeline.js/index.js'; 
 import * as data from './event.json'
+import { Patient } from 'src/app/models/patient';
+import { ToasterService } from 'angular2-toaster';
+import { RestApiService } from 'src/app/shared/rest-api.service';
 
 @Component({
   selector: 'app-timeline-details',
@@ -21,19 +26,63 @@ export class TimelineDetailsComponent implements OnInit, AfterViewInit {
   disabledClass: string;
   currentEvent: any;
   clickedChildEvent: any;
-  constructor(private modalService: NgbModal) { }
+  constructor(private modalService: NgbModal,
+       private toasterService: ToasterService,
+       public restApi: RestApiService) { }
 
-  patientEvents: any = (data as any).default;
+  patientEvents: any // = (data as any).default;
   showChildEvents: boolean = false; 
   childEvents = []
+  @Input('patientDetails') patientDetails: Patient;
 
   ngOnInit() {
     // this.loadScript();
     // START
     // console.log('-----data: ', data)
+    console.log('this.patientDetails ', this.patientDetails);
+    this.getTimeLineData();
     this.showChildEvents = false;
   }
 
+  getTimeLineData(){
+    let patient_id = this.patientDetails.patient_id;
+    let intake_id = this.patientDetails.intake_id;
+    if (!patient_id || !intake_id) {
+      return;
+    }
+    this.restApi.getTimeline(patient_id, intake_id)
+    .subscribe((result: any) => {
+      console.log(' result ', result);
+      // let resultData: Timeline[] = result;
+
+      result.forEach(element => {
+        element.datetime = new Date(element.datetime);
+        element.groupDate = this.getDate(element.datetime);
+        element.event_id = element.id;
+      });
+      let groupedData = _.groupBy(result, 'groupDate');
+      console.log('groupedData ', groupedData);
+      let eventsData = [];
+      for (let d in groupedData) {
+        let obj = {
+          ...groupedData[d][0],
+          data: groupedData[d]
+        }
+        eventsData.push(obj);
+      }
+      eventsData.forEach(eve => {
+        eve.data.forEach(subEve => {
+          subEve.event_id = uuid.v4()
+        });
+      });
+      this.patientEvents = eventsData; 
+      // console.log('patientEvents ', this.patientEvents);
+    });
+  }
+
+  getDate(date: Date) {
+    return date.getDate() + '/' + (date.getMonth() + 1) + '/' + date.getFullYear();
+  }
   ngAfterViewInit() {    
     this.loadScript();
   }

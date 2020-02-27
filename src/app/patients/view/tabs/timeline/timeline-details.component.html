@@ -13,7 +13,7 @@
       <li *ngFor="let event of patientEvents; trackBy: trackByFn;">
         <div (click)="onParentEventClick(event)">
           <time><i style='color: green;' class="fa fa-phone fa-rotate-90 px-2"
-              aria-hidden="true"></i>{{event.date}}</time>
+              aria-hidden="true"></i>{{event.datetime | date: 'dd/MM/yyyy'}}</time>
         </div>
       </li>
       <li></li>

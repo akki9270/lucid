@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
@@ -23,6 +24,7 @@ import { PatientViewComponent } from './patients/view/patient-view.component';
 import { ServiceAccordionComponent } from './patients/view/tabs/details/components/service-accordion/service-accordion.component';
 import { DatepickerRangePopupComponent } from '../components/datepicker-range-popup/datepicker-range-popup.component';
 import { HighlightSearch, SafeHtmlPipe } from 'src/CustomPipes/HighlightSearch/HighlightSearch';
+import { ToasterModule } from 'angular2-toaster';
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
   bgsColor: 'purple',
@@ -58,6 +60,7 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     FormsModule,
     Ng2SmartTableModule,
     NgbModule,
@@ -69,7 +72,8 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     // // If you need to show foreground spinner, do as follow:
     NgxUiLoaderHttpModule.forRoot({ showForeground: true }),
     AngularEditorModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ToasterModule.forRoot()
   ],
   providers: [NgxUiLoaderServices],
   bootstrap: [AppComponent]

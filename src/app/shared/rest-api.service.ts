@@ -63,8 +63,8 @@ export class RestApiService {
       )
   }
  
-  getTimeline(): Observable<Timeline> {
-    let url = this.apiURL + '/getTimeline';
+  getTimeline(patientId: string, intakeId: string): Observable<Timeline> {
+    let url = this.apiURL + '/getTimeline/' + patientId + '/' + intakeId;
     // console.log('----this.apiURL: ', url)
     return this.http.get<Timeline>(url)
       .pipe(

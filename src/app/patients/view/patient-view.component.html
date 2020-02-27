@@ -23,6 +23,6 @@
     <app-notes-details></app-notes-details>
   </div>
   <div *ngIf="currentTab === 'TIMELINE_TAB'">
-    <app-timeline-details></app-timeline-details>
+    <app-timeline-details [patientDetails]="patientDetails"></app-timeline-details>
   </div>
 </div>
