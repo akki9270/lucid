@@ -32,11 +32,17 @@ export class NotesDetailsComponent implements OnInit {
   getTags() {
     this.restApi.getTags().subscribe((data: any) => {
       this.tags = data
-      console.log('--data: ', this.tags)
+      console.log('--Tag data: ', this.tags)
     });
   }
 
   getInitNotes() {
+    this.restApi.getNotes().subscribe((data: any) => {
+      // this.tags = data
+      console.log('--Notes data: ', data)
+    });
+
+
     let htmlContent = ''
     for (let i = 0; i < this.patientEvents.length; i++) {
       htmlContent += `<div class="my-2" id="${this.patientEvents[i].event_id}">
