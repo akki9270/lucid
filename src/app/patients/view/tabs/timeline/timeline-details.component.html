@@ -23,7 +23,7 @@
       <li *ngFor="let event of childEvents; trackBy: trackByFn;">
         <div (click)="onEventClick(longContent, event.event_id, event)">
           <time><i style='color: green;' class="fa fa-phone fa-rotate-90 px-2"
-              aria-hidden="true"></i>{{event.event_name}}</time> {{event.time}}
+              aria-hidden="true"></i>{{event.event_name}}</time> <span style="padding-left: 35px;"> {{event.datetime | date:'HH:mm:ss'}} </span>
         </div>
       </li>
       <li></li>
