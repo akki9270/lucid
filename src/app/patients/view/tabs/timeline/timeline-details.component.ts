@@ -52,7 +52,7 @@ export class TimelineDetailsComponent implements OnInit, AfterViewInit {
     }
     this.restApi.getTimeline(patient_id, intake_id)
     .subscribe((result: any) => {
-      console.log(' result ', result);
+      // console.log(' result ', result);
       // let resultData: Timeline[] = result;
 
       result.forEach(element => {
@@ -83,6 +83,7 @@ export class TimelineDetailsComponent implements OnInit, AfterViewInit {
   getDate(date: Date) {
     return date.getDate() + '/' + (date.getMonth() + 1) + '/' + date.getFullYear();
   }
+  
   ngAfterViewInit() {    
     this.loadScript();
   }

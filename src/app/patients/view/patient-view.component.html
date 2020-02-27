@@ -20,7 +20,7 @@
     <app-patient-details [patientDetails]="patientDetails"></app-patient-details>
   </div>
   <div *ngIf="currentTab === 'F11_NOTES_TAB'">
-    <app-notes-details></app-notes-details>
+    <app-notes-details [patientDetails]="patientDetails"></app-notes-details>
   </div>
   <div *ngIf="currentTab === 'TIMELINE_TAB'">
     <app-timeline-details [patientDetails]="patientDetails"></app-timeline-details>

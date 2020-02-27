@@ -1,8 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import * as data from '../timeline/event.json'
+import { Component, OnInit, Input } from '@angular/core';
+// import * as data from '../timeline/event.json'
+import _ from 'underscore';
+import * as uuid from 'uuid';
 import { HighlightSearch, SafeHtmlPipe } from 'src/CustomPipes/HighlightSearch/HighlightSearch.js';
 import { RestApiService } from 'src/app/shared/rest-api.service.js';
 import { Tag } from '../../../../models/tag'
+import { Patient } from 'src/app/models/patient';
 
 @Component({
   selector: 'app-notes-details',
@@ -14,15 +17,13 @@ export class NotesDetailsComponent implements OnInit {
 
   title = 'app';
 
-  patientEvents: any = (data as any).default;
-
+  patientEvents: any  // = (data as any).default;
   tags: []
-
   htmlContent = null
-
   search = ''
-
-  constructor(public highlightText: HighlightSearch, public safeHtml: SafeHtmlPipe, public restApi: RestApiService) { }
+  @Input('patientDetails') patientDetails: Patient;
+  constructor(public highlightText: HighlightSearch,
+     public safeHtml: SafeHtmlPipe, public restApi: RestApiService) { }
 
   ngOnInit() {
     this.getTags()
@@ -37,10 +38,33 @@ export class NotesDetailsComponent implements OnInit {
   }
 
   getInitNotes() {
-    this.restApi.getNotes().subscribe((data: any) => {
+    let patientId = this.patientDetails.patient_id;
+    let intakeId = this.patientDetails.intake_id;
+    this.restApi.getTimeline(patientId, intakeId).subscribe((result: any) => {
       // this.tags = data
-      console.log('--Notes data: ', data)
-    });
+      console.log('--Notes data: ', result)
+      result.forEach(element => {
+        element.datetime = new Date(element.datetime);
+        element.groupDate = this.getDate(element.datetime);
+        element.event_id = element.id;
+      });
+      let groupedData = _.groupBy(result, 'groupDate');
+      console.log('groupedData ', groupedData);
+      let eventsData = [];
+      for (let d in groupedData) {
+        let obj = {
+          ...groupedData[d][0],
+          data: groupedData[d]
+        }
+        eventsData.push(obj);
+      }
+      eventsData.forEach(eve => {
+        eve.data.forEach(subEve => {
+          subEve.event_id = uuid.v4()
+        });
+      });
+      this.patientEvents = eventsData; 
+    // });
 
 
     let htmlContent = ''
@@ -79,8 +103,14 @@ export class NotesDetailsComponent implements OnInit {
       htmlContent += `</div>`
     }
     this.htmlContent = htmlContent
+  });
     // console.log('this.htmlContent: ', this.htmlContent)
   }
+
+  getDate(date: Date) {
+    return date.getDate() + '/' + (date.getMonth() + 1) + '/' + date.getFullYear();
+  }
+
   onKeyUp($event) {
     // this.htmlContent = this.highlightText.transform(this.htmlContent, this.search);
   }
