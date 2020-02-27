@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Patient } from '../models/patient';
 import { Tag } from '../models/tag';
+import { Notes } from '../models/notes';
+import { Timeline } from '../models/timeline';
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
 import AppConfig from '../../assets/config.json';
@@ -45,6 +47,26 @@ export class RestApiService {
     let url = this.apiURL + '/getTags';
     // console.log('----this.apiURL: ', url)
     return this.http.get<Tag>(url)
+      .pipe(
+        retry(1),
+        catchError(this.handleError)
+      )
+  }
+  
+  getNotes(): Observable<Notes> {
+    let url = this.apiURL + '/getNotes';
+    // console.log('----this.apiURL: ', url)
+    return this.http.get<Notes>(url)
+      .pipe(
+        retry(1),
+        catchError(this.handleError)
+      )
+  }
+ 
+  getTimeline(): Observable<Timeline> {
+    let url = this.apiURL + '/getTimeline';
+    // console.log('----this.apiURL: ', url)
+    return this.http.get<Timeline>(url)
       .pipe(
         retry(1),
         catchError(this.handleError)
