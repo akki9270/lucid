@@ -25,13 +25,16 @@ import { DatepickerRangePopupComponent } from '../components/datepicker-range-po
 import { HighlightSearch, SafeHtmlPipe } from 'src/CustomPipes/HighlightSearch/HighlightSearch';
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
-  bgsColor: 'red',
+  bgsColor: 'purple',
   bgsPosition: POSITION.bottomCenter,
   bgsSize: 40,
   bgsType: SPINNER.rectangleBounce, // background spinner type
-  fgsType: SPINNER.chasingDots, // foreground spinner type
+  fgsType: SPINNER.ballSpinClockwise, // foreground spinner type
+  fgsColor: 'purple',
+  "overlayColor": 'transparent',
   pbDirection: PB_DIRECTION.leftToRight, // progress bar direction
-  pbThickness: 5, // progress bar thickness
+  pbThickness: 2, // progress bar thickness
+  pbColor: 'orange'
 };
 
 
@@ -62,9 +65,9 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     HttpClientModule,
     NgxUiLoaderModule.forRoot(ngxUiLoaderConfig),
     // NgxUiLoaderModule, // import NgxUiLoaderModule
-    NgxUiLoaderHttpModule, // import NgxUiLoaderHttpModule. By default, it will show background loader.
+    // NgxUiLoaderHttpModule, // import NgxUiLoaderHttpModule. By default, it will show background loader.
     // // If you need to show foreground spinner, do as follow:
-    // NgxUiLoaderHttpModule.forRoot({ showForeground: true }),
+    NgxUiLoaderHttpModule.forRoot({ showForeground: true }),
     AngularEditorModule,
     AppRoutingModule
   ],

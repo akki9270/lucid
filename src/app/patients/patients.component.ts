@@ -77,7 +77,7 @@ export class PatientsComponent implements OnInit {
           item.first_name,
           item.last_name,
           item.health_plan,
-          item.days_of_soc,
+          item.days_to_soc,
           item.dob,
           item.gender,
           item.phone_number,
