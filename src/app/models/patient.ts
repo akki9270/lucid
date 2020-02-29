@@ -14,6 +14,7 @@ export class Patient {
   zipcode: string;
   insurance_name: string;
   subscribe_id: string;
+  last_seen: string;
   createdAt: string;
   updatedAt: string;
   deletedAt: string;
@@ -23,7 +24,7 @@ export class Patient {
   constructor(patient_id: string, intake_id: string, first_name: string, last_name: string,
     health_plan: string, days_of_soc: number, dob: string, gender: string,
     phone_number: string, address: string, city: string, state: string,
-    zipcode: string, insurance_name: string, subscribe_id: string, createdAt: string,
+    zipcode: string, insurance_name: string, subscribe_id: string,  last_seen: string, createdAt: string,
     updatedAt: string, deletedAt: string, key_indicator: any,service: any) {
     this.patient_id = patient_id;
     this.intake_id = intake_id;
@@ -40,6 +41,7 @@ export class Patient {
     this.zipcode = zipcode;
     this.insurance_name = insurance_name;
     this.subscribe_id = subscribe_id;
+    this.last_seen = last_seen;
     this.createdAt = createdAt;
     this.updatedAt = updatedAt;
     this.deletedAt = deletedAt;

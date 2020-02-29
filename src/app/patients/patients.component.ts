@@ -16,7 +16,7 @@ export class PatientsComponent implements OnInit {
       intake_id: {
         title: 'INTAKE ID',
         sort: false
-      },
+      },     
       patient_id: {
         title: 'PATIENT ID',
         sort: false
@@ -31,6 +31,10 @@ export class PatientsComponent implements OnInit {
       },
       health_plan: {
         title: 'HEALTH PLAN',
+        sort: false
+      },
+      last_seen: {
+        title: 'Last_seen',
         sort: false
       },
       days_of_soc: {
@@ -87,6 +91,7 @@ export class PatientsComponent implements OnInit {
           item.zipcode,
           item.insurance_name,
           item.subscribe_id,
+          item.last_seen,
           item.createdAt,
           item.updatedAt,
           item.deletedAt,
