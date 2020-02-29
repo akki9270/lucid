@@ -8,11 +8,11 @@
     </div>
     <div class="col-lg-3 form-group">
       <label for="startDate">Start Date</label>
-      <input type="text" class="form-control" id="startDate" value="{{serviceDetails.start_date}}" readonly>
+      <input type="text" class="form-control" id="startDate" value="{{serviceDetails.start_date | date: 'MM/dd/yyyy'}}" readonly>
     </div>
     <div class="col-lg-3 form-group">
       <label for="endDate">End Date</label>
-      <input type="text" class="form-control" id="endDate" value="{{serviceDetails.end_date}}" readonly>
+      <input type="text" class="form-control" id="endDate" value="{{serviceDetails.end_date | date: 'MM/dd/yyyy'}}" readonly>
     </div>
     <div class="col-lg-3 form-group">
       <label for="noOfUnits">Number of Units</label>

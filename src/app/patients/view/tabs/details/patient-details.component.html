@@ -21,7 +21,7 @@
             </div>
             <div class="col-lg-3 form-group">
               <label for="dob">DOB</label>
-              <input type="text" class="form-control" id="dob" value="{{patientDetails.dob}}" readonly>
+              <input type="text" class="form-control" id="dob" value="{{patientDetails.dob | date: 'MM/dd/yyyy'}}" readonly>
             </div>
             <div class="col-lg-3 form-group">
               <label for="gender">Gender</label>

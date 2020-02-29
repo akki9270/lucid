@@ -13,12 +13,12 @@ export class PatientsComponent implements OnInit {
   myData = []
   settings = {
     columns: {
-      patient_id: {
-        title: 'PATIENT ID',
-        sort: false
-      },
       intake_id: {
         title: 'INTAKE ID',
+        sort: false
+      },
+      patient_id: {
+        title: 'PATIENT ID',
         sort: false
       },
       first_name: {
