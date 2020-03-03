@@ -4,7 +4,7 @@ export class Patient {
   first_name: string;
   last_name: string;
   health_plan: string;
-  days_of_soc: number;
+  days_to_soc: number;
   dob: string;
   gender: string;
   phone_number: string;
@@ -22,7 +22,7 @@ export class Patient {
   service: any;
 
   constructor(patient_id: string, intake_id: string, first_name: string, last_name: string,
-    health_plan: string, days_of_soc: number, dob: string, gender: string,
+    health_plan: string, days_to_soc: number, dob: string, gender: string,
     phone_number: string, address: string, city: string, state: string,
     zipcode: string, insurance_name: string, subscribe_id: string,  last_seen: string, createdAt: string,
     updatedAt: string, deletedAt: string, key_indicator: any,service: any) {
@@ -31,7 +31,7 @@ export class Patient {
     this.first_name = first_name;
     this.last_name = last_name;
     this.health_plan = health_plan;
-    this.days_of_soc = days_of_soc;
+    this.days_to_soc = days_to_soc;
     this.dob = dob;
     this.gender = gender;
     this.phone_number = phone_number;

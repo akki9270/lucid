@@ -37,7 +37,7 @@ export class PatientsComponent implements OnInit {
         title: 'Last_seen',
         sort: false
       },
-      days_of_soc: {
+      days_to_soc: {
         title: 'DAYS TO SOC'
       }
     },

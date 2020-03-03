@@ -40,7 +40,7 @@ export class TimelineDetailsComponent implements OnInit, AfterViewInit {
     // START
     // console.log('-----data: ', data)
     console.log('this.patientDetails ', this.patientDetails);
-    this.getTimeLineData();
+    // this.getTimeLineData();
     this.showChildEvents = false;
   }
 
