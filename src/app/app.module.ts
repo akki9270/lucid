@@ -25,6 +25,7 @@ import { ServiceAccordionComponent } from './patients/view/tabs/details/componen
 import { DatepickerRangePopupComponent } from '../components/datepicker-range-popup/datepicker-range-popup.component';
 import { HighlightSearch, SafeHtmlPipe } from 'src/CustomPipes/HighlightSearch/HighlightSearch';
 import { ToasterModule } from 'angular2-toaster';
+import { LoginComponent } from './auth/login/login.component';
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
   bgsColor: 'purple',
@@ -56,7 +57,8 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     ServiceAccordionComponent,
     DatepickerRangePopupComponent,
     HighlightSearch,
-    SafeHtmlPipe
+    SafeHtmlPipe,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

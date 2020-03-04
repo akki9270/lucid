@@ -6,12 +6,17 @@ import { PatientsComponent } from './patients/patients.component';
 import { AnalyticsComponent } from './analytics/analytics.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { PatientViewComponent } from './patients/view/patient-view.component';
+import { LoginComponent } from './auth/login/login.component';
 
 const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
     component: DashboardComponent
+  },
+  {
+    path: 'login',    
+    component: LoginComponent
   },
   {
     path: 'patients',
