@@ -6,10 +6,10 @@
         <input type="text" class="form-control" (keyup)="onKeyUp($event)" placeholder="Search" [(ngModel)]="search">
       </div> -->
     </div>
-    <div class="col-md-12">
-      <!-- <textarea rows="15" class="form-control" innerHtml="htmlContent | highlight: 'search'"></textarea> -->
-      <!-- | 'highlight' : 'search' -->
-      <div [innerHTML]="htmlContent | safeHtml" class="contentDiv p-2 bg-white"></div>
+    <div class="col-md-12">      
+      <div class="contentDiv p-2 bg-white">
+        <pre>{{htmlContent}}</pre>
+      </div>
     </div>
   </section>
   <section class="content-section px-1 my-2">

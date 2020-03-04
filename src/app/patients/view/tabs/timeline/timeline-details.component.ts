@@ -40,7 +40,7 @@ export class TimelineDetailsComponent implements OnInit, AfterViewInit {
     // START
     // console.log('-----data: ', data)
     console.log('this.patientDetails ', this.patientDetails);
-    // this.getTimeLineData();
+    this.getTimeLineData();
     this.showChildEvents = false;
   }
 
@@ -50,15 +50,15 @@ export class TimelineDetailsComponent implements OnInit, AfterViewInit {
     if (!patient_id || !intake_id) {
       return;
     }
-    this.restApi.getTimeline(patient_id, intake_id)
+    this.restApi.getNotes(patient_id, intake_id)
     .subscribe((result: any) => {
-      // console.log(' result ', result);
+      console.log(' result ', result);
       // let resultData: Timeline[] = result;
 
       result.forEach(element => {
-        element.datetime = new Date(element.datetime);
-        element.groupDate = this.getDate(element.datetime);
-        element.event_id = element.id;
+        element.date = new Date(element.date);
+        element.groupDate = this.getDate(element.date);
+        element.note_id = element.note_id;
       });
       let groupedData = _.groupBy(result, 'groupDate');
       console.log('groupedData ', groupedData);
@@ -72,11 +72,11 @@ export class TimelineDetailsComponent implements OnInit, AfterViewInit {
       }
       eventsData.forEach(eve => {
         eve.data.forEach(subEve => {
-          subEve.event_id = uuid.v4()
+          subEve.note_id = uuid.v4()
         });
       });
       this.patientEvents = eventsData; 
-      // console.log('patientEvents ', this.patientEvents);
+      console.log('patientEvents ', this.patientEvents);
     });
   }
 
@@ -216,11 +216,14 @@ export class TimelineDetailsComponent implements OnInit, AfterViewInit {
     // console.log('$event click: ', $scrollElementId)
     this.modalService.open(longContent, this.modalOption);
     setTimeout(() => {
-      let parentId = $('#'+$scrollElementId).parent().attr('id');
-      let parentPos = $('#myModal div#'+parentId).position().top;
+      // let parentId = $('#'+$scrollElementId).parent().attr('id');
+      // console.log('parentId: ', parentId)
+      // let parentPos = $('#myModal div#'+parentId).position().top;
+      // console.log('parentPos: ', parentPos)
       let scrollPosition = $('#myModal div#' + $scrollElementId).position().top;
+      // console.log('scrollPosition: ', scrollPosition)
       $('#myModal').animate({
-        scrollTop: scrollPosition + parentPos
+        scrollTop: scrollPosition
       }, 1000);
     }, 0);
   }
@@ -229,17 +232,17 @@ export class TimelineDetailsComponent implements OnInit, AfterViewInit {
     return item.id;
   }
 
-  onParentEventClick(event){
-    this.childEvents = event.data;
-    this.currentEvent = event;
-    this.showChildEvents = true;
-    setTimeout(()=>{
-      this.loadScript();
-    },500)
-  }
+  // onParentEventClick(event){
+  //   this.childEvents = event.data;
+  //   this.currentEvent = event;
+  //   this.showChildEvents = true;
+  //   setTimeout(()=>{
+  //     this.loadScript();
+  //   },500)
+  // }
 
   onBackButtonClick(showHideFlag){
-    this.showChildEvents = showHideFlag;
+    // this.showChildEvents = showHideFlag;
     setTimeout(()=>{
       this.loadScript();
     },1000)

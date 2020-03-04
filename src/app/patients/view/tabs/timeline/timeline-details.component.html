@@ -1,29 +1,11 @@
 <div class="main-container">
   <!-- <div class="row justify-content-center align-items-center"> -->
-  <div *ngIf="showChildEvents" class="d-flex justify-content-start align-items-center">
-    <button type="button" class="btn btn-default" (click)="onBackButtonClick(!showChildEvents)">
-      <i class="fa fa-chevron-left"></i> Back
-    </button>
-    <!-- <h5 class="ml-4 purple-theme">{{currentEvent.event_name + ' | ' + currentEvent.date}}</h5> -->
-  </div>
-
-  <section class="timeline">
-    <!-- parent events -->
-    <ol *ngIf="!showChildEvents">
-      <li *ngFor="let event of patientEvents; trackBy: trackByFn;">
-        <div (click)="onParentEventClick(event)">
+   <section class="timeline">   
+    <ol>
+      <li *ngFor="let patientEvent of patientEvents; trackBy: trackByFn;">
+        <div (click)="onEventClick(longContent, patientEvent.note_id, patientEvent)">
           <time><i style='color: green;' class="fa fa-phone fa-rotate-90 px-2"
-              aria-hidden="true"></i>{{event.datetime | date: 'dd/MM/yyyy'}}</time>
-        </div>
-      </li>
-      <li></li>
-    </ol>
-    <!-- child events -->
-    <ol *ngIf="showChildEvents">
-      <li *ngFor="let event of childEvents; trackBy: trackByFn;">
-        <div (click)="onEventClick(longContent, event.event_id, event)">
-          <time><i style='color: green;' class="fa fa-phone fa-rotate-90 px-2"
-              aria-hidden="true"></i>{{event.event_name}}</time> <span style="padding-left: 35px;"> {{event.datetime | date:'HH:mm:ss'}} </span>
+              aria-hidden="true"></i>{{patientEvent.id}}</time> <span style="padding-left: 35px;"> {{patientEvent.date | date:'mm/dd/yyyy HH:mm:ss'}} </span>
         </div>
       </li>
       <li></li>
@@ -41,28 +23,29 @@
   <!-- </div> -->
   <ng-template #longContent let-modal>
     <div class="modal-header p-2 bg-purple-theme align-items-center">
-      <h5 class="modal-title p-2 purple text-white">Event View ( {{clickedChildEvent.event_name}} )</h5>
+      <h5 class="modal-title p-2 purple text-white">Event View</h5>
       <button type="button" class="close m-0 text-white" aria-label="Close" (click)="modal.dismiss('Cross click')">
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
     <div class="modal-body p-2" id="myModal" style="height: 70vh; overflow: auto;">
-      <div class="card my-2" *ngFor="let patientEvent of patientEvents; trackBy: trackByFn;"
+      <!-- <div class="card my-2" *ngFor="let patientEvent of patientEvents; trackBy: trackByFn;"
         id="{{patientEvent.event_id}}">
         <div class="card-header px-2 py-3">
-          <h5 class="card-title"><b class="title">{{patientEvent.event_name}}</b></h5>
-        </div>
-        <div class="my-1" *ngFor="let event of patientEvent.data; trackBy: trackByFn;" id="{{event.event_id}}">
+          <h5 class="card-title"><b class="title">{{patientEvent.note_id}}</b></h5>
+        </div> -->
+        <div class="card my-2" *ngFor="let patientEvent of patientEvents; trackBy: trackByFn;" id="{{patientEvent.note_id}}">
+          <div class="card-header px-2 py-3">
+            <h5 class="card-title"><b class="title">{{patientEvent.note_id}}</b></h5>
+          </div>
           <div class="card-body">
             <blockquote class="blockquote m-2">
-              <p><b class="title">{{event.event_name}}</b></p>
-              <footer class="blockquote-footer">THE ABOVE Alt Start Of Care REQUEST WAS ROUTED TO THE HIT QUEUE WITH A
-                ROUTE REASON OF Portal -
-                Clin Rev BECAUSE OF THE FOLLOWING RULE FAILURES:</footer>
+              <!-- <p><b class="title">{{patientEvent.note_id}}</b></p> -->
+              <pre>{{patientEvent.note_data}}</pre>              
             </blockquote>
           </div>
         </div>
-      </div>
+      <!-- </div> -->
     </div>
     <div class="modal-footer">
       <div class="p-2 m-2">

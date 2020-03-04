@@ -53,8 +53,8 @@ export class RestApiService {
       )
   }
   
-  getNotes(): Observable<Notes> {
-    let url = this.apiURL + '/getNotes';
+  getNotes(patientId: string, intakeId: string): Observable<Notes> {
+    let url = this.apiURL + '/getNotes/' + patientId + '/' + intakeId;
     // console.log('----this.apiURL: ', url)
     return this.http.get<Notes>(url)
       .pipe(
