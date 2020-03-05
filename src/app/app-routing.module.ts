@@ -14,7 +14,7 @@ const routes: Routes = [
     path: '',
     pathMatch: 'full',
     component: DashboardComponent,
-    // canActivate: [AuthGuard]
+    canActivate: [AuthGuard]
   },
   {
     path: 'login',    
@@ -23,22 +23,22 @@ const routes: Routes = [
   {
     path: 'patients',
     component: PatientsComponent,    
-    // canActivate: [AuthGuard]
+    canActivate: [AuthGuard]
   },
   {
     path: 'patients/:patientId/view',
     component: PatientViewComponent,
-    // canActivate: [AuthGuard]
+    canActivate: [AuthGuard]
   },
   {
     path: 'admin',
     component: AdminComponent,
-    // canActivate: [AuthGuard]
+    canActivate: [AuthGuard]
   },
   {
     path: 'analytics',
     component: AnalyticsComponent,
-    // canActivate: [AuthGuard]
+    canActivate: [AuthGuard]
   },
   { 
     path: '**',
