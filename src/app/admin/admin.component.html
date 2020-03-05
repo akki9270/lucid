@@ -1,9 +1,12 @@
 <div class="page-wrap">
-  <nav class="navbar navbar-expand-lg navbar-dark secondary-navbar">
-    <div class="ml-5 my-1">
+  <nav class="navbar navbar-expand-lg navbar-dark secondary-navbar justify-content-between">
+    <div class="ml-5 my-1 d-flex">
       <span class="topbar-back-btn">
-          <h3 class="topbar-title">Users</h3>
+        <h3 class="topbar-title">Users</h3>
       </span>
+    </div>
+    <div class="ml-5 my-1 mr-2 d-flex">
+      <button (click)="openUserModal(userModal)">Add User</button>
     </div>
   </nav>
   <div class="main-container">
@@ -11,5 +14,23 @@
       <ng2-smart-table [settings]="settings" [source]="myData" (userRowSelect)="onUserView($event)">
       </ng2-smart-table>
     </section>
+    <ng-template #userModal let-modal>
+      <div class="modal-header p-2 bg-purple-theme align-items-center">
+        <h5 class="modal-title p-2 purple text-white">User Form</h5>
+        <button type="button" class="close m-0 text-white" aria-label="Close" (click)="modal.dismiss('Cross click')">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body p-2" id="myModal" style="height: 50vh; overflow: auto;">
+        <div class="card-header px-2 py-3">
+          <h5 class="card-title"><b class="title">Form content</b></h5>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <div class="p-2 m-2">
+          <button type="button" class="btn close-btn p-2 px-5" (click)="modal.close('Close click')">Cancel</button>
+        </div>
+      </div>
+    </ng-template>
   </div>
 </div>

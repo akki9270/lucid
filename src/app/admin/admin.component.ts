@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 import { RestApiService } from 'src/app/shared/rest-api.service';
 
 @Component({
@@ -41,8 +42,14 @@ export class AdminComponent implements OnInit {
       }
     }
   };
+  showUserModal = false
 
-  constructor(public restApi: RestApiService) { }
+  modalOption: NgbModalOptions = {
+    backdrop: true,
+    size: 'lg'
+  }
+
+  constructor(public restApi: RestApiService, private modalService: NgbModal) { }
 
   ngOnInit() {
     this.getUserList()
@@ -62,6 +69,10 @@ export class AdminComponent implements OnInit {
     if (event && event.data) {
       // console.log('-data: ', event)      
     }
+  }
+
+  openUserModal(userModal){    
+    this.modalService.open(userModal, this.modalOption);
   }
 
 }

@@ -4,3 +4,7 @@
   font-size: 14px;
 }
   
+.close-btn{
+  background-color: var(--purple-theme);
+  color: white;
+}

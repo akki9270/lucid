@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Users } from '../models/users';
+import { User } from '../models/users';
 import { Patient } from '../models/patient';
 import { Tag } from '../models/tag';
 import { Notes } from '../models/notes';
@@ -33,10 +33,10 @@ export class RestApiService {
     })
   }
 
-  getUsers(): Observable<Users> {
+  getUsers(): Observable<User> {
     let url = this.apiURL + '/getUsers';
     // console.log('----this.apiURL: ', url)
-    return this.http.get<Users>(url)
+    return this.http.get<User>(url)
       .pipe(
         retry(1),
         catchError(this.handleError)
