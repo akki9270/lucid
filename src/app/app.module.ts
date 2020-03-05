@@ -1,13 +1,16 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NgModule } from '@angular/core';
+import { NgModule, forwardRef } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { NgbModule, NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule } from '@angular/common/http';
 import { AngularEditorModule } from '@kolkov/angular-editor';
+import { StorageServiceModule } from 'ngx-webstorage-service';
 import { NgxUiLoaderModule, NgxUiLoaderConfig, SPINNER, POSITION,
   PB_DIRECTION, NgxUiLoaderRouterModule, NgxUiLoaderHttpModule } from 'ngx-ui-loader';
+import { AuthGuard } from '../app/auth/auth.guard';
+import { AuthService } from '../app/auth/auth.service';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgxUiLoaderServices } from './ngx-ui-loader.service'
@@ -25,7 +28,8 @@ import { ServiceAccordionComponent } from './patients/view/tabs/details/componen
 import { DatepickerRangePopupComponent } from '../components/datepicker-range-popup/datepicker-range-popup.component';
 import { HighlightSearch, SafeHtmlPipe } from 'src/CustomPipes/HighlightSearch/HighlightSearch';
 import { ToasterModule } from 'angular2-toaster';
-import { LoginComponent } from './auth/login/login.component';
+import { LoginComponent } from './login/login.component';
+import { LocalStorageService } from 'src/services/LocalStorageService';
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
   bgsColor: 'purple',
@@ -68,6 +72,7 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     NgbModule,
     NgbAccordionModule,
     HttpClientModule,
+    StorageServiceModule, 
     NgxUiLoaderModule.forRoot(ngxUiLoaderConfig),
     // NgxUiLoaderModule, // import NgxUiLoaderModule
     // NgxUiLoaderHttpModule, // import NgxUiLoaderHttpModule. By default, it will show background loader.
@@ -77,7 +82,8 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     AppRoutingModule,
     ToasterModule.forRoot()
   ],
-  providers: [NgxUiLoaderServices],
+  // providers: [NgxUiLoaderServices, LocalStorageService, AuthService, AuthGuard],  
+  providers: [NgxUiLoaderServices, LocalStorageService],  
   bootstrap: [AppComponent]
 })
 export class AppModule { }
