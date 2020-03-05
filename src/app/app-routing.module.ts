@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { PatientsComponent } from './patients/patients.component';
-// import { AdminComponent } from './admin/admin.component';
+import { AdminComponent } from './admin/admin.component';
 import { AnalyticsComponent } from './analytics/analytics.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { PatientViewComponent } from './patients/view/patient-view.component';
@@ -26,10 +26,10 @@ const routes: Routes = [
     path: 'patients/:patientId/view',
     component: PatientViewComponent
   },
-  // {
-  //   path: 'admin',
-  //   component: AdminComponent
-  // },
+  {
+    path: 'admin',
+    component: AdminComponent
+  },
   {
     path: 'analytics',
     component: AnalyticsComponent

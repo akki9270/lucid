@@ -219,6 +219,24 @@ a.topbar-back-btn:hover {
     cursor: pointer;
 }
 
+/* ng2-smart table */
+
+.font-styles {
+    color: var(--worm-grey);
+    font-size: 14px;
+}
+
+a.ng2-smart-sort-link {
+    color: var(--warm-grey);
+}
+::ng-deep a.sort.asc::after,
+::ng-deep a.sort.desc::after {
+    border-bottom: 4px solid black !important;
+}
+::ng-deep div.ng2-smart-title {
+    font-weight: 400;
+}
+
 .even-row:hover{
     cursor: pointer;
     background-color: #e6e6e6;
@@ -237,6 +255,8 @@ a.topbar-back-btn:hover {
     cursor: pointer;
     background-color: #e6e6e6; 
 }
+
+/* ng2-smart table */
 
 .details-content-bar {
     padding-top: 20px;
