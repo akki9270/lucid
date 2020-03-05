@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbModalOptions, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { RestApiService } from 'src/app/shared/rest-api.service';
+import { ActiveSwitchComponent } from './active-switch/active-switch.component';
+import { ActionButtonComponent } from './action-button/action-button.component';
+import { USER } from '../constants';
+import { StorageService } from '../shared/storage.service';
+import { ToasterService } from 'angular2-toaster';
 
 @Component({
   selector: 'app-admin',
@@ -8,21 +13,52 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
   styleUrls: ['./admin.component.css']
 })
 export class AdminComponent implements OnInit {
-  myData = []
+  myData = [];
+  newUser: any = {};
+  user: any;
   settings = {
-    columns: {      
+    columns: {
+      user_id: {
+        title: 'User ID',
+        sort: false
+      },
       first_name: {
         title: 'FIRST NAME',
-        sort: false
+        sort: false,
+        // width: '20%'
       },
       last_name: {
         title: 'LAST NAME',
-        sort: false
+        sort: false,
+        // width: '20%'
       },
-      email: {
-        title: 'EMAIL',
-        sort: false
-      }     
+      is_active: {
+        title: 'Active',
+        sort: false,
+        filter: false,
+        editable: true,
+        type: 'custom',
+        // width: '10%',
+        defaultValue: 'HI Again!!!!!',
+        renderComponent: ActiveSwitchComponent,
+        valuePrepareFunction:(value, row)=>{
+          return row;
+        }
+      },
+      // Action: {
+      //   title: 'Action',
+      //   sort: false,
+      //   filter: false,
+      //   type: 'custom',
+      //   renderComponent: ActionButtonComponent,
+      //   valuePrepareFunction:(value, row)=>{
+      //     return row;
+      //   }
+      // }
+      // email: {
+      //   title: 'EMAIL',
+      //   sort: false
+      // }     
     },
     actions: {
       add: false,
@@ -30,9 +66,9 @@ export class AdminComponent implements OnInit {
       delete: false
     },
     filter: false,
-    // pager: {
-    //   perPage: 10
-    // },
+    pager: {
+      perPage: 8
+    },
     rowClassFunction: (row) => {
       // console.log('row: ', row)
       if (row.index % 2 === 0) {
@@ -48,21 +84,31 @@ export class AdminComponent implements OnInit {
     backdrop: true,
     size: 'lg'
   }
+  userModalRef: NgbModalRef;
 
-  constructor(public restApi: RestApiService, private modalService: NgbModal) { }
+  constructor(public restApi: RestApiService, 
+              private modalService: NgbModal,
+              private storageService: StorageService,
+              private restAPI: RestApiService,
+              private toasterService: ToasterService) { }
 
   ngOnInit() {
-    this.getUserList()
+    this.getUserList();
+    let user = sessionStorage[USER];
+    this.user = user ? JSON.parse(user) : {};
+    this.storageService.getUserData().subscribe(user => {
+      this.user = user;
+    })
   }
 
-  getUserList(){
+  getUserList() {
     this.restApi.getUsers()
-    .subscribe((result: any) => {
-      console.log(' result ', result);
-      if(result && result.length > 0){
-        this.myData = result
-      }
-    });
+      .subscribe((result: any) => {
+        // console.log(' result ', result);
+        if (result && result.length > 0) {
+          this.myData = result
+        }
+      });
   }
 
   onUserView(event) {
@@ -71,8 +117,26 @@ export class AdminComponent implements OnInit {
     }
   }
 
-  openUserModal(userModal){    
-    this.modalService.open(userModal, this.modalOption);
+  openUserModal(userModal) {
+    this.userModalRef = this.modalService.open(userModal, this.modalOption);
   }
 
+  cancelUserModal() {
+    this.userModalRef.close();
+  }
+
+  addUser() {
+    if (!this.newUser.id || !this.newUser.first_name || 
+        !this.newUser.last_name || !this.newUser.password) {
+          this.toasterService.pop('error', 'All Fields ar mandatory.');
+          return;
+      }
+    this.restAPI.addUsers({...this.newUser, user: this.user})
+    .subscribe(result => {
+      // console.log('result ', result);
+      this.toasterService.pop('success', 'User added SuccessFully.');
+      this.cancelUserModal();
+      this.getUserList();
+    })
+  }
 }

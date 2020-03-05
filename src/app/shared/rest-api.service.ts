@@ -43,6 +43,26 @@ export class RestApiService {
       )
   }
 
+  addUsers(data): Observable<User> {
+    let url = this.apiURL + '/user/add';
+    // console.log('----this.apiURL: ', url)
+    return this.http.post<User>(url, data)
+      .pipe(
+        retry(1),
+        catchError(this.handleError)
+      )
+  }
+
+  toggleActiveUser(data): Observable<User> {
+    let url = this.apiURL + '/user/add';
+    // console.log('----this.apiURL: ', url)
+    return this.http.post<User>(url, data)
+      .pipe(
+        retry(1),
+        catchError(this.handleError)
+      )
+  }
+
   // HttpClient API get() method => Fetch employees list
   getPatients(patientId?: string): Observable<Patient> {
     let url = this.apiURL + '/getPatients' + (patientId ? '/' + patientId : '');

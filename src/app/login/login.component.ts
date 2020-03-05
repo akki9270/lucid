@@ -4,6 +4,7 @@ import { AuthService } from '../auth/auth.service';
 import { LoginService } from './login.service';
 import { TOKEN, USER } from '../constants';
 import { StorageService } from '../shared/storage.service';
+import { ToasterService } from 'angular2-toaster';
 
 // import { AuthService } from '../auth/auth.service';
 
@@ -22,7 +23,8 @@ export class LoginComponent implements OnInit {
     private formBuilder: FormBuilder,
     private authService: AuthService,
     private loginService: LoginService,
-    private storageService: StorageService
+    private storageService: StorageService,
+    private toasterService: ToasterService
   ) { }
 
   ngOnInit() {
@@ -43,6 +45,8 @@ export class LoginComponent implements OnInit {
         sessionStorage[TOKEN] = result['token'];
         sessionStorage[USER] = JSON.stringify(result['user']);
         this.storageService.setUserData(result['user']);
+        let userName = result['user'].first_name + ' ' + result['user'].last_name
+        this.toasterService.pop('success','WelCome ' + userName);
         this.authService.setLogin();
       }
     });

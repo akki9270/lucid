@@ -30,6 +30,8 @@ import { HighlightSearch, SafeHtmlPipe } from 'src/CustomPipes/HighlightSearch/H
 import { ToasterModule } from 'angular2-toaster';
 import { LoginComponent } from './login/login.component';
 import { LocalStorageService } from 'src/services/LocalStorageService';
+import { ActiveSwitchComponent } from './admin/active-switch/active-switch.component';
+import { ActionButtonComponent } from './admin/action-button/action-button.component';
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
   bgsColor: 'purple',
@@ -62,7 +64,9 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     DatepickerRangePopupComponent,
     HighlightSearch,
     SafeHtmlPipe,
-    LoginComponent
+    LoginComponent,
+    ActiveSwitchComponent,
+    ActionButtonComponent
   ],
   imports: [
     BrowserModule,
@@ -85,6 +89,7 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
   ],
   // providers: [NgxUiLoaderServices, LocalStorageService, AuthService, AuthGuard],  
   providers: [NgxUiLoaderServices, LocalStorageService],  
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [ActiveSwitchComponent, ActionButtonComponent]
 })
 export class AppModule { }

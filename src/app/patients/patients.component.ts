@@ -33,10 +33,10 @@ export class PatientsComponent implements OnInit {
         title: 'HEALTH PLAN',
         sort: false
       },
-      last_seen: {
-        title: 'Last_seen',
-        sort: false
-      },
+      // last_seen: {
+      //   title: 'Last_seen',
+      //   sort: false
+      // },
       days_to_soc: {
         title: 'DAYS TO SOC'
       }

@@ -6,30 +6,48 @@
       </span>
     </div>
     <div class="ml-5 my-1 mr-2 d-flex">
-      <button (click)="openUserModal(userModal)">Add User</button>
+      <button class="btn bg-purple-theme text-white px-3" (click)="openUserModal(userModal)">Add User</button>
     </div>
   </nav>
   <div class="main-container">
-    <section>
-      <ng2-smart-table [settings]="settings" [source]="myData" (userRowSelect)="onUserView($event)">
+    <section class="d-flex justify-content-center flex-100">
+      <ng2-smart-table class="flex-50" [settings]="settings" [source]="myData" (userRowSelect)="onUserView($event)">
       </ng2-smart-table>
     </section>
+
     <ng-template #userModal let-modal>
-      <div class="modal-header p-2 bg-purple-theme align-items-center">
-        <h5 class="modal-title p-2 purple text-white">User Form</h5>
-        <button type="button" class="close m-0 text-white" aria-label="Close" (click)="modal.dismiss('Cross click')">
-          <span aria-hidden="true">&times;</span>
-        </button>
+      <div class="modal-header bg-purple-theme justify-content-space-between">
+        <div style="width: 20px"></div>
+        <span class="text-white"> Add User </span>
+        <button type="button" class="close m-0 p-0 text-white" data-dismiss="modal" (click)="cancelUserModal()">×</button>
       </div>
       <div class="modal-body p-2" id="myModal" style="height: 50vh; overflow: auto;">
-        <div class="card-header px-2 py-3">
-          <h5 class="card-title"><b class="title">Form content</b></h5>
+        <div class="modal-body">
+          <form autocomplete="off" name="userForm">
+            <label>USER ID *</label>
+            <input autofocus type="text" class="form-control form-control-sm mb-2" [(ngModel)]="newUser.id" name="id"
+              required>
+
+            <label> FIRST NAME *</label>
+            <input type="text" class="form-control form-control-sm mb-2" [(ngModel)]="newUser.first_name" name="name" required>
+
+            <label> LAST NAME *</label>
+            <input type="text" class="form-control form-control-sm mb-2" [(ngModel)]="newUser.last_name" name="name" required>
+
+            <label> PASSWORD *</label>
+            <input type="password" class="form-control form-control-sm mb-2" [(ngModel)]="newUser.password" name="password"
+              required>
+          </form>
+          <div *ngIf="addUserError">
+            <span class="text-danger">{{ addUserError }}</span>
+          </div>
         </div>
       </div>
+      <!-- Modal footer -->
       <div class="modal-footer">
-        <div class="p-2 m-2">
-          <button type="button" class="btn close-btn p-2 px-5" (click)="modal.close('Close click')">Cancel</button>
-        </div>
+        <button type="button" class="btn bg-purple-theme text-white px-5" ng-disabled="userForm.$invalid" id="addUser"
+          (click)="addUser()">Add</button>
+        <button type="button" class="btn btn-dark text-white px-5" (click)="cancelUserModal()" data-dismiss="modal">Cancel</button>
       </div>
     </ng-template>
   </div>
