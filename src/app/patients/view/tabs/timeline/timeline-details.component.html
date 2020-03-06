@@ -1,11 +1,15 @@
 <div class="main-container">
-  <!-- <div class="row justify-content-center align-items-center"> -->
-   <section class="timeline">   
+  <section class="timeline">
     <ol>
       <li *ngFor="let patientEvent of patientEvents; trackBy: trackByFn;">
-        <div (click)="onEventClick(longContent, patientEvent.note_id, patientEvent)">
-          <time><i style='color: green;' class="fa fa-phone fa-rotate-90 px-2"
-              aria-hidden="true"></i>{{patientEvent.id}}</time> <span style="padding-left: 35px;"> {{patientEvent.date | date:'mm/dd/yyyy HH:mm:ss'}} </span>
+        <div class="d-flex justify-content-center"
+          (click)="onEventClick(longContent, patientEvent.note_id, patientEvent)">
+          <span class="px-2">
+            <h5 class="card-title"><i class="fa fa-calendar title" aria-hidden="true"></i></h5>
+          </span>
+          <span class="px-2">
+            <h5 class="card-title"><b class="title">{{patientEvent.date | date:'mm/dd/yyyy'}}</b></h5>
+          </span>
         </div>
       </li>
       <li></li>
@@ -20,7 +24,7 @@
       </button>
     </div>
   </section>
-  <!-- </div> -->
+
   <ng-template #longContent let-modal>
     <div class="modal-header p-2 bg-purple-theme align-items-center">
       <h5 class="modal-title p-2 purple text-white">Event View</h5>
@@ -29,28 +33,21 @@
       </button>
     </div>
     <div class="modal-body p-2" id="myModal" style="height: 70vh; overflow: auto;">
-      <!-- <div class="card my-2" *ngFor="let patientEvent of patientEvents; trackBy: trackByFn;"
-        id="{{patientEvent.event_id}}">
+      <div id="{{patientEvent.note_id}}" class="card my-2"
+        *ngFor="let patientEvent of patientEvents; trackBy: trackByFn;">
         <div class="card-header px-2 py-3">
-          <h5 class="card-title"><b class="title">{{patientEvent.note_id}}</b></h5>
-        </div> -->
-        <div class="card my-2" *ngFor="let patientEvent of patientEvents; trackBy: trackByFn;" id="{{patientEvent.note_id}}">
-          <div class="card-header px-2 py-3">
-            <h5 class="card-title"><b class="title">{{patientEvent.note_id}}</b></h5>
-          </div>
-          <div class="card-body">
-            <blockquote class="blockquote m-2">
-              <!-- <p><b class="title">{{patientEvent.note_id}}</b></p> -->
-              <pre>{{patientEvent.note_data}}</pre>              
-            </blockquote>
-          </div>
+          <h5 class="card-title"><b class="title">{{patientEvent.date | date:'mm/dd/yyyy'}}</b></h5>
         </div>
-      <!-- </div> -->
+        <div class="card-body">
+          <blockquote class="blockquote m-2">
+            <pre>{{patientEvent.note_data}}</pre>
+          </blockquote>
+        </div>
+      </div>
     </div>
     <div class="modal-footer">
       <div class="p-2 m-2">
-        <button type="button" class="btn close-btn p-2 px-5"
-          (click)="modal.close('Close click')">Close</button>
+        <button type="button" class="btn close-btn p-2 px-5" (click)="modal.close('Close click')">Close</button>
       </div>
     </div>
   </ng-template>

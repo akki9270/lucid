@@ -1,8 +1,8 @@
 <div class="main-container" *ngIf="patientDetails">
   <section class="content-section px-2 my-2">
     <div class="mini-header mb-2">
-        <span class="mx-2"><span style="color: #7f7f7f;">Patient Id: </span >{{patientDetails.patient_id}}</span>
-        <span class="mx-2"><span style="color: #7f7f7f;">Intake Id: </span>{{patientDetails.intake_id}}</span>
+        <span class="mx-2"><span style="color: #7f7f7f;">PATIENT ID: </span >{{patientDetails.patient_id}}</span>
+        <span class="mx-2"><span style="color: #7f7f7f;">INTAKE ID: </span>{{patientDetails.intake_id}}</span>
     </div>
     <div style="padding: 2px">
       <fieldset class="outer-field-set bg-white">
@@ -73,8 +73,7 @@
                 <input type="checkbox" [checked]="patientDetails.key_indicator.urgent" /> URGENT
               </div>
               <div class="col-lg-3 form-group">
-                <input type="checkbox" [checked]="patientDetails.key_indicator.engaged_by_escalation_team" /> ENGAGED BY
-                ESCALATION TEAM
+                <input type="checkbox" [checked]="patientDetails.key_indicator.engaged_by_escalation_team" /> CASE HAS BEEN ESCALATED
               </div>
               <div class="col-lg-3 form-group">
                 <input type="checkbox" [checked]="patientDetails.key_indicator.restaff_turnback" /> RESTAFF/TURNBACK
@@ -86,8 +85,7 @@
                 PHYSICIAN
               </div>
               <div class="col-lg-3 form-group">
-                <input type="checkbox" [checked]="patientDetails.key_indicator.following_physician" /> FOLLOWING
-                PHYSICIAN
+                <input type="checkbox" [checked]="patientDetails.key_indicator.following_physician" /> ORDERING PHYSICIAN
               </div>
               <div class="col-lg-3 form-group">
                 <input type="checkbox" [checked]="patientDetails.key_indicator.wound_care" /> WOUND CARE
