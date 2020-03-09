@@ -7,8 +7,10 @@ import { NgbModule, NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule } from '@angular/common/http';
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { StorageServiceModule } from 'ngx-webstorage-service';
-import { NgxUiLoaderModule, NgxUiLoaderConfig, SPINNER, POSITION,
-  PB_DIRECTION, NgxUiLoaderRouterModule, NgxUiLoaderHttpModule } from 'ngx-ui-loader';
+import {
+  NgxUiLoaderModule, NgxUiLoaderConfig, SPINNER, POSITION,
+  PB_DIRECTION, NgxUiLoaderRouterModule, NgxUiLoaderHttpModule
+} from 'ngx-ui-loader';
 import { AuthGuard } from '../app/auth/auth.guard';
 import { AuthService } from '../app/auth/auth.service';
 import { AppRoutingModule } from './app-routing.module';
@@ -26,12 +28,14 @@ import { TimelineDetailsComponent } from './patients/view/tabs/timeline/timeline
 import { PatientViewComponent } from './patients/view/patient-view.component';
 import { ServiceAccordionComponent } from './patients/view/tabs/details/components/service-accordion/service-accordion.component';
 import { DatepickerRangePopupComponent } from '../components/datepicker-range-popup/datepicker-range-popup.component';
-import { HighlightSearch, SafeHtmlPipe } from 'src/CustomPipes/HighlightSearch/HighlightSearch';
+import { HighlightSearch } from 'src/CustomPipes/HighlightSearch/HighlightSearch';
+import { SafePipe } from 'src/CustomPipes/SafePipe/SafePipe';
 import { ToasterModule } from 'angular2-toaster';
 import { LoginComponent } from './login/login.component';
 import { LocalStorageService } from 'src/services/LocalStorageService';
 import { ActiveSwitchComponent } from './admin/active-switch/active-switch.component';
 import { ActionButtonComponent } from './admin/action-button/action-button.component';
+import { AdminSwitchComponent } from './admin/admin-switch/admin-switch.component';
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
   bgsColor: 'purple',
@@ -63,9 +67,10 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     ServiceAccordionComponent,
     DatepickerRangePopupComponent,
     HighlightSearch,
-    SafeHtmlPipe,
+    SafePipe,
     LoginComponent,
     ActiveSwitchComponent,
+    AdminSwitchComponent,
     ActionButtonComponent
   ],
   imports: [
@@ -77,10 +82,11 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     NgbModule,
     NgbAccordionModule,
     HttpClientModule,
-    StorageServiceModule, 
+    StorageServiceModule,
     NgxUiLoaderModule.forRoot(ngxUiLoaderConfig),
     // NgxUiLoaderModule, // import NgxUiLoaderModule
     // NgxUiLoaderHttpModule, // import NgxUiLoaderHttpModule. By default, it will show background loader.
+    // NgxUiLoaderHttpModule.forRoot({ exclude: ['/api/auth'] });
     // // If you need to show foreground spinner, do as follow:
     NgxUiLoaderHttpModule.forRoot({ showForeground: true }),
     AngularEditorModule,
@@ -88,8 +94,8 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     ToasterModule.forRoot()
   ],
   // providers: [NgxUiLoaderServices, LocalStorageService, AuthService, AuthGuard],  
-  providers: [NgxUiLoaderServices, LocalStorageService],  
+  providers: [NgxUiLoaderServices, LocalStorageService],
   bootstrap: [AppComponent],
-  entryComponents: [ActiveSwitchComponent, ActionButtonComponent]
+  entryComponents: [ActiveSwitchComponent, AdminSwitchComponent, ActionButtonComponent]
 })
 export class AppModule { }
