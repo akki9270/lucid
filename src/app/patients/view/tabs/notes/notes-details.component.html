@@ -6,22 +6,27 @@
         <input type="text" class="form-control" (keyup)="onKeyUp($event)" placeholder="Search" [(ngModel)]="search">
       </div> -->
     </div>
-    <div class="col-md-12">      
-      <div class="contentDiv p-2 bg-white">
-        <pre>{{htmlContent}}</pre>
+    <div class="col-md-12">
+      <div *ngIf="htmlContent" class="contentDiv p-2 bg-white">
+        <pre [innerHtml]='htmlContent'></pre>
+      </div>
+      <div *ngIf="!htmlContent" class="contentDiv p-2 bg-white">
+        <div>
+          <h5>No Data Found</h5>
+        </div>
       </div>
     </div>
   </section>
-  <section class="content-section px-1 my-2">
+  <section *ngIf="htmlContent" class="content-section px-1 my-2">
     <div class="d-flex align-items-center">
       <div class="d-flex align-items-center" style="max-width: 100px;">
         <span class="badge badge-secondary p-2">Match on tags</span>
       </div>
-      <div class="ml-5">
-        <button type="button" class="btn btn-primary"><span style="color: white">Be sure to staff</span></button>
-        <button type="button" class="btn btn-info ml-3"><span style="color: white">Working on staffing</span></button>
-        <button type="button" class="btn btn-success ml-3"><span style="color: white">PT was requesting</span></button>
+      <div class="ml-2" *ngFor="let matchTag of matchTags;">
+        <button type="button" class="btn btn-outline" style="color: white; background-color: grey;">
+          <span>{{matchTag.tag_name}} ( {{matchTag.matchCount}} )</span>
+        </button>
       </div>
     </div>
-  </section>  
+  </section>
 </div>
