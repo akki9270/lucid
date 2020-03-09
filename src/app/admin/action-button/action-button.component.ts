@@ -18,10 +18,10 @@ export class ActionButtonComponent implements OnInit {
   ngOnInit() {
   }
   onEditClick() {
-    console.log('Edit ', this.value);
+    // console.log('Edit ', this.value);
   }
 
   OnDeleteClick() {
-    console.log(' DELETE ', this.value);
+    // console.log(' DELETE ', this.value);
   }
 }

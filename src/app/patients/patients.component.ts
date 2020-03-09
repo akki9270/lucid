@@ -114,7 +114,7 @@ export class PatientsComponent implements OnInit {
       } else {
         // AuthService.logout()
       }
-      console.log('-user: ', user)      
+      // console.log('-user: ', user)      
       // if (event.data.row_id && event.data.patient_id) {
       //   let data = { 'user_id': user.id, row_id: event.data.row_id, 'last_Seen': new Date() }
       //   this.restApi.addPatientLastseen(data).subscribe(result => {

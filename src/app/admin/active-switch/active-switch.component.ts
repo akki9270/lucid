@@ -31,6 +31,6 @@ export class ActiveSwitchComponent implements OnInit {
   onValueChange() {
     this.value['is_active'] = !this.value['is_active'];
     // this.restAPI
-    console.log('onValueChange: ', this.value)
+    // console.log('onValueChange: ', this.value)
   }
 }

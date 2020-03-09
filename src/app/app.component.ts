@@ -20,6 +20,6 @@ export class AppComponent {
       timeout: 3000
   });
   ngOnInit(): void {
-    console.log('appcomponent init: ', this.localStorageService.getUserData());
+    // console.log('appcomponent init: ', this.localStorageService.getUserData());
   }
 }

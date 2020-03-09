@@ -39,7 +39,7 @@ export class TimelineDetailsComponent implements OnInit, AfterViewInit {
     // this.loadScript();
     // START
     // console.log('-----data: ', data)
-    console.log('this.patientDetails ', this.patientDetails);
+    // console.log('this.patientDetails ', this.patientDetails);
     this.getTimeLineData();
     this.showChildEvents = false;
   }
@@ -52,7 +52,7 @@ export class TimelineDetailsComponent implements OnInit, AfterViewInit {
     }
     this.restApi.getNotes(patient_id, intake_id)
     .subscribe((result: any) => {
-      console.log(' result ', result);
+      // console.log(' result ', result);
       // let resultData: Timeline[] = result;
 
       result.forEach(element => {
@@ -61,7 +61,7 @@ export class TimelineDetailsComponent implements OnInit, AfterViewInit {
         element.note_id = element.note_id;
       });
       let groupedData = _.groupBy(result, 'groupDate');
-      console.log('groupedData ', groupedData);
+      // console.log('groupedData ', groupedData);
       let eventsData = [];
       for (let d in groupedData) {
         let obj = {
@@ -76,7 +76,7 @@ export class TimelineDetailsComponent implements OnInit, AfterViewInit {
         });
       });
       this.patientEvents = eventsData; 
-      console.log('patientEvents ', this.patientEvents);
+      // console.log('patientEvents ', this.patientEvents);
     });
   }
 

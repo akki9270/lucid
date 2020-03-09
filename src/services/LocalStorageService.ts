@@ -22,7 +22,7 @@ export class LocalStorageService {
     let userObj = this.storage.get(STORAGE_KEY) || {};
     userObj = user
     this.storage.set(STORAGE_KEY, userObj)
-    console.log('LocaL: ',this.storage.get(STORAGE_KEY) || 'LocaL storage user is empty');    
+    // console.log('LocaL: ',this.storage.get(STORAGE_KEY) || 'LocaL storage user is empty');    
   }
   
   public getUserData(): void{

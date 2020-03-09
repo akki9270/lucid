@@ -18,9 +18,9 @@ export class PatientDetailsComponent implements OnInit {
 
   @Input('patientDetails') patientDetails: Patient
   ngOnInit() {
-    console.log('-----patientDetails: ', this.patientDetails);
+    // console.log('-----patientDetails: ', this.patientDetails);
     this.activeRoute.paramMap.subscribe(data => {
-      console.log(' pramas ', data['params']);
+      // console.log(' pramas ', data['params']);
       let patientId = data.get('patientId');
       if (patientId && !Object.keys(this.patientDetails).length) {
         this.getPatientDetails(data.get('patientId'));

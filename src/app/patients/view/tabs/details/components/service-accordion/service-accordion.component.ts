@@ -11,7 +11,7 @@ export class ServiceAccordionComponent implements OnInit {
 
   @Input('serviceDetails') serviceDetails
   ngOnInit() {
-    console.log('Loade service accord: ', this.serviceDetails)
+    // console.log('Loade service accord: ', this.serviceDetails)
   }
 
 }

@@ -20,7 +20,7 @@ export class RestApiService {
   apiURL = AppConfig.apiURL;
 
   constructor(private http: HttpClient) {
-    console.log('this.apiURL: ', this.apiURL)
+    // console.log('this.apiURL: ', this.apiURL)
   }
 
   /*========================================
@@ -67,7 +67,7 @@ export class RestApiService {
   // HttpClient API get() method => Fetch employees list
   getPatients(patientId?: string): Observable<Patient> {
     let url = this.apiURL + '/getPatients' + (patientId ? '/' + patientId : '');
-    console.log('----this.apiURL: ', url)
+    // console.log('----this.apiURL: ', url)
     return this.http.get<Patient>(url)
       .pipe(
         retry(1),
@@ -87,8 +87,8 @@ export class RestApiService {
 
   addPatientLastseen(data): Observable<UserLastseen> {
     let url = this.apiURL + '/addPatientLastseen';
-    console.log('----this.apiURL: ', url)
-    console.log('---.data: ', data)    
+    // console.log('----this.apiURL: ', url)
+    // console.log('---.data: ', data)    
     // return of();
     return this.http.post<UserLastseen>(url, data)
       .pipe(
