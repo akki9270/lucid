@@ -1,4 +1,5 @@
 export class Patient {
+  row_id: number;
   patient_id: string;
   intake_id: string;
   first_name: string;
@@ -21,11 +22,12 @@ export class Patient {
   key_indicator: any;
   service: any;
 
-  constructor(patient_id: string, intake_id: string, first_name: string, last_name: string,
+  constructor(row_id: number, patient_id: string, intake_id: string, first_name: string, last_name: string,
     health_plan: string, days_to_soc: number, dob: string, gender: string,
     phone_number: string, address: string, city: string, state: string,
     zipcode: string, insurance_name: string, subscribe_id: string,  last_seen: string, createdAt: string,
     updatedAt: string, deletedAt: string, key_indicator: any,service: any) {
+    this.row_id = row_id;
     this.patient_id = patient_id;
     this.intake_id = intake_id;
     this.first_name = first_name;

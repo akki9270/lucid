@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 // import { data } from './patients.json';
 import { RestApiService } from "../shared/rest-api.service";
 import { Patient } from '../models/patient'
+import { USER } from '../constants';
+import { AuthService } from '../auth/auth.service';
 
 @Component({
   selector: 'app-patients',
@@ -16,7 +18,7 @@ export class PatientsComponent implements OnInit {
       intake_id: {
         title: 'INTAKE ID',
         sort: false
-      },     
+      },
       patient_id: {
         title: 'PATIENT ID',
         sort: false
@@ -76,6 +78,7 @@ export class PatientsComponent implements OnInit {
       // console.log('data: ', data)
       this.myData = data.map(item => {
         return new Patient(
+          item.row_id,
           item.patient_id,
           item.intake_id,
           item.first_name,
@@ -104,8 +107,21 @@ export class PatientsComponent implements OnInit {
 
   onPatientView(event) {
     if (event && event.data) {
-      // console.log('-data: ', event)
-      this.router.navigate([`patients/${event.data.patient_id}/view`], { state: { patientDetails: event.data } });
+      // console.log('-data: ', event)      
+      let user = sessionStorage[USER];
+      if (user) {
+        user = JSON.parse(user)
+      } else {
+        // AuthService.logout()
+      }
+      console.log('-user: ', user)      
+      if (event.data.row_id && event.data.patient_id) {
+        let data = { 'user_id': user.id, row_id: event.data.row_id, 'last_Seen': new Date() }
+        this.restApi.addPatientLastseen(data).subscribe(result => {
+          console.log('result ', result);
+        })
+        this.router.navigate([`patients/${event.data.patient_id}/view`], { state: { patientDetails: event.data } });
+      }
     }
   }
 

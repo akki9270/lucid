@@ -5,7 +5,8 @@ import { Patient } from '../models/patient';
 import { Tag } from '../models/tag';
 import { Notes } from '../models/notes';
 import { Timeline } from '../models/timeline';
-import { Observable, throwError } from 'rxjs';
+import { UserLastseen } from '../models/userLastseen';
+import { Observable, throwError, of } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
 import AppConfig from '../../assets/config.json';
 
@@ -54,7 +55,7 @@ export class RestApiService {
   }
 
   toggleActiveUser(data): Observable<User> {
-    let url = this.apiURL + '/user/add';
+    let url = this.apiURL + '/user/activate';
     // console.log('----this.apiURL: ', url)
     return this.http.post<User>(url, data)
       .pipe(
@@ -68,6 +69,28 @@ export class RestApiService {
     let url = this.apiURL + '/getPatients' + (patientId ? '/' + patientId : '');
     console.log('----this.apiURL: ', url)
     return this.http.get<Patient>(url)
+      .pipe(
+        retry(1),
+        catchError(this.handleError)
+      )
+  }
+
+  toggleAdminUser(data): Observable<User>{
+    let url = this.apiURL + '/user/isadmin';
+    // console.log('----this.apiURL: ', url)
+    return this.http.post<User>(url, data)
+      .pipe(
+        retry(1),
+        catchError(this.handleError)
+      )
+  }
+
+  addPatientLastseen(data): Observable<UserLastseen> {
+    let url = this.apiURL + '/addPatientLastseen';
+    console.log('----this.apiURL: ', url)
+    console.log('---.data: ', data)    
+    // return of();
+    return this.http.post<UserLastseen>(url, data)
       .pipe(
         retry(1),
         catchError(this.handleError)
