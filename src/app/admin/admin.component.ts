@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgbModal, NgbModalOptions, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { RestApiService } from 'src/app/shared/rest-api.service';
 import { ActiveSwitchComponent } from './active-switch/active-switch.component';
+import { AdminSwitchComponent } from './admin-switch/admin-switch.component';
 import { ActionButtonComponent } from './action-button/action-button.component';
 import { USER } from '../constants';
 import { StorageService } from '../shared/storage.service';
@@ -42,7 +43,18 @@ export class AdminComponent implements OnInit {
         defaultValue: 'HI Again!!!!!',
         renderComponent: ActiveSwitchComponent,
         valuePrepareFunction:(value, row)=>{
-          return row;
+          return {action: 'active', data: row};
+        }
+      },
+      is_admin: {
+        title: 'Admin',
+        sort: false,
+        filter: false,
+        editable: true,
+        type: 'custom',        
+        renderComponent: ActiveSwitchComponent,
+        valuePrepareFunction:(value, row)=>{          
+          return {action: 'admin', data: row};
         }
       },
       // Action: {

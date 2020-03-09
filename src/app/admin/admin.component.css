@@ -8,6 +8,7 @@
   background-color: var(--purple-theme);
   color: white;
 }
+
 ::ng-deep .custom-control-input:checked~.custom-control-label::before {
   border-color: var(--purple-theme);
   background-color: var(--purple-theme);
