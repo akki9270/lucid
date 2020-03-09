@@ -49,6 +49,8 @@ export class LoginComponent implements OnInit {
         this.toasterService.pop('success','WelCome ' + userName);
         this.authService.setLogin();
       }
+    }, ({error}) => {
+      this.toasterService.pop('error', `${error.message}`)
     });
     // console.log('Login Data: ')
   }
