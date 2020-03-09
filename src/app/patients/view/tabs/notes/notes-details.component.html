@@ -8,7 +8,7 @@
     </div>
     <div class="col-md-12">
       <div *ngIf="htmlContent" class="contentDiv p-2 bg-white">
-        <pre [innerHtml]='htmlContent'></pre>
+        <pre [innerHtml]="htmlContent | safe: 'html' "></pre>
       </div>
       <div *ngIf="!htmlContent" class="contentDiv p-2 bg-white">
         <div>
@@ -23,7 +23,7 @@
         <span class="badge badge-secondary p-2">Match on tags</span>
       </div>
       <div class="ml-2" *ngFor="let matchTag of matchTags;">
-        <button type="button" class="btn btn-outline" style="color: white; background-color: grey;">
+        <button type="button" class="btn btn-outline" [ngStyle]="{'background-color': matchTag.tag_color}">
           <span>{{matchTag.tag_name}} ( {{matchTag.matchCount}} )</span>
         </button>
       </div>
