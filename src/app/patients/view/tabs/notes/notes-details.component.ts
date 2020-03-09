@@ -41,7 +41,7 @@ export class NotesDetailsComponent implements OnInit {
           var regExp = new RegExp(`${tag.tag_name}`, 'gi');
           tag.matchCount = htmlContent.match(regExp).length;
           this.matchTags.push(tag);
-          let replaceContent = `<span style="background-color:${tag.tag_color}" class='p-1'><b>${tag.tag_name}</b></span>`
+          let replaceContent = `<span style="background-color:${tag.tag_color}; color: white;" class='p-1'><b>${tag.tag_name}</b></span>`
           htmlContent = htmlContent.replace(regExp, replaceContent);
         }
       })
