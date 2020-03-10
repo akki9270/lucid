@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 // import * as data from '../timeline/event.json'
 import _ from 'underscore';
-import { HighlightSearch, SafeHtmlPipe } from 'src/CustomPipes/HighlightSearch/HighlightSearch.js';
+import { HighlightSearch } from 'src/CustomPipes/HighlightSearch/HighlightSearch.js';
 import { RestApiService } from 'src/app/shared/rest-api.service.js';
 import { Patient } from 'src/app/models/patient';
 
@@ -9,7 +9,7 @@ import { Patient } from 'src/app/models/patient';
   selector: 'app-notes-details',
   templateUrl: './notes-details.component.html',
   styleUrls: ['./notes-details.component.css'],
-  providers: [HighlightSearch, SafeHtmlPipe]
+  providers: [HighlightSearch]
 })
 export class NotesDetailsComponent implements OnInit {
   tags = []
@@ -17,8 +17,7 @@ export class NotesDetailsComponent implements OnInit {
   htmlContent = null
   search = ''
   @Input('patientDetails') patientDetails: Patient;
-  constructor(public highlightText: HighlightSearch,
-    public safeHtml: SafeHtmlPipe, public restApi: RestApiService) { }
+  constructor(public highlightText: HighlightSearch, public restApi: RestApiService) { }
 
   ngOnInit() {
     this.getTags()

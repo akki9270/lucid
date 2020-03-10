@@ -12,13 +12,3 @@ export class HighlightSearch implements PipeTransform {
     return value.replace(re, "<mark style='background-color: red'>$&</mark>");
   }
 }
-
-
-@Pipe({ name: "safeHtml" })
-export class SafeHtmlPipe implements PipeTransform {
-  constructor(private sanitized: DomSanitizer) {}
-
-  transform(value: string) {
-    return this.sanitized.bypassSecurityTrustHtml(value);
-  }
-}

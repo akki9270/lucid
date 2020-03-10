@@ -14,7 +14,7 @@ export class AdminSwitchComponent implements OnInit {
 
   constructor(private restAPI: RestApiService) { }
 
-  @Input() value = {};
+  @Input() value: any = {};
 
   ngOnInit() { }
 
