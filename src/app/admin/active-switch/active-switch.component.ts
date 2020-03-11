@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { ToasterService } from 'angular2-toaster';
 import { RestApiService } from 'src/app/shared/rest-api.service';
 
 @Component({
@@ -19,7 +20,7 @@ export class ActiveSwitchComponent implements OnInit {
   user: any;
   action: any;
 
-  constructor(private restApi: RestApiService) { }
+  constructor(private restApi: RestApiService, private toasterService: ToasterService) { }
 
   @Input() value: any = {};
 
@@ -45,13 +46,15 @@ export class ActiveSwitchComponent implements OnInit {
 
   updateIsAdminUser(data) {
     this.restApi.toggleAdminUser(data).subscribe(result => {
-      // console.log('result ', result);
+      console.log('result ', result);
+      this.toasterService.pop('success','User update successfully');
     })
   }
 
   updateIsActiveUser(data) {
     this.restApi.toggleActiveUser(data).subscribe(result => {
       // console.log('result ', result);
+      this.toasterService.pop('success','User update successfully');
     })
   }
 }
