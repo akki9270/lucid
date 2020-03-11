@@ -4,7 +4,7 @@ import { NgModule, forwardRef } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { NgbModule, NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { StorageServiceModule } from 'ngx-webstorage-service';
 import {
@@ -36,6 +36,7 @@ import { LocalStorageService } from 'src/services/LocalStorageService';
 import { ActiveSwitchComponent } from './admin/active-switch/active-switch.component';
 import { ActionButtonComponent } from './admin/action-button/action-button.component';
 import { AdminSwitchComponent } from './admin/admin-switch/admin-switch.component';
+import { TokenInterceptorService } from './app-interceptor';
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
   bgsColor: 'purple',
@@ -94,7 +95,11 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     ToasterModule.forRoot()
   ],
   // providers: [NgxUiLoaderServices, LocalStorageService, AuthService, AuthGuard],  
-  providers: [NgxUiLoaderServices, LocalStorageService],
+  providers: [NgxUiLoaderServices, LocalStorageService, {
+    provide: HTTP_INTERCEPTORS,
+    useClass: TokenInterceptorService,
+    multi: true
+  }],
   bootstrap: [AppComponent],
   entryComponents: [ActiveSwitchComponent, AdminSwitchComponent, ActionButtonComponent]
 })

@@ -21,7 +21,7 @@ export class ActiveSwitchComponent implements OnInit {
 
   constructor(private restApi: RestApiService) { }
 
-  @Input() value = {};
+  @Input() value: any = {};
 
   ngOnInit() {
     this.user = this.value['data']

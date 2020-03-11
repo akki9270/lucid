@@ -115,13 +115,14 @@ export class PatientsComponent implements OnInit {
         // AuthService.logout()
       }
       // console.log('-user: ', user)      
-      // if (event.data.row_id && event.data.patient_id) {
-      //   let data = { 'user_id': user.id, row_id: event.data.row_id, 'last_Seen': new Date() }
-      //   this.restApi.addPatientLastseen(data).subscribe(result => {
-      //     console.log('result ', result);
-      //   })
-        this.router.navigate([`patients/${event.data.patient_id}/view`], { state: { patientDetails: event.data } });
-      // }
+      if (event.data.intake_id && event.data.patient_id) {
+        let data = { 'user_id': user.id, patient_id: event.data.patient_id,
+        intake_id: event.data.intake_id, 'last_Seen': new Date() }
+        this.restApi.addPatientLastseen(data).subscribe(result => {
+          // console.log('result ', result);
+        })
+      }
+      this.router.navigate([`patients/${event.data.patient_id}/view`], { state: { patientDetails: event.data } });
     }
   }
 
