@@ -55,7 +55,17 @@ export class RestApiService {
   }
 
   toggleActiveUser(data): Observable<User> {
-    let url = this.apiURL + '/user/activate';
+    let url = this.apiURL + '/user/isactivate';
+    // console.log('----this.apiURL: ', url)
+    return this.http.post<User>(url, data)
+      .pipe(
+        retry(1),
+        catchError(this.handleError)
+      )
+  }
+  
+  toggleAdminUser(data): Observable<User>{
+    let url = this.apiURL + '/user/isadmin';
     // console.log('----this.apiURL: ', url)
     return this.http.post<User>(url, data)
       .pipe(
@@ -69,16 +79,6 @@ export class RestApiService {
     let url = this.apiURL + '/getPatients' + (patientId ? '/' + patientId : '');
     // console.log('----this.apiURL: ', url)
     return this.http.get<Patient>(url)
-      .pipe(
-        retry(1),
-        catchError(this.handleError)
-      )
-  }
-
-  toggleAdminUser(data): Observable<User>{
-    let url = this.apiURL + '/user/isadmin';
-    // console.log('----this.apiURL: ', url)
-    return this.http.post<User>(url, data)
       .pipe(
         retry(1),
         catchError(this.handleError)

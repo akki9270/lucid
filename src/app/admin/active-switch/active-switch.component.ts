@@ -19,7 +19,7 @@ export class ActiveSwitchComponent implements OnInit {
   user: any;
   action: any;
 
-  constructor(private restAPI: RestApiService) { }
+  constructor(private restApi: RestApiService) { }
 
   @Input() value = {};
 
@@ -28,9 +28,30 @@ export class ActiveSwitchComponent implements OnInit {
     this.action = this.value['action']
   }
 
-  onValueChange() {
-    this.value['is_active'] = !this.value['is_active'];
-    // this.restAPI
-    // console.log('onValueChange: ', this.value)
+  onValueChange() {    
+    if (this.value && this.value.action && this.value.data && this.value.data.user_id) {
+      let data = {}
+      if (this.value.action === 'admin') {
+        this.value.data['is_admin'] = !this.value.data['is_admin'];
+        data = { 'user_id': this.value.data.user_id, is_admin: this.value.data.is_admin }
+        this.updateIsAdminUser(data)
+      } else {
+        this.value.data['is_active'] = !this.value.data['is_active'];
+        data = { 'user_id': this.value.data.user_id, is_active: this.value.data.is_active }
+        this.updateIsActiveUser(data)
+      }   
+    }
+  }
+
+  updateIsAdminUser(data) {
+    this.restApi.toggleAdminUser(data).subscribe(result => {
+      // console.log('result ', result);
+    })
+  }
+
+  updateIsActiveUser(data) {
+    this.restApi.toggleActiveUser(data).subscribe(result => {
+      // console.log('result ', result);
+    })
   }
 }
