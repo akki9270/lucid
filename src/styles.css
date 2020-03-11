@@ -282,6 +282,10 @@ a.ng2-smart-sort-link {
     border-bottom: 2px solid #ccd1d9;
 }
 
+.text-align-center{
+    text-align: center; 
+}
+
 /* .card-header{
     background-color: var(--purple-theme);
 }

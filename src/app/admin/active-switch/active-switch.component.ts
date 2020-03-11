@@ -8,7 +8,7 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
     <input type="checkbox" (change)="onValueChange()" class="custom-control-input" id="customSwitch{{user.user_id}}" [checked]="user.is_active" />
     <label class="custom-control-label" for="customSwitch{{user.user_id}}">{{user.is_active ? 'Active' : 'InActive'}}</label>
   </div>
-  <div *ngIf="action == 'admin'" class="custom-control custom-switch">
+  <div *ngIf="action == 'admin'" class="custom-control custom-switch text-align-center">
     <input type="checkbox" (change)="onValueChange()" class="custom-control-input" id="customAdmin{{user.user_id}}" [checked]="user.is_admin" />
     <label class="custom-control-label" for="customAdmin{{user.user_id}}">{{user.is_admin ? '' : ''}}</label>
   </div>
