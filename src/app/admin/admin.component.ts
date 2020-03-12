@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgbModal, NgbModalOptions, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { RestApiService } from 'src/app/shared/rest-api.service';
 import { ActiveSwitchComponent } from './active-switch/active-switch.component';
-import { AdminSwitchComponent } from './admin-switch/admin-switch.component';
+import { PasswordInputComponent } from './password-input/password-input.component';
 import { ActionButtonComponent } from './action-button/action-button.component';
 import { USER } from '../constants';
 import { StorageService } from '../shared/storage.service';
@@ -32,6 +32,17 @@ export class AdminComponent implements OnInit {
         title: 'LAST NAME',
         sort: false,
         // width: '20%'
+      },
+      password: {
+        title: 'PASSWORD*',
+        sort: false,
+        filter: false,
+        editable: true,
+        type: 'custom',
+        renderComponent: PasswordInputComponent,
+        valuePrepareFunction:(value, row)=>{
+          return {action: 'password', data: row};
+        }
       },
       is_active: {
         title: 'Active',
@@ -89,13 +100,13 @@ export class AdminComponent implements OnInit {
         return 'odd-row font-styles';
       }
     }
-  };
-  showUserModal = false
+  };  
 
   modalOption: NgbModalOptions = {
     backdrop: true,
     size: 'lg'
   }
+
   userModalRef: NgbModalRef;
 
   constructor(public restApi: RestApiService, 
@@ -132,7 +143,7 @@ export class AdminComponent implements OnInit {
   openUserModal(userModal) {
     this.userModalRef = this.modalService.open(userModal, this.modalOption);
   }
-
+  
   cancelUserModal() {
     this.userModalRef.close();
   }

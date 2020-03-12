@@ -11,6 +11,9 @@
   </nav>
   <div class="main-container">
     <section class="d-flex justify-content-center flex-100">
+      <div class="text-theme-grey mb-2">Note: Field with * can be edited on double click</div>
+    </section>
+    <section class="d-flex justify-content-center flex-100">
       <ng2-smart-table class="flex-50" [settings]="settings" [source]="myData" (userRowSelect)="onUserView($event)">
       </ng2-smart-table>
     </section>
@@ -19,7 +22,8 @@
       <div class="modal-header bg-purple-theme justify-content-space-between">
         <div style="width: 20px"></div>
         <span class="text-white"> Add User </span>
-        <button type="button" class="close m-0 p-0 text-white" data-dismiss="modal" (click)="cancelUserModal()">×</button>
+        <button type="button" class="close m-0 p-0 text-white" data-dismiss="modal"
+          (click)="cancelUserModal()">×</button>
       </div>
       <div class="modal-body p-2" id="myModal" style="height: 50vh; overflow: auto;">
         <div class="modal-body">
@@ -29,14 +33,16 @@
               required>
 
             <label> FIRST NAME *</label>
-            <input type="text" class="form-control form-control-sm mb-2" [(ngModel)]="newUser.first_name" name="name" required>
+            <input type="text" class="form-control form-control-sm mb-2" [(ngModel)]="newUser.first_name" name="name"
+              required>
 
             <label> LAST NAME *</label>
-            <input type="text" class="form-control form-control-sm mb-2" [(ngModel)]="newUser.last_name" name="name" required>
+            <input type="text" class="form-control form-control-sm mb-2" [(ngModel)]="newUser.last_name" name="name"
+              required>
 
             <label> PASSWORD *</label>
-            <input type="password" class="form-control form-control-sm mb-2" [(ngModel)]="newUser.password" name="password"
-              required>
+            <input type="password" class="form-control form-control-sm mb-2" [(ngModel)]="newUser.password"
+              name="password" required>
           </form>
           <div *ngIf="addUserError">
             <span class="text-danger">{{ addUserError }}</span>
@@ -47,7 +53,8 @@
       <div class="modal-footer">
         <button type="button" class="btn bg-purple-theme text-white px-5" ng-disabled="userForm.$invalid" id="addUser"
           (click)="addUser()">Add</button>
-        <button type="button" class="btn btn-dark text-white px-5" (click)="cancelUserModal()" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-dark text-white px-5" (click)="cancelUserModal()"
+          data-dismiss="modal">Cancel</button>
       </div>
     </ng-template>
   </div>

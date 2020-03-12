@@ -35,7 +35,7 @@ import { LoginComponent } from './login/login.component';
 import { LocalStorageService } from 'src/services/LocalStorageService';
 import { ActiveSwitchComponent } from './admin/active-switch/active-switch.component';
 import { ActionButtonComponent } from './admin/action-button/action-button.component';
-import { AdminSwitchComponent } from './admin/admin-switch/admin-switch.component';
+import { PasswordInputComponent } from './admin/password-input/password-input.component';
 import { TokenInterceptorService } from './app-interceptor';
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
@@ -71,7 +71,7 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     SafePipe,
     LoginComponent,
     ActiveSwitchComponent,
-    AdminSwitchComponent,
+    PasswordInputComponent,
     ActionButtonComponent
   ],
   imports: [
@@ -101,6 +101,6 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     multi: true
   }],
   bootstrap: [AppComponent],
-  entryComponents: [ActiveSwitchComponent, AdminSwitchComponent, ActionButtonComponent]
+  entryComponents: [ActiveSwitchComponent, PasswordInputComponent, ActionButtonComponent]
 })
 export class AppModule { }

@@ -53,6 +53,16 @@ export class RestApiService {
         catchError(this.handleError)
       )
   }
+  
+  updateUser(data): Observable<User> {
+    let url = this.apiURL + '/user/update';
+    // console.log('----this.apiURL: ', url)
+    return this.http.post<User>(url, data)
+      .pipe(
+        retry(1),
+        catchError(this.handleError)
+      )
+  }
 
   toggleActiveUser(data): Observable<User> {
     let url = this.apiURL + '/user/isactivate';
