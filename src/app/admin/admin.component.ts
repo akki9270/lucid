@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgbModal, NgbModalOptions, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { LocalDataSource } from 'ng2-smart-table';
 import { RestApiService } from 'src/app/shared/rest-api.service';
 import { ActiveSwitchComponent } from './active-switch/active-switch.component';
 import { PasswordInputComponent } from './password-input/password-input.component';
@@ -7,6 +8,7 @@ import { ActionButtonComponent } from './action-button/action-button.component';
 import { USER } from '../constants';
 import { StorageService } from '../shared/storage.service';
 import { ToasterService } from 'angular2-toaster';
+import { AdminService } from './admin.service';
 
 @Component({
   selector: 'app-admin',
@@ -14,9 +16,10 @@ import { ToasterService } from 'angular2-toaster';
   styleUrls: ['./admin.component.css']
 })
 export class AdminComponent implements OnInit {
-  myData = [];
+  // myData = [];
   newUser: any = {};
   user: any;
+  myData: LocalDataSource;
   settings = {
     columns: {
       user_id: {
@@ -40,8 +43,8 @@ export class AdminComponent implements OnInit {
         editable: true,
         type: 'custom',
         renderComponent: PasswordInputComponent,
-        valuePrepareFunction:(value, row)=>{
-          return {action: 'password', data: row};
+        valuePrepareFunction: (value, row) => {
+          return { action: 'password', data: row };
         }
       },
       is_active: {
@@ -53,8 +56,8 @@ export class AdminComponent implements OnInit {
         // width: '10%',
         defaultValue: 'HI Again!!!!!',
         renderComponent: ActiveSwitchComponent,
-        valuePrepareFunction:(value, row)=>{
-          return {action: 'active', data: row};
+        valuePrepareFunction: (value, row) => {
+          return { action: 'active', data: row };
         }
       },
       is_admin: {
@@ -62,10 +65,10 @@ export class AdminComponent implements OnInit {
         sort: false,
         filter: false,
         editable: true,
-        type: 'custom',        
+        type: 'custom',
         renderComponent: ActiveSwitchComponent,
-        valuePrepareFunction:(value, row)=>{          
-          return {action: 'admin', data: row};
+        valuePrepareFunction: (value, row) => {
+          return { action: 'admin', data: row };
         }
       },
       // Action: {
@@ -100,22 +103,32 @@ export class AdminComponent implements OnInit {
         return 'odd-row font-styles';
       }
     }
-  };  
+  };
 
   modalOption: NgbModalOptions = {
     backdrop: true,
+    centered: true,
     size: 'lg'
   }
-
+  @ViewChild('confirmModal') confimModalElementRef
   confirmModalRef: NgbModalRef;
-  
-  userModalRef: NgbModalRef;
 
-  constructor(public restApi: RestApiService, 
-              private modalService: NgbModal,
-              private storageService: StorageService,
-              private restAPI: RestApiService,
-              private toasterService: ToasterService) { }
+  userModalRef: NgbModalRef;
+  selectedData: any = {};
+  sourceData: any;
+  activeNote: string = `This will make ${this.selectedData.user_id} Active`;
+  inActiveNote: string = `This will make ${this.selectedData.user_id} InActive`;
+
+  adminNote: string = `This will make ${this.selectedData.user_id} Admin`;
+  adminFalseNote: string = `This will make ${this.selectedData.user_id} Non Admin`;
+  isActiveConfirm: boolean;
+  isAdminConfirm: boolean;
+  constructor(public restApi: RestApiService,
+    private modalService: NgbModal,
+    private storageService: StorageService,
+    private restAPI: RestApiService,
+    private toasterService: ToasterService,
+    private adminService: AdminService) { }
 
   ngOnInit() {
     this.getUserList();
@@ -123,15 +136,31 @@ export class AdminComponent implements OnInit {
     this.user = user ? JSON.parse(user) : {};
     this.storageService.getUserData().subscribe(user => {
       this.user = user;
+    });
+    this.adminService.showConfirmDialogue().subscribe(data => {
+      // console.log(' data', data);
+      this.selectedData = data;
+      this.isActiveConfirm = typeof data.is_active == "boolean";
+      this.isAdminConfirm = typeof data.is_admin == "boolean";
+      this.updateConfirmNotes();
+      this.openConfirmModal(this.confimModalElementRef);
     })
   }
 
+  updateConfirmNotes() {
+    this.activeNote = `This will make ${this.selectedData.user_id} Active`;
+    this.inActiveNote = `This will make ${this.selectedData.user_id} InActive`;
+  
+    this.adminNote = `This will make ${this.selectedData.user_id} Admin`;
+    this.adminFalseNote = `This will make ${this.selectedData.user_id} Non Admin`;
+  }
   getUserList() {
     this.restApi.getUsers()
       .subscribe((result: any) => {
         // console.log(' result ', result);
         if (result && result.length > 0) {
-          this.myData = result
+          this.myData = new LocalDataSource(result);
+          this.sourceData = result;
         }
       });
   }
@@ -145,35 +174,67 @@ export class AdminComponent implements OnInit {
   openUserModal(userModal) {
     this.userModalRef = this.modalService.open(userModal, this.modalOption);
   }
-  
+
   cancelUserModal() {
     this.userModalRef.close();
   }
 
   openConfirmModal(confirmModal) {
-    this.confirmModalRef = this.modalService.open(confirmModal, this.modalOption);
+    let options = Object.assign({ ...this.modalOption }, { size: 'sm', backdrop: true, keyboard: false })
+    this.confirmModalRef = this.modalService.open(confirmModal, options);
   }
 
   cancelConfirmModal() {
+    this.sourceData.forEach(item => {
+      if (item.user_id == this.selectedData.user_id) {
+        if (this.isAdminConfirm) {
+          item.is_admin = !this.selectedData.is_admin;
+        }
+        if (this.isActiveConfirm) {
+          item.is_active = !this.selectedData.is_active;
+        }
+      }
+    });
+    this.myData.load(this.sourceData);
     this.confirmModalRef.close();
   }
 
-  onConfirm(){
-    
+  onConfirm() {
+    this.confirmModalRef.close();
+    if (this.isAdminConfirm) {
+      this.updateIsAdminUser(this.selectedData);
+    }
+    if (this.isActiveConfirm) {
+      this.updateIsActiveUser(this.selectedData);
+    }
   }
-     
+
   addUser() {
-    if (!this.newUser.id || !this.newUser.first_name || 
-        !this.newUser.last_name || !this.newUser.password) {
-          this.toasterService.pop('error', 'All Fields ar mandatory.');
-          return;
-      }
-    this.restAPI.addUsers({...this.newUser, user: this.user})
-    .subscribe(result => {
+    if (!this.newUser.id || !this.newUser.first_name ||
+      !this.newUser.last_name || !this.newUser.password) {
+      this.toasterService.pop('error', 'All Fields ar mandatory.');
+      return;
+    }
+    this.restAPI.addUsers({ ...this.newUser, user: this.user })
+      .subscribe(result => {
+        // console.log('result ', result);
+        this.toasterService.pop('success', 'User added SuccessFully.');
+        this.cancelUserModal();
+        this.getUserList();
+      })
+  }
+
+  updateIsAdminUser(data) {
+    this.restApi.toggleAdminUser(data).subscribe(result => {
       // console.log('result ', result);
-      this.toasterService.pop('success', 'User added SuccessFully.');
-      this.cancelUserModal();
-      this.getUserList();
+      this.toasterService.pop('success','User update successfully');
+    })
+  }
+
+  updateIsActiveUser(data) {
+    this.restApi.toggleActiveUser(data).subscribe(result => {
+      // console.log('result ', result);
+      this.toasterService.pop('success','User update successfully');
     })
   }
 }

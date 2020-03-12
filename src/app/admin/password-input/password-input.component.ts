@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
 import { ToasterService } from 'angular2-toaster';
 import { RestApiService } from 'src/app/shared/rest-api.service';
 import { USER } from '../../constants';
@@ -8,7 +8,7 @@ import { USER } from '../../constants';
   template: `
   <div (dblclick)="showHidePasswordInput()" id="passwordContainer{{user.user_id}}">
     <div style="min-width: 162px; min-height: 30px; line-height: 24px">    
-      <input type="text" id="passsword{{user.user_id}}" *ngIf="showPasswordInput" [(ngModel)]="password" (change)="onValueChange()">
+      <input #in type="password" (blur)="onValueChange()" id="passsword{{user.user_id}}" *ngIf="showPasswordInput" [(ngModel)]="password" (change)="onValueChange()">
     </div>
   </div>`,
   styles: []
@@ -20,7 +20,14 @@ export class PasswordInputComponent implements OnInit {
 
   constructor(private restApi: RestApiService, private toasterService: ToasterService) { }
 
+  private inputBox: ElementRef<HTMLElement>
   @Input() value: any = {};
+  @ViewChild('in') set input(input: ElementRef<HTMLElement>) {
+    if (input) {
+      this.inputBox = input;
+      this.inputBox.nativeElement.focus();
+    }
+  };
 
   ngOnInit() {
     this.user = this.value['data']

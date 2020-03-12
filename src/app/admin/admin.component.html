@@ -67,13 +67,14 @@
       </div>
       <div class="modal-body p-2" id="myModal" style="height: 50v; overflow: auto;">
         <div class="modal-body text-center">
-          This will update the category for the status.
+          <span *ngIf="isActiveConfirm">{{selectedData.is_active ? activeNote : inActiveNote}}</span>
+          <span *ngIf="isAdminConfirm">{{selectedData.is_admin ? adminNote : adminFalseNote}}</span>
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn bg-purple-theme text-white px-5" id="confirmBtn"
+        <button type="button" class="btn bg-purple-theme text-white" id="confirmBtn"
           (click)="onConfirm()">Save</button>
-        <button type="button" class="btn btn-dark text-white px-5" (click)="cancelConfirmModal()"
+        <button type="button" class="btn btn-dark text-white" (click)="cancelConfirmModal()"
           data-dismiss="modal">Close</button>
       </div>
     </ng-template>
