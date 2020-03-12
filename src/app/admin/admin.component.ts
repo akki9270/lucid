@@ -107,6 +107,8 @@ export class AdminComponent implements OnInit {
     size: 'lg'
   }
 
+  confirmModalRef: NgbModalRef;
+  
   userModalRef: NgbModalRef;
 
   constructor(public restApi: RestApiService, 
@@ -148,6 +150,18 @@ export class AdminComponent implements OnInit {
     this.userModalRef.close();
   }
 
+  openConfirmModal(confirmModal) {
+    this.confirmModalRef = this.modalService.open(confirmModal, this.modalOption);
+  }
+
+  cancelConfirmModal() {
+    this.confirmModalRef.close();
+  }
+
+  onConfirm(){
+    
+  }
+     
   addUser() {
     if (!this.newUser.id || !this.newUser.first_name || 
         !this.newUser.last_name || !this.newUser.password) {

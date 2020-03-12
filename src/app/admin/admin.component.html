@@ -57,5 +57,25 @@
           data-dismiss="modal">Cancel</button>
       </div>
     </ng-template>
+
+    <ng-template #confirmModal let-modal>
+      <div class="modal-header bg-purple-theme justify-content-space-between">
+        <div style="width: 20px"></div>
+        <span class="text-white"> Please Confirm </span>
+        <button type="button" class="close m-0 p-0 text-white" data-dismiss="modal"
+          (click)="cancelConfirmModal()">×</button>
+      </div>
+      <div class="modal-body p-2" id="myModal" style="height: 50v; overflow: auto;">
+        <div class="modal-body text-center">
+          This will update the category for the status.
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn bg-purple-theme text-white px-5" id="confirmBtn"
+          (click)="onConfirm()">Save</button>
+        <button type="button" class="btn btn-dark text-white px-5" (click)="cancelConfirmModal()"
+          data-dismiss="modal">Close</button>
+      </div>
+    </ng-template>
   </div>
 </div>
