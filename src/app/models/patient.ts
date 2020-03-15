@@ -1,11 +1,10 @@
-export class Patient {
+export interface Patient {
   row_id: number;
   patient_id: string;
   intake_id: string;
   first_name: string;
   last_name: string;
-  health_plan: string;
-  days_to_soc: number;
+  health_plan: string;  
   dob: string;
   gender: string;
   phone_number: string;
@@ -19,36 +18,15 @@ export class Patient {
   createdAt: string;
   updatedAt: string;
   deletedAt: string;
-  key_indicator: any;
+  pediatric_patient: boolean;
+  call_frequency: string;
+  call_count: number;
+  urgent: boolean;
+  escalation: boolean;
+  restaff_turnback: boolean;
+  primary_care_physician: boolean;
+  ordering_physician: boolean;
+  wound_care: boolean;
+  facility_discharge: boolean;
   service: any;
-
-  constructor(row_id: number, patient_id: string, intake_id: string, first_name: string, last_name: string,
-    health_plan: string, days_to_soc: number, dob: string, gender: string,
-    phone_number: string, address: string, city: string, state: string,
-    zipcode: string, insurance_name: string, subscribe_id: string,  last_seen: string, createdAt: string,
-    updatedAt: string, deletedAt: string, key_indicator: any,service: any) {
-    this.row_id = row_id;
-    this.patient_id = patient_id;
-    this.intake_id = intake_id;
-    this.first_name = first_name;
-    this.last_name = last_name;
-    this.health_plan = health_plan;
-    this.days_to_soc = days_to_soc;
-    this.dob = dob;
-    this.gender = gender;
-    this.phone_number = phone_number;
-    this.address = address;
-    this.city = city;
-    this.state = state;
-    this.zipcode = zipcode;
-    this.insurance_name = insurance_name;
-    this.subscribe_id = subscribe_id;
-    this.last_seen = last_seen;
-    this.createdAt = createdAt;
-    this.updatedAt = updatedAt;
-    this.deletedAt = deletedAt;
-    this.key_indicator = key_indicator;
-    this.service = service;
-  }
-
-}
+}  

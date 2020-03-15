@@ -61,39 +61,39 @@
           </div>
         </div>
       </fieldset>
-      <fieldset id='key-indicator' *ngIf="patientDetails.key_indicator" class="outer-field-set mt-2">
+      <fieldset id='key-indicator' class="outer-field-set mt-2">
         <legend class="w-auto px-3 d-inline-block lengend-title py-1">Key Indicator</legend>
         <div class="d-flex" style="margin: 5px;">
           <div class="left-section">
             <div class="row">
               <div class="col-lg-3 form-group">
-                <input type="checkbox" [checked]="patientDetails.key_indicator.pediatric_patient" /> PEDIATRIC PATIENT
+                <input type="checkbox" [checked]="patientDetails.pediatric_patient" /> PEDIATRIC PATIENT
               </div>
               <div class="col-lg-3 form-group">
-                <input type="checkbox" [checked]="patientDetails.key_indicator.urgent" /> URGENT
+                <input type="checkbox" [checked]="patientDetails.urgent" /> URGENT
               </div>
               <div class="col-lg-3 form-group">
-                <input type="checkbox" [checked]="patientDetails.key_indicator.escalation" /> CASE HAS BEEN ESCALATED
+                <input type="checkbox" [checked]="patientDetails.escalation" /> CASE HAS BEEN ESCALATED
               </div>
               <div class="col-lg-3 form-group">
-                <input type="checkbox" [checked]="patientDetails.key_indicator.restaff_turnback" /> RESTAFF/TURNBACK
+                <input type="checkbox" [checked]="patientDetails.restaff_turnback" /> RESTAFF/TURNBACK
               </div>
             </div>
             <div class="row">
               <div class="col-lg-3 form-group">
-                <input type="checkbox" [checked]="patientDetails.key_indicator.primary_care_physician" /> PRIMARY CARE
+                <input type="checkbox" [checked]="patientDetails.primary_care_physician" /> PRIMARY CARE
                 PHYSICIAN
               </div>
               <div class="col-lg-3 form-group">
-                <input type="checkbox" [checked]="patientDetails.key_indicator.following_physician" /> ORDERING PHYSICIAN
+                <input type="checkbox" [checked]="patientDetails.following_physician" /> ORDERING PHYSICIAN
               </div>
               <div class="col-lg-3 form-group">
-                <input type="checkbox" [checked]="patientDetails.key_indicator.wound_care" /> WOUND CARE
+                <input type="checkbox" [checked]="patientDetails.wound_care" /> WOUND CARE
               </div>
             </div>
             <div class="row">
               <div class="col-lg-3 form-group">
-                <input type="checkbox" [checked]="patientDetails.key_indicator.facility_discharge" /> FACILITY DISCHARGE
+                <input type="checkbox" [checked]="patientDetails.facility_discharge" /> FACILITY DISCHARGE
               </div>
             </div>
           </div>
@@ -105,14 +105,14 @@
               </label>
             </div>
             <div class="d-flex align-items-center justify-content-center">
-              <select [(ngModel)]="patientDetails.key_indicator.call_frequency" class="form-control" style="max-width: 100px;">
+              <select [(ngModel)]="patientDetails.call_frequency" class="form-control" style="max-width: 100px;">
                 <option value="DAY">Day</option>
                 <option value="WEEK">Week</option>
                 <option value="MONTH">Month</option>
                 <option value="YEAR">Year</option>
               </select>
               <div>
-                <input type="number" value="{{patientDetails.key_indicator.call_count}}" style="width: 40px; margin-left: 10px; padding-left: 5px;">
+                <input type="number" value="{{patientDetails.call_count}}" style="width: 40px; margin-left: 10px; padding-left: 5px;">
               </div>
             </div>
           </div>

@@ -3,6 +3,7 @@ import { StorageService } from '../shared/storage.service';
 import { USER, TOKEN } from '../constants';
 import { User } from '../models/users';
 import { AuthService } from '../auth/auth.service';
+import { RestApiService } from "../shared/rest-api.service";
 import { Router } from '@angular/router';
 
 @Component({
@@ -15,7 +16,8 @@ export class NavbarComponent implements OnInit {
   isLoggedIn: boolean;
 
   constructor(private storageService: StorageService,
-       private authService: AuthService) {
+    private restApi: RestApiService,
+    private authService: AuthService) {
     // console.log('--load Navbar: ')
   }
 
@@ -35,5 +37,8 @@ export class NavbarComponent implements OnInit {
   signOut() {
     sessionStorage.clear();
     this.authService.logout();
+    this.restApi.logout().subscribe((result:any)=>{
+      // console.log('=----Result: ', result)
+    })
   }
 }

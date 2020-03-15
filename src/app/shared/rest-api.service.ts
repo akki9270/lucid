@@ -137,6 +137,16 @@ export class RestApiService {
       )
   }
 
+  logout(): Observable<User> {
+    let url = this.apiURL + '/logout';
+    // console.log('----this.apiURL: ', url)
+    return this.http.get<User>(url)
+      .pipe(
+        retry(1),
+        catchError(this.handleError)
+      )
+  }
+
   //   // HttpClient API get() method => Fetch employee
   //   getEmployee(id): Observable<Employee> {
   //     return this.http.get<Employee>(this.apiURL + '/employees/' + id)
