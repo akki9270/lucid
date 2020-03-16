@@ -16,11 +16,15 @@ export class NotesDetailsComponent implements OnInit {
   matchTags = []
   htmlContent = null
   search = ''
+  notesData: any;
+  selectedIntakeId: string;
+  intakeIdArr: [];
   @Input('patientDetails') patientDetails: Patient;
   constructor(public highlightText: HighlightSearch, public restApi: RestApiService) { }
 
   ngOnInit() {
     this.getTags()
+    // console.log('patientDetails: ', this.patientDetails)
   }
 
   getTags() {
@@ -30,24 +34,43 @@ export class NotesDetailsComponent implements OnInit {
     });
   }
 
+  onChangeIntakeIdDropdown(selectdIntakeId) {
+    if (selectdIntakeId !== this.selectedIntakeId) {
+      this.matchTags = []
+      this.selectedIntakeId = selectdIntakeId
+      this.setCurrentNoteContent(selectdIntakeId)
+    }
+  }
+
+  setCurrentNoteContent(intakeId) {
+    this.htmlContent = '';
+    let result = _.filter(this.notesData, item => item.intake_id == intakeId);
+    let htmlContent = _.map(result, 'note_data').join('\n');
+    this.tags.forEach((tag: any) => {
+      if (htmlContent.indexOf(tag.tag_name) > -1) {
+        var regExp = new RegExp(`${tag.tag_name}`, 'gi');
+        tag.matchCount = htmlContent.match(regExp).length;
+        this.matchTags.push(tag);
+        let replaceContent = `<span style="background-color:${tag.tag_color}; color: white;" class='p-1'><b>${tag.tag_name}</b></span>`
+        htmlContent = htmlContent.replace(regExp, replaceContent);
+      }
+    });
+    this.htmlContent = htmlContent;
+  }
+
   getInitNotes() {
     let patientId = this.patientDetails.patient_id;
-    let intakeId = this.patientDetails.intake_id;
-    this.restApi.getNotes(patientId, intakeId).subscribe((result: any) => {
-      let htmlContent = _.map(result, 'note_data').join('\n');
-      this.tags.forEach((tag: any) => {
-        if (htmlContent.indexOf(tag.tag_name) > -1) {
-          var regExp = new RegExp(`${tag.tag_name}`, 'gi');
-          tag.matchCount = htmlContent.match(regExp).length;
-          this.matchTags.push(tag);
-          let replaceContent = `<span style="background-color:${tag.tag_color}; color: white;" class='p-1'><b>${tag.tag_name}</b></span>`
-          htmlContent = htmlContent.replace(regExp, replaceContent);
-        }
-      })
-      this.htmlContent = htmlContent;
+    // let intakeId = this.patientDetails && this.patientDetails.intake_id;
+    this.selectedIntakeId = this.patientDetails && this.patientDetails.intake_id;
+    this.restApi.getNotes(patientId).subscribe((result: any) => {
+      // console.log('result: ', result);
+      this.notesData = result;
+      this.intakeIdArr = _.chain(result).map('intake_id').uniq()._wrapped;
+      if (this.intakeIdArr.indexOf(this.selectedIntakeId) == -1) {
+        this.selectedIntakeId = this.intakeIdArr[0];
+      }
+      this.setCurrentNoteContent(this.selectedIntakeId);
     });
-    // console.log('this.Tags: ', this.tags);
-    // console.log('this.matchTags: ', this.matchTags);
   }
 
   getDate(date: Date) {

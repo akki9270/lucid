@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import _ from 'underscore';
+// import * as moment from 'moment';
 import { RestApiService } from "../shared/rest-api.service";
 import { USER } from '../constants';
-import { AuthService } from '../auth/auth.service';
+// import { AuthService } from '../auth/auth.service';
+// import { DaysToSocComponent } from './days-to-soc/days-to-soc.component';
 
 @Component({
   selector: 'app-patients',
@@ -29,7 +32,7 @@ export class PatientsComponent implements OnInit {
         title: 'LAST NAME',
         sort: false
       },
-      health_plan: {
+      insurance_name: {
         title: 'HEALTH PLAN',
         sort: false
       },
@@ -38,7 +41,19 @@ export class PatientsComponent implements OnInit {
       //   sort: false
       // },
       // days_to_soc: {
-      //   title: 'DAYS TO SOC'
+      //   title: 'DAYS TO SOC',
+      //   // renderComponent: DaysToSocComponent,
+      //   valuePrepareFunction: (value, row) => {
+      //     if (row && row.service && row.service.length > 0) {
+      //       let rowsHavingStartDate =  _.chain(row.service).map('start_date').uniq()._wrapped;
+      //       console.log('rowsHavingStartDate: ', rowsHavingStartDate)
+      //       if(rowsHavingStartDate && rowsHavingStartDate.length > 1){
+      //         return this.min_date(rowsHavingStartDate)
+      //       } else {
+      //         return new Date() - new Date(rowsHavingStartDate[0])
+      //       }
+      //     }
+      //   }
       // }
     },
     actions: {
@@ -71,6 +86,18 @@ export class PatientsComponent implements OnInit {
     this.getPatientData()
   }
 
+  min_date(all_dates) {
+    var min_dt = all_dates[0],
+      min_dtObj = new Date(all_dates[0]);
+    all_dates.forEach(function (dt, index) {
+      if (new Date(dt) < min_dtObj) {
+        min_dt = dt;
+        min_dtObj = new Date(dt);
+      }
+    });
+    return min_dt;
+  }
+
   getPatientData() {
     this.restApi.getPatients().subscribe((data: any) => {
       // console.log('data: ', data)
@@ -89,8 +116,10 @@ export class PatientsComponent implements OnInit {
       }
       // console.log('-user: ', user)      
       if (event.data.intake_id && event.data.patient_id) {
-        let data = { 'user_id': user.id, patient_id: event.data.patient_id,
-        intake_id: event.data.intake_id, 'last_Seen': new Date() }
+        let data = {
+          'user_id': user.id, patient_id: event.data.patient_id,
+          intake_id: event.data.intake_id, 'last_Seen': new Date()
+        }
         this.restApi.addPatientLastseen(data).subscribe(result => {
           // console.log('result ', result);
         })

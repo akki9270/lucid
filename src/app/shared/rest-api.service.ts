@@ -117,8 +117,16 @@ export class RestApiService {
       )
   }
     
-  getNotes(patientId: string, intakeId: string): Observable<Notes> {
-    let url = this.apiURL + '/getNotes/' + patientId + '/' + intakeId;
+  getNotes(patientId: string, intakeId?: string): Observable<Notes> {
+    let url = this.apiURL;
+    if (patientId && intakeId) {
+      url += '/getNotes/' + patientId + '/' + intakeId;  
+    } else if (patientId && !intakeId) {
+      url += '/getNotes/' + patientId;
+    } else {
+      return of();
+    }
+    
     // console.log('----this.apiURL: ', url)
     return this.http.get<Notes>(url)
       .pipe(

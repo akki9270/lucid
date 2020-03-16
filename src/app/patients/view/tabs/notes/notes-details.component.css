@@ -30,3 +30,8 @@
   border-radius: 10px;
   color: #495057;
 }
+
+.dropdown-item.active, .dropdown-item:active {
+  color: #fff;
+  background-color: var(--purple-theme);
+}
