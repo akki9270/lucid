@@ -37,6 +37,7 @@ import { ActiveSwitchComponent } from './admin/active-switch/active-switch.compo
 import { ActionButtonComponent } from './admin/action-button/action-button.component';
 import { PasswordInputComponent } from './admin/password-input/password-input.component';
 import { TokenInterceptorService } from './app-interceptor';
+import { DaysToSocComponent } from './patients/days-to-soc/days-to-soc.component';
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
   bgsColor: 'purple',
@@ -72,7 +73,8 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     LoginComponent,
     ActiveSwitchComponent,
     PasswordInputComponent,
-    ActionButtonComponent
+    ActionButtonComponent,
+    DaysToSocComponent
   ],
   imports: [
     BrowserModule,

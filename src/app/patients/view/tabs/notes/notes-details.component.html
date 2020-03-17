@@ -21,7 +21,7 @@
     </div>
     <div class="col-md-12">
       <div *ngIf="htmlContent" class="contentDiv p-2 bg-white">
-        <pre [innerHtml]="htmlContent | safe: 'html' "></pre>
+        <pre style="width: fit-content;" [innerHtml]="htmlContent | safe: 'html' "></pre>
       </div>
       <div *ngIf="!htmlContent" class="contentDiv p-2 bg-white">
         <div>

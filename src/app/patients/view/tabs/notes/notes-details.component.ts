@@ -18,7 +18,7 @@ export class NotesDetailsComponent implements OnInit {
   search = ''
   notesData: any;
   selectedIntakeId: string;
-  intakeIdArr: [];
+  intakeIdArr: any[] = [];
   @Input('patientDetails') patientDetails: Patient;
   constructor(public highlightText: HighlightSearch, public restApi: RestApiService) { }
 
@@ -65,7 +65,7 @@ export class NotesDetailsComponent implements OnInit {
     this.restApi.getNotes(patientId).subscribe((result: any) => {
       // console.log('result: ', result);
       this.notesData = result;
-      this.intakeIdArr = _.chain(result).map('intake_id').uniq()._wrapped;
+      this.intakeIdArr = _.chain(result).map('intake_id').uniq().value();
       if (this.intakeIdArr.indexOf(this.selectedIntakeId) == -1) {
         this.selectedIntakeId = this.intakeIdArr[0];
       }
