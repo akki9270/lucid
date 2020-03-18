@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import _ from 'underscore';
-// import * as moment from 'moment';
+import * as moment from 'moment';
 import { RestApiService } from "../shared/rest-api.service";
 import { USER } from '../constants';
 // import { AuthService } from '../auth/auth.service';
-// import { DaysToSocComponent } from './days-to-soc/days-to-soc.component';
 
 @Component({
   selector: 'app-patients',
@@ -40,21 +39,24 @@ export class PatientsComponent implements OnInit {
       //   title: 'Last_seen',
       //   sort: false
       // },
-      // days_to_soc: {
-      //   title: 'DAYS TO SOC',
-      //   // renderComponent: DaysToSocComponent,
-      //   valuePrepareFunction: (value, row) => {
-      //     if (row && row.service && row.service.length > 0) {
-      //       let rowsHavingStartDate =  _.chain(row.service).map('start_date').uniq()._wrapped;
-      //       console.log('rowsHavingStartDate: ', rowsHavingStartDate)
-      //       if(rowsHavingStartDate && rowsHavingStartDate.length > 1){
-      //         return this.min_date(rowsHavingStartDate)
-      //       } else {
-      //         return new Date() - new Date(rowsHavingStartDate[0])
-      //       }
-      //     }
-      //   }
-      // }
+      days_to_soc: {
+        title: 'DAYS TO SOC',        
+        valuePrepareFunction: (value, row) => {
+          if (row && row.service && row.service.length > 0) {
+            let rowsHavingStartDate = _.chain(row.service).map('start_date').uniq().value();            
+            if (rowsHavingStartDate && rowsHavingStartDate.length > 0) {              
+              let filterDays = [];
+              _.each(rowsHavingStartDate, function (date) {                
+                let duration = moment.duration(moment(new Date()).diff( moment(date)));
+                let days = Math.floor(duration.asDays());
+                filterDays.push(days);
+              })
+              return Math.min.apply(Math, filterDays);
+            } 
+            return 0;            
+          }
+        }
+      }
     },
     actions: {
       add: false,
