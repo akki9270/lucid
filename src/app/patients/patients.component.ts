@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { LocalDataSource } from 'ng2-smart-table';
 import _ from 'underscore';
 import * as moment from 'moment';
 import { RestApiService } from "../shared/rest-api.service";
@@ -12,48 +13,72 @@ import { USER } from '../constants';
   styleUrls: ['./patients.component.css']
 })
 export class PatientsComponent implements OnInit {
-  myData = []
+  myData = [];
+  source: LocalDataSource;
+
   settings = {
     columns: {
       intake_id: {
         title: 'INTAKE ID',
-        sort: false
+        sort: false,
+        // filter: {
+        //   type: 'completer',
+        //   config: {
+        //     completer: {
+        //       data: this.myData,
+        //       searchFields: 'intake_id',
+        //       titleField: 'intake_id',
+        //     },
+        //   },
+        // },
+        // filterFunction: (cell?: any, search?: string) => {
+        //   // cell? is the value of the cell, in this case is a timeStamp          
+        //   if (search.length > 0) {
+        //     console.log('search: ', search)
+        //     this.getPatientFilterData(search, 'intake_id')
+        //     return search
+        //   }
+        // }
       },
       patient_id: {
         title: 'PATIENT ID',
-        sort: false
+        sort: false,
+        // filter: false,
       },
       first_name: {
         title: 'FIRST NAME',
-        sort: false
+        sort: false,
+        // filter: false
       },
       last_name: {
         title: 'LAST NAME',
-        sort: false
+        sort: false,
+        // filter: false
       },
       insurance_name: {
         title: 'HEALTH PLAN',
-        sort: false
+        sort: false,
+        // filter: false
       },
       // last_seen: {
       //   title: 'Last_seen',
       //   sort: false
       // },
       days_to_soc: {
-        title: 'DAYS TO SOC',        
+        title: 'DAYS TO SOC',
         valuePrepareFunction: (value, row) => {
           if (row && row.service && row.service.length > 0) {
-            let rowsHavingStartDate = _.chain(row.service).map('start_date').uniq().value();            
-            if (rowsHavingStartDate && rowsHavingStartDate.length > 0) {              
+            let rowsHavingStartDate = _.chain(row.service).map('start_date').uniq().value();
+            if (rowsHavingStartDate && rowsHavingStartDate.length > 0) {
               let filterDays = [];
-              _.each(rowsHavingStartDate, function (date) {                
-                let duration = moment.duration(moment(new Date()).diff( moment(date)));
+              _.each(rowsHavingStartDate, function (date) {
+                let duration = moment.duration(moment(new Date()).diff(moment(date)));
                 let days = Math.floor(duration.asDays());
                 filterDays.push(days);
               })
               return Math.min.apply(Math, filterDays);
-            } 
-            return 0;            
+            }
+            return 0;
           }
         }
       }
@@ -81,27 +106,52 @@ export class PatientsComponent implements OnInit {
     public restApi: RestApiService,
     private router: Router
   ) {
+    this.source = new LocalDataSource(this.myData);
   }
+
+  // onSearch(query: string = '') {
+  //   this.source.setFilter([
+  //     // fields we want to include in the search
+  //     {
+  //       field: 'intake_id',
+  //       search: query
+  //     },
+  //     {
+  //       field: 'patient_id',
+  //       search: query
+  //     },
+  //     {
+  //       field: 'first_name',
+  //       search: query
+  //     },
+  //     {
+  //       field: 'last_name',
+  //       search: query
+  //     },
+  //     {
+  //       field: 'insurance_name',
+  //       search: query
+  //     }
+  //   ], false);
+  //   // second parameter specifying whether to perform 'AND' or 'OR' search 
+  //   // (meaning all columns should contain search query or at least one)
+  //   // 'AND' by default, so changing to 'OR' by setting false here
+  // }
 
   ngOnInit() {
     // this.myData = data.slice(0,10)
     this.getPatientData()
   }
 
-  min_date(all_dates) {
-    var min_dt = all_dates[0],
-      min_dtObj = new Date(all_dates[0]);
-    all_dates.forEach(function (dt, index) {
-      if (new Date(dt) < min_dtObj) {
-        min_dt = dt;
-        min_dtObj = new Date(dt);
-      }
-    });
-    return min_dt;
-  }
-
   getPatientData() {
     this.restApi.getPatients().subscribe((data: any) => {
+      // console.log('data: ', data)
+      this.myData = data
+    });
+  }
+
+  getPatientFilterData(query, field) {
+    this.restApi.getPatientFilterData({ [field]: query }).subscribe((data: any) => {
       // console.log('data: ', data)
       this.myData = data
     });

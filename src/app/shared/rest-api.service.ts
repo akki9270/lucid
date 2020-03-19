@@ -53,7 +53,7 @@ export class RestApiService {
         catchError(this.handleError)
       )
   }
-  
+
   updateUser(data): Observable<User> {
     let url = this.apiURL + '/user/update';
     // console.log('----this.apiURL: ', url)
@@ -73,8 +73,8 @@ export class RestApiService {
         catchError(this.handleError)
       )
   }
-  
-  toggleAdminUser(data): Observable<User>{
+
+  toggleAdminUser(data): Observable<User> {
     let url = this.apiURL + '/user/isadmin';
     // console.log('----this.apiURL: ', url)
     return this.http.post<User>(url, data)
@@ -88,6 +88,17 @@ export class RestApiService {
   getPatients(patientId?: string): Observable<Patient> {
     let url = this.apiURL + '/getPatients' + (patientId ? '/' + patientId : '');
     // console.log('----this.apiURL: ', url)
+    return this.http.get<Patient>(url)
+      .pipe(
+        retry(1),
+        catchError(this.handleError)
+      )
+  }
+
+  // HttpClient API get() method => Fetch employees list
+  getPatientFilterData(filter?: any): Observable<Patient> {
+    let url = this.apiURL + '/getPatientsFilterData';
+    console.log('----this.apiURL: ', url)
     return this.http.get<Patient>(url)
       .pipe(
         retry(1),
@@ -116,17 +127,17 @@ export class RestApiService {
         catchError(this.handleError)
       )
   }
-    
+
   getNotes(patientId: string, intakeId?: string): Observable<Notes> {
     let url = this.apiURL;
     if (patientId && intakeId) {
-      url += '/getNotes/' + patientId + '/' + intakeId;  
+      url += '/getNotes/' + patientId + '/' + intakeId;
     } else if (patientId && !intakeId) {
       url += '/getNotes/' + patientId;
     } else {
       return of();
     }
-    
+
     // console.log('----this.apiURL: ', url)
     return this.http.get<Notes>(url)
       .pipe(
@@ -134,7 +145,7 @@ export class RestApiService {
         catchError(this.handleError)
       )
   }
- 
+
   getTimeline(patientId: string, intakeId: string): Observable<Timeline> {
     let url = this.apiURL + '/getTimeline/' + patientId + '/' + intakeId;
     // console.log('----this.apiURL: ', url)
