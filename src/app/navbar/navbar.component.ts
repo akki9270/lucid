@@ -35,9 +35,9 @@ export class NavbarComponent implements OnInit {
   }
 
   signOut() {
-    sessionStorage.clear();
-    this.authService.logout();
     this.restApi.logout().subscribe((result:any)=>{
+      sessionStorage.clear();
+      this.authService.logout();
       // console.log('=----Result: ', result)
     })
   }

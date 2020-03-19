@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener, AfterViewInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LocalDataSource } from 'ng2-smart-table';
 import _ from 'underscore';
@@ -12,15 +12,68 @@ import { USER } from '../constants';
   templateUrl: './patients.component.html',
   styleUrls: ['./patients.component.css']
 })
-export class PatientsComponent implements OnInit {
+export class PatientsComponent implements OnInit, AfterViewInit {
   myData = [];
   source: LocalDataSource;
+  query: string;
+  count: number = 1;
+  // direction: string = 'asc';
+  columns: any[] = [
+    {
+      title: 'intake id',
+      column: 'intake_id',
+      filter: true,
+      sort: false,
+      direction: ''
+    },
+    {
+      title: 'patient id',
+      column: 'patient_id',
+      filter: true,
+      sort: false
+    },
+    {
+      title: 'first name',
+      column: 'first_name',
+      filter: true,
+      sort: false
+    },
+    {
+      title: 'last name',
+      column: 'last_name',
+      filter: true,
+      sort: false
+    }, {
+      title: 'health plan',
+      column: 'insurance_name',
+      filter: true,
+      sort: false
+    },
+    {
+      title: 'days to soc',
+      column: 'days_to_soc',
+      filter: false,
+      sort: true,
+      direction: ''
+    }
+  ]
+  // @HostListener('document:click',['$event'])
+  // onclick(e) {
+  //   if (e && e.target) {
+  //     let text = e.target.innerHTML;
+  //     if (text.includes("DAYS TO SOC")) {
+  //       this.getPatientSortedData(e.target);
+  //     }
+  //   }
+  //   // console.log(' e ', e.target);
+  // }
 
   settings = {
     columns: {
       intake_id: {
         title: 'INTAKE ID',
         sort: false,
+        filter: false,
         // filter: {
         //   type: 'completer',
         //   config: {
@@ -43,22 +96,23 @@ export class PatientsComponent implements OnInit {
       patient_id: {
         title: 'PATIENT ID',
         sort: false,
-        // filter: false,
+        filter: false,
       },
       first_name: {
         title: 'FIRST NAME',
         sort: false,
-        // filter: false
+        filter: false
       },
       last_name: {
         title: 'LAST NAME',
         sort: false,
-        // filter: false
+        filter: false
       },
       insurance_name: {
         title: 'HEALTH PLAN',
         sort: false,
-        // filter: false
+        filter: false,
+        width: '300px',
       },
       // last_seen: {
       //   title: 'Last_seen',
@@ -66,21 +120,10 @@ export class PatientsComponent implements OnInit {
       // },
       days_to_soc: {
         title: 'DAYS TO SOC',
-        valuePrepareFunction: (value, row) => {
-          if (row && row.service && row.service.length > 0) {
-            let rowsHavingStartDate = _.chain(row.service).map('start_date').uniq().value();
-            if (rowsHavingStartDate && rowsHavingStartDate.length > 0) {
-              let filterDays = [];
-              _.each(rowsHavingStartDate, function (date) {
-                let duration = moment.duration(moment(new Date()).diff(moment(date)));
-                let days = Math.floor(duration.asDays());
-                filterDays.push(days);
-              })
-              return Math.min.apply(Math, filterDays);
-            }
-            return 0;
-          }
-        }
+        class: 'cursor-pointer',
+        sort: false,
+        filter: false,
+        // sortDirection: this.direction
       }
     },
     actions: {
@@ -102,6 +145,7 @@ export class PatientsComponent implements OnInit {
     }
   };
 
+
   constructor(
     public restApi: RestApiService,
     private router: Router
@@ -109,57 +153,62 @@ export class PatientsComponent implements OnInit {
     this.source = new LocalDataSource(this.myData);
   }
 
-  // onSearch(query: string = '') {
-  //   this.source.setFilter([
-  //     // fields we want to include in the search
-  //     {
-  //       field: 'intake_id',
-  //       search: query
-  //     },
-  //     {
-  //       field: 'patient_id',
-  //       search: query
-  //     },
-  //     {
-  //       field: 'first_name',
-  //       search: query
-  //     },
-  //     {
-  //       field: 'last_name',
-  //       search: query
-  //     },
-  //     {
-  //       field: 'insurance_name',
-  //       search: query
-  //     }
-  //   ], false);
-  //   // second parameter specifying whether to perform 'AND' or 'OR' search 
-  //   // (meaning all columns should contain search query or at least one)
-  //   // 'AND' by default, so changing to 'OR' by setting false here
-  // }
-
   ngOnInit() {
     // this.myData = data.slice(0,10)
-    this.getPatientData()
+    this.getPatientData();
   }
 
+  ngAfterViewInit() {
+    let ele = $("span:contains('DAYS TO SOC')")[0];
+    $(ele).addClass('cursor-pointer');
+  }
   getPatientData() {
     this.restApi.getPatients().subscribe((data: any) => {
       // console.log('data: ', data)
-      this.myData = data
+      this.myData = this.addDaysToSoc(data);
     });
   }
 
   getPatientFilterData(query, field) {
-    this.restApi.getPatientFilterData({ [field]: query }).subscribe((data: any) => {
+    if (!query) {
+      this.getPatientData();
+      return;
+    }
+    this.restApi.getPatientFilterData(query,field).subscribe((data: any) => {
       // console.log('data: ', data)
-      this.myData = data
+      this.myData = this.addDaysToSoc(data);
     });
   }
 
-  onPatientView(event) {
-    if (event && event.data) {
-      // console.log('-data: ', event)      
+  getPatientSortedData(headData) {
+    console.log('headData ', headData);
+    let direction = headData.direction == '' || headData.direction == 'asc' ? 'desc' : 'asc';
+    // this.direction = this.direction && this.direction == 'asc' ? 'desc' : 'asc';
+    this.columns.forEach(item => {
+      if (item.column == headData.column) {
+        item.direction = direction;
+      }
+    })
+    //  console.log('this.direction ', this.direction)
+    this.restApi.getPatientSortedData(direction).subscribe((data: any) => {
+      this.myData = this.addDaysToSoc(data);
+      this.myData = _.sortBy(this.myData, 'days_to_soc');
+      if (direction == 'desc') {
+        this.myData = this.myData.reverse();
+      }
+      // this.source.load(this.myData);
+      // let ascending = `<i class="fa fa-arrow-circle-up ml-2"></i>`
+      // let descending = `<i class="fa fa-arrow-circle-down ml-2"></i>`
+      // // $(parentEle).addClass('d-flex');
+      // $(parentEle).empty();
+      // $(parentEle).text('DAYS TO SOC');
+      // $(parentEle).append(this.direction == 'asc' ? $(ascending) : $(descending));
+    })
+  }
+
+  onPatientView(data) {
+    if (data) {
+      // console.log('-data: ', )      
       let user = sessionStorage[USER];
       if (user) {
         user = JSON.parse(user)
@@ -167,17 +216,47 @@ export class PatientsComponent implements OnInit {
         // AuthService.logout()
       }
       // console.log('-user: ', user)      
-      if (event.data.intake_id && event.data.patient_id) {
-        let data = {
-          'user_id': user.id, patient_id: event.data.patient_id,
-          intake_id: event.data.intake_id, 'last_Seen': new Date()
+      if (data.intake_id && data.patient_id) {
+        let obj = {
+          'user_id': user.id, patient_id: data.patient_id,
+          intake_id: data.intake_id, 'last_Seen': new Date()
         }
-        this.restApi.addPatientLastseen(data).subscribe(result => {
+        this.restApi.addPatientLastseen(obj).subscribe(result => {
           // console.log('result ', result);
         })
       }
-      this.router.navigate([`patients/${event.data.patient_id}/view`], { state: { patientDetails: event.data } });
+      this.router.navigate([`patients/${data.patient_id}/view`], { state: { patientDetails: data } });
     }
   }
 
+  addDaysToSoc(data) {
+    data.forEach(row => {
+      if (row && row.service && row.service.length > 0) {
+        row.days_to_soc = this.calculateMinDaysToSoc(row);
+      }
+    });
+    return data;
+  }
+
+  calculateMinDaysToSoc(row) {
+    let rowsHavingStartDate = _.chain(row.service).map('start_date').uniq().value();
+    if (rowsHavingStartDate && rowsHavingStartDate.length > 0) {
+      let filterDays = [];
+      _.each(rowsHavingStartDate, function (date) {
+        let duration = moment.duration(moment(new Date()).diff(moment(date)));
+        let days = Math.floor(duration.asDays());
+        filterDays.push(days);
+      })
+      return Math.min.apply(Math, filterDays);
+    }
+    return 0;
+  }
+
+  // sarchPatients() {
+  //   if (!this.query) {
+  //     this.getPatientData();
+  //   } else {
+  //     this.getPatientFilterData(this.query);
+  //   }
+  // }
 }

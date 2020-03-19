@@ -7,9 +7,32 @@
     </div>
   </nav>
   <div class="main-container">
-    <section>
-      <ng2-smart-table [settings]="settings" [source]="myData" (userRowSelect)="onPatientView($event)">
-      </ng2-smart-table>
+    <section class="d-flex justify-content-center px-5">
+      <!-- <input class="form-control input-sm w-25" placeholder="Search..." [(ngModel)]="query" (keyup)="sarchPatients()"/> -->
+      <!-- <ng2-smart-table [settings]="settings" [source]="myData" (userRowSelect)="onPatientView($event)">
+      </ng2-smart-table> -->
+      <table class="table table-striped border-0">
+        <thead>
+          <tr>
+            <th *ngFor="let head of columns" class="text-uppercase">
+             <span [class.cursor-pointer]="head.sort" (click)="head.sort && getPatientSortedData(head)">{{head.title}}</span>
+             <i *ngIf="head.sort" class="fa ml-2" [class.fa-arrow-circle-down]="head.direction == 'desc'"
+             [class.fa-arrow-circle-up]="head.direction == 'asc'"></i>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="bg-transparent">
+            <td *ngFor="let head of columns" >
+              <input type="text" class="form-control form-control-sm"
+               *ngIf="head.filter" (keyup)="getPatientFilterData($event.target.value, head.column)" />
+            </td>
+          </tr>
+          <tr *ngFor="let row of myData" (click)="onPatientView(row)">
+            <td *ngFor="let head of columns">{{row[head.column]}}</td>
+          </tr>
+        </tbody>
+      </table>
     </section>
   </div>
 </div>

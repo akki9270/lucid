@@ -1,8 +1,21 @@
-.main-container{
+table thead tr th{
   padding: 10px;
   color: var(--font-grey);
   font-size: 14px;
+  padding-left: 20px;
+  /* text-align: center; */
 }
+table tbody tr td{
+  color: var(--font-grey);
+  font-size: .875em;
+  margin: 0;
+  padding: .5em 1em;
+}
+
+table tbody tr:hover {
+  background-color: #e6e6e6;  
+}
+
 /* 
 .font-styles {
   color: var(--worm-grey);
@@ -27,3 +40,7 @@ a.ng2-smart-sort-link {
 ::ng-deep div.ng2-smart-title {
   font-weight: 400;
 } */
+
+::ng-deep .cursor-pointer {
+  cursor: pointer !important;
+}
