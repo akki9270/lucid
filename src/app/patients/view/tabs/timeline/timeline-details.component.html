@@ -8,7 +8,7 @@
             <h5 class="card-title"><i class="fa fa-calendar title" aria-hidden="true"></i></h5>
           </span>
           <span class="px-2">
-            <h5 class="card-title"><b class="title">{{patientEvent.date | date:'mm/dd/yyyy'}}</b></h5>
+            <h5 class="card-title"><b class="title">{{patientEvent.date}}</b></h5>            
           </span>
         </div>
       </li>
@@ -33,15 +33,13 @@
       </button>
     </div>
     <div class="modal-body p-2" id="myModal" style="height: 70vh; overflow: auto;">
-      <div id="{{patientEvent.note_id}}" class="card my-2"
+      <div id="{{patientEvent.note_id}}" class="card my-2" style="width: fit-content;"
         *ngFor="let patientEvent of patientEvents; trackBy: trackByFn;">
         <div class="card-header px-2 py-3">
-          <h5 class="card-title"><b class="title">{{patientEvent.date | date:'mm/dd/yyyy'}}</b></h5>
+          <h5 class="card-title"><b class="title">{{patientEvent.date}}</b></h5>
         </div>
-        <div class="card-body">
-          <blockquote class="blockquote m-2">
-            <pre>{{patientEvent.note_data}}</pre>
-          </blockquote>
+        <div class="card-body m-2">          
+            <pre class='m-2' style="width: fit-content;">{{patientEvent.note_data}}</pre>          
         </div>
       </div>
     </div>

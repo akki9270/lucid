@@ -8,6 +8,7 @@ import * as data from './event.json'
 import { Patient } from 'src/app/models/patient';
 import { ToasterService } from 'angular2-toaster';
 import { RestApiService } from 'src/app/shared/rest-api.service';
+import moment from 'moment';
 
 @Component({
   selector: 'app-timeline-details',
@@ -54,18 +55,23 @@ export class TimelineDetailsComponent implements OnInit, AfterViewInit {
     .subscribe((result: any) => {
       // console.log(' result ', result);
       // let resultData: Timeline[] = result;
-
       result.forEach(element => {
-        element.date = new Date(element.date);
-        element.groupDate = this.getDate(element.date);
-        element.note_id = element.note_id;
+        element.date = moment(element.date)
+        // .format('MM/DD/YYYY');
+        element.groupDate = moment(element.date).format('MM/DD/YYYY');
+        // element.note_id = element.note_id;
       });
-      let groupedData = _.groupBy(result, 'groupDate');
+      result = _.sortBy(result, 'date')
+      // result.forEach(element => {
+      //   element.date = moment(element.date).format('MM/DD/YYYY');        
+      // });
+      let groupedData = _.groupBy(result, 'date');
       // console.log('groupedData ', groupedData);
       let eventsData = [];
       for (let d in groupedData) {
         let obj = {
           ...groupedData[d][0],
+          'date': moment(groupedData[d][0]['date']).format('MM/DD/YYYY'),
           data: groupedData[d]
         }
         eventsData.push(obj);
@@ -212,7 +218,7 @@ export class TimelineDetailsComponent implements OnInit, AfterViewInit {
   }
   
   onEventClick(longContent, $scrollElementId, event) {
-    this.clickedChildEvent = event;
+    // this.clickedChildEvent = event;
     // console.log('$event click: ', $scrollElementId)
     this.modalService.open(longContent, this.modalOption);
     setTimeout(() => {
