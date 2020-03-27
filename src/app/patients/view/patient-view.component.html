@@ -17,12 +17,12 @@
     </div>
   </nav>
   <div *ngIf="currentTab === 'PATIENT_TAB'">
-    <app-patient-details [patientDetails]="patientDetails"></app-patient-details>
+    <app-patient-details *ngIf="patientDetails" [patientDetails]="patientDetails"></app-patient-details>
   </div>
   <div *ngIf="currentTab === 'F11_NOTES_TAB'">
-    <app-notes-details [patientDetails]="patientDetails"></app-notes-details>
+    <app-notes-details *ngIf="patientDetails" [patientDetails]="patientDetails"></app-notes-details>
   </div>
   <div *ngIf="currentTab === 'TIMELINE_TAB'">
-    <app-timeline-details [patientDetails]="patientDetails"></app-timeline-details>
+    <app-timeline-details *ngIf="patientDetails" [patientDetails]="patientDetails"></app-timeline-details>
   </div>
 </div>

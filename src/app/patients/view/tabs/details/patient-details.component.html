@@ -54,7 +54,7 @@
             </div>
             <div class="col-lg-3 form-group">
               <label for="subscribeId">Subscriber Id</label>
-              <input type="text" class="form-control" id="subscribeId" value="{{patientDetails.subscribe_id}}" readonly>
+              <input type="text" class="form-control" id="subscribeId" value="{{patientDetails.subscriber_id}}" readonly>
             </div>
             <!-- </div>
             </form> -->
@@ -85,7 +85,7 @@
                 PHYSICIAN
               </div>
               <div class="col-lg-3 form-group">
-                <input type="checkbox" [checked]="patientDetails.following_physician" /> ORDERING PHYSICIAN
+                <input type="checkbox" [checked]="patientDetails.ordering_physician" /> ORDERING PHYSICIAN
               </div>
               <div class="col-lg-3 form-group">
                 <input type="checkbox" [checked]="patientDetails.wound_care" /> WOUND CARE
@@ -127,7 +127,7 @@
       <fieldset class="outer-field-set">
         <legend class="w-auto px-3 d-inline-block lengend-title py-1">Service Details</legend>
         <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0">
-          <ngb-panel *ngFor="let service of patientDetails.service; let i = index; trackBy: trackByFn;"
+          <ngb-panel *ngFor="let service of patientDetails.service | orderBy: '-start_date'; let i = index; trackBy: trackByFn;"
             [id]="'panel'+i">
             <ng-template ngbPanelHeader>
               <div (click)="acc.toggle('panel'+i)" class="w-100 card-header d-flex justify-content-between"

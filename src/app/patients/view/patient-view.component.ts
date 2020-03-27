@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { Router, ActivatedRoute } from '@angular/router';
 import { PATIENT_TAB } from '../../constants'
+import { RestApiService } from 'src/app/shared/rest-api.service';
 
 @Component({
   selector: 'app-patient-view',
@@ -10,12 +11,13 @@ import { PATIENT_TAB } from '../../constants'
 })
 export class PatientViewComponent implements OnInit {
   currentTab = PATIENT_TAB
-  patientDetails: any = {}
+  patientDetails: any;
   patientId: string;
   constructor(
     private location: Location, 
     private router: Router,
-    private activeRoute: ActivatedRoute
+    private activeRoute: ActivatedRoute,
+    private restApi: RestApiService
     ) { }
 
   ngOnInit() {
@@ -24,6 +26,7 @@ export class PatientViewComponent implements OnInit {
       let patientId = data.get('patientId');
       if (patientId) {
         this.patientId = patientId;
+        this.getPatientDetails(this.patientId);
       }
     })
     if (this.router.getCurrentNavigation() && this.router.getCurrentNavigation().extras) {
@@ -31,6 +34,15 @@ export class PatientViewComponent implements OnInit {
     } else if (history.state && history.state.patientDetails) {
       this.patientDetails = history.state.patientDetails;
     }
+  }
+
+  getPatientDetails(patientId) {
+    this.restApi.getPatients(patientId)
+    .subscribe(data => {
+      if (data && data['length']) {
+        this.patientDetails = data[0];
+      }
+    });
   }
 
   onSelectTab(event, tab) {
