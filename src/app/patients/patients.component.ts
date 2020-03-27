@@ -2,7 +2,7 @@ import { Component, OnInit, HostListener, AfterViewInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LocalDataSource } from 'ng2-smart-table';
 import _ from 'underscore';
-import * as moment from 'moment';
+import moment from 'moment';
 import { RestApiService } from "../shared/rest-api.service";
 import { USER } from '../constants';
 // import { AuthService } from '../auth/auth.service';
@@ -243,11 +243,12 @@ export class PatientsComponent implements OnInit, AfterViewInit {
     if (rowsHavingStartDate && rowsHavingStartDate.length > 0) {
       let filterDays = [];
       _.each(rowsHavingStartDate, function (date) {
-        let duration = moment.duration(moment(new Date()).diff(moment(date)));
-        let days = Math.floor(duration.asDays());
-        filterDays.push(days);
-      })
-      return Math.min.apply(Math, filterDays);
+        let duration: number = moment(date).diff(moment(),'days');
+        if (duration > 0) {
+          filterDays.push(duration);
+        }
+      });
+      return filterDays.length == 0 ? 0 : Math.min.apply(Math, filterDays);
     }
     return 0;
   }
