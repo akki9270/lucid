@@ -9,6 +9,8 @@ import { Patient } from 'src/app/models/patient';
 import { ToasterService } from 'angular2-toaster';
 import { RestApiService } from 'src/app/shared/rest-api.service';
 import moment from 'moment';
+import { fromEvent } from 'rxjs';
+import { delay } from 'rxjs/operators';
 
 @Component({
   selector: 'app-timeline-details',
@@ -27,6 +29,8 @@ export class TimelineDetailsComponent implements OnInit, AfterViewInit {
   disabledClass: string;
   currentEvent: any;
   clickedChildEvent: any;
+  isFirstEleVisible: any;
+  isLastEleVisible: any;
   constructor(private modalService: NgbModal,
        private toasterService: ToasterService,
        public restApi: RestApiService) { }
@@ -37,12 +41,35 @@ export class TimelineDetailsComponent implements OnInit, AfterViewInit {
   @Input('patientDetails') patientDetails: Patient;
 
   ngOnInit() {
+    fromEvent(document.querySelector('.timeline .arrows .arrow__next'), 'click').pipe(delay(800))
+    .subscribe( _ => {
+      this.isElementVisible(0);
+      this.isElementVisible(this.patientEvents.length);
+    });
+    fromEvent(document.querySelector('.timeline .arrows .arrow__prev'), 'click').pipe(delay(800))
+    .subscribe( _ => {
+      this.isElementVisible(0);
+      this.isElementVisible(this.patientEvents.length);
+    });
+
     // this.loadScript();
     // START
     // console.log('-----data: ', data)
     // console.log('this.patientDetails ', this.patientDetails);
     this.getTimeLineData();
     this.showChildEvents = false;
+  }
+
+  isElementVisible(position: number) {
+    let parentPos = document.querySelector('.timeline ol').getBoundingClientRect();
+    let elementLeft = document.querySelector('.timeline ol').children[position]['offsetLeft'];
+    let boxWidth = document.querySelector('.timeline')['offsetWidth'];
+    if (position == 0) {
+      this.isFirstEleVisible = parentPos['x'] > 0;
+    } else {
+      let totalLeft = parentPos['x'] + elementLeft;
+      this.isLastEleVisible = totalLeft < boxWidth;
+    }
   }
 
   getTimeLineData(){
@@ -81,7 +108,11 @@ export class TimelineDetailsComponent implements OnInit, AfterViewInit {
           subEve.note_id = uuid.v4()
         });
       });
-      this.patientEvents = eventsData; 
+      this.patientEvents = eventsData;
+      setTimeout(() => {
+        this.isElementVisible(0);
+        this.isElementVisible(this.patientEvents.length)
+      }, 500);
       // console.log('patientEvents ', this.patientEvents);
     });
   }
@@ -145,12 +176,12 @@ export class TimelineDetailsComponent implements OnInit, AfterViewInit {
   // SET STATE OF PREV/NEXT ARROWS
   setBtnState(el, flag = true) {
     if (flag) {
-      el.classList.add(this.disabledClass);
+      // el.classList.add(this.disabledClass);
     } else {
       if (el.classList.contains(this.disabledClass)) {
-        el.classList.remove(this.disabledClass);
+        // el.classList.remove(this.disabledClass);
       }
-      el.disabled = false;
+      // el.disabled = false;
     }
   }
 
@@ -161,10 +192,10 @@ export class TimelineDetailsComponent implements OnInit, AfterViewInit {
     for (let i = 0; i < el.length; i++) {
       el[i].addEventListener("click", function () {
         if (!that.arrowPrev['disabled']) {
-          that.arrowPrev.disabled = true;
+          // that.arrowPrev.disabled = true;
         }
         if (!that.arrowNext['disabled']) {
-          that.arrowNext.disabled = true;
+          // that.arrowNext.disabled = true;
         }
         const sign = (this.classList.contains("arrow__prev")) ? "" : "-";
         if (counter === 0) {
@@ -178,8 +209,8 @@ export class TimelineDetailsComponent implements OnInit, AfterViewInit {
         }
 
         setTimeout(() => {
-          that.isElementInViewport(that.firstItem) ? that.setBtnState(that.arrowPrev) : that.setBtnState(that.arrowPrev, false);
-          that.isElementInViewport(that.lastItem) ? that.setBtnState(that.arrowNext) : that.setBtnState(that.arrowNext, false);
+          // that.isElementInViewport(that.firstItem) ? that.setBtnState(that.arrowPrev) : that.setBtnState(that.arrowPrev, false);
+          // that.isElementInViewport(that.lastItem) ? that.setBtnState(that.arrowNext) : that.setBtnState(that.arrowNext, false);
         }, 1100);
 
         counter++;
