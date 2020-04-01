@@ -45,6 +45,7 @@ export class NotesDetailsComponent implements OnInit {
   setCurrentNoteContent(intakeId) {
     this.htmlContent = '';
     let result = _.filter(this.notesData, item => item.intake_id == intakeId);
+    result = _.sortBy(result, 'date').reverse();
     let htmlContent = _.map(result, 'note_data').join('\n');
     this.tags.forEach((tag: any) => {
       if (htmlContent.indexOf(tag.tag_name) > -1) {
