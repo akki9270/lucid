@@ -55,7 +55,7 @@
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
-    <div class="modal-body p-2" id="myModal" style="height: 70vh; overflow: auto;">
+    <div class="modal-body p-2" id="myModal" style="height: 60vh; overflow: auto;">
       <h5 class="profile-header">Update Profile Name</h5>
       <form autocomplete="off" name="changePasswordForm" class="mb-4">
         <label>First Name</label>
@@ -63,8 +63,9 @@
        
         <label>Last Name</label>
         <input type="text" [(ngModel)]="newUser.last_name" name="last_name" class="form-control form-control-sm" />
-
-        <h5 class="profile-header mt-2">Update Password</h5>
+      </form>
+        <hr>
+        <h5 class="profile-header mt-4">Update Password</h5>
 
         <label>Current Password</label>
         <input type="password" class="form-control form-control-sm" name="password" [(ngModel)]="newUser.password">
@@ -78,7 +79,7 @@
         <div *ngIf="isError" class="mt-2">
           <span class="text-danger">{{ errorMessage }}</span>
         </div>
-      </form>
+      
     </div>
     <div class="modal-footer">
       <div class="p-2 m-2">

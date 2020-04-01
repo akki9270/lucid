@@ -58,7 +58,8 @@ export class NavbarComponent implements OnInit {
   }
 
   openProfile(profileModal) {
-    this.profileModalRef = this.modalService.open(profileModal, this.modalOption);
+    this.profileModalRef = this.modalService.open(profileModal, Object.assign({...this.modalOption},
+       {keyboard: false, backdrop: 'static', centered: true, size: ''}));
   }
 
   closeProfileModal(){
