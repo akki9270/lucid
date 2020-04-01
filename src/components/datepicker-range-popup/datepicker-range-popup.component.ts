@@ -1,24 +1,31 @@
-import { Component, OnInit } from '@angular/core';
-import {NgbDate, NgbCalendar, NgbDateParserFormatter} from '@ng-bootstrap/ng-bootstrap';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { NgbDate, NgbCalendar, NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-datepicker-range-popup',
   templateUrl: './datepicker-range-popup.component.html',
   styleUrls: ['./datepicker-range-popup.component.css']
 })
-export class DatepickerRangePopupComponent implements OnInit {  
+export class DatepickerRangePopupComponent implements OnInit {
   hoveredDate: NgbDate;
 
   fromDate: NgbDate;
   toDate: NgbDate;
 
+  @Output() dateRangeObj = new EventEmitter<any>();
+
   ngOnInit() {
   }
 
-
   constructor(private calendar: NgbCalendar, public formatter: NgbDateParserFormatter) {
-    this.fromDate = calendar.getToday();
-    this.toDate = calendar.getNext(calendar.getToday(), 'd', 10);
+    // this.fromDate = calendar.getToday();
+    // this.toDate = calendar.getNext(calendar.getToday(), 'd', 10);
+    this.fromDate = null;
+    this.toDate = null;
+  }
+
+  sendDates(fromDate, toDate) {
+    this.dateRangeObj.emit({ 'fromDate': fromDate, 'toDate': toDate })
   }
 
   onDateSelection(date: NgbDate) {
@@ -30,6 +37,9 @@ export class DatepickerRangePopupComponent implements OnInit {
       this.toDate = null;
       this.fromDate = date;
     }
+    // console.log('---child-fromDate: ', this.fromDate)
+    // console.log('---child-toDate: ', this.toDate)
+    this.sendDates(this.fromDate, this.toDate)
   }
 
   isHovered(date: NgbDate) {

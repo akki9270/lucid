@@ -56,7 +56,7 @@ export class RestApiService {
 
   updateUser(data): Observable<User> {
     let url = this.apiURL + '/user/update';
-    // console.log('----this.apiURL: ', url)
+    console.log('----updateUser: ', data)
     return this.http.post<User>(url, data)
       .pipe(
         retry(1),
@@ -169,6 +169,16 @@ export class RestApiService {
     let url = this.apiURL + '/logout';
     // console.log('----this.apiURL: ', url)
     return this.http.get<any>(url)
+      .pipe(
+        retry(1),
+        catchError(this.handleError)
+      )
+  }
+
+  getPatientsAnalyticsData(fromDate: string, toDate: string): Observable<Patient> {
+    let url = this.apiURL + '/getPatientsAnalyticsData/' + fromDate + '/' + toDate;
+    console.log('----this.apiURL: ', url)
+    return this.http.get<Patient>(url)
       .pipe(
         retry(1),
         catchError(this.handleError)

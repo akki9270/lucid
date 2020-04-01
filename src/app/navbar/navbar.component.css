@@ -1,0 +1,5 @@
+.profile-header {
+    padding: 10px;
+    background-color: rgba(0,0,0,0.1);
+    color: var(--purple-theme);
+}

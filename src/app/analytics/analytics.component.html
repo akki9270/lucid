@@ -1,14 +1,14 @@
 <div class="page-wrap">
-  <nav class="navbar navbar-expand-lg navbar-dark justify-content-start align-items-center secondary-navbar">   
+  <nav class="navbar navbar-expand-lg navbar-dark justify-content-start align-items-center secondary-navbar">
     <div class="ml-5 my-1">
       <span class="topbar-back-btn">
-          <h3 class="topbar-title">Analytics</h3>
+        <h3 class="topbar-title">Analytics</h3>
       </span>
     </div>
   </nav>
   <div class="main-container">
     <div class="d-flex justify-content-center mt-5">
-      <app-datepicker-range-popup></app-datepicker-range-popup>
+      <app-datepicker-range-popup (dateRangeObj)="receiveDates($event)"></app-datepicker-range-popup>
     </div>
     <section class="d-flex justify-content-center mt-3">
       <table class="table table-striped w-50">
@@ -18,31 +18,57 @@
             <th scope="col">Count</th>
           </tr>
         </thead>
-        <tbody>
-          <tr>
-            <td>POTENTIAL MSOC</td>
-            <td>20</td>
-          </tr>
+        <tbody>        
           <tr>
             <td>URGENT</td>
-            <td>10</td>
+            <td>{{urgent}}</td>
           </tr>
           <tr>
             <td>FACILITY DISCHARGE</td>
-            <td>05</td>
+            <td>{{facilityDischarge}}</td>
           </tr>
           <tr>
             <td>ESCALATIONS</td>
-            <td>2</td>
+            <td>{{escalations}}</td>
           </tr>
           <tr>
-            <td>Total</td>
-            <td>37</td>
+            <td>
+              <div class="d-flex justify-content-center">
+                <form class="form-inline">
+                  <div class="form-group">
+                    <div class="input-group">
+                      <input class="form-control" placeholder="yyyy-mm-dd"
+                             name="dp" [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker">
+                      <div class="input-group-append">                        
+                        <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button">
+                          <i class="fa fa-calendar" aria-hidden="true"></i>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+                <h5><span class="badge badge-outline">Cases with more than </span></h5>
+                <input type="number" class="pl-2" min="0" max="100" oninput="validity.valid||(value='')"
+                  style="width: 80px;" [(ngModel)]="callCount" />
+                <h5><span class="badge badge-outline">calls</span></h5>
+              </div>
+            </td>
+            <td>0</td>
           </tr>
         </tbody>
       </table>
     </section>
-    <section class="mt-3">
+    <section class="d-flex justify-content-center mt-5">
+      <table class="table table-striped w-50">      
+        <tbody>
+          <tr>
+            <td>POTENTIAL MSOC</td>
+            <td>{{potentialMsoc}}</td>
+          </tr>                    
+        </tbody>
+      </table>
+    </section>
+    <!-- <section class="mt-3">
       <div class="d-flex justify-content-center">
         <div>
           <h5><span class="badge badge-outline">Cases with more than</span></h5>
@@ -54,6 +80,6 @@
           <h5><span class="badge badge-outline">calls - 5</span></h5>
         </div>
       </div>
-    </section>
+    </section> -->
   </div>
 </div>
