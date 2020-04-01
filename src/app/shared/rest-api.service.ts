@@ -9,6 +9,7 @@ import { UserLastseen } from '../models/userLastseen';
 import { Observable, throwError, of } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
 import AppConfig from '../../assets/config.json';
+import { ToasterService } from 'angular2-toaster';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +20,7 @@ export class RestApiService {
   // Define API
   apiURL = AppConfig.apiURL;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private toasterService: ToasterService) {
     // console.log('this.apiURL: ', this.apiURL)
   }
 
@@ -185,6 +186,26 @@ export class RestApiService {
       )
   }
 
+  getPatientCallCount(fromDate: string, toDate: string): Observable<any[]> {
+    let url = this.apiURL + '/getPatientCallCount/' + fromDate + '/' + toDate;
+    // console.log('----this.apiURL: ', url)
+    return this.http.get<any[]>(url)
+      .pipe(
+        retry(1),
+        catchError(this.handleError)
+      )
+  }
+  
+  getPatientMSOC(entered: string): Observable<any> {
+    let url = this.apiURL + '/getPatientMSOC/' + entered;
+    // console.log('----this.apiURL: ', url)
+    return this.http.get(url)
+      .pipe(
+        retry(1),
+        catchError(this.handleError)
+      )
+  }
+
   //   // HttpClient API get() method => Fetch employee
   //   getEmployee(id): Observable<Employee> {
   //     return this.http.get<Employee>(this.apiURL + '/employees/' + id)
@@ -222,7 +243,7 @@ export class RestApiService {
   //   }
 
   // Error handling 
-  handleError(error) {
+  handleError = (error) => {
     let errorMessage = '';
     if (error.error instanceof ErrorEvent) {
       // Get client-side error
@@ -231,7 +252,8 @@ export class RestApiService {
       // Get server-side error
       errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
     }
-    window.alert(errorMessage);
+    // window.alert(errorMessage);
+    this.toasterService.pop('error', errorMessage);
     return throwError(errorMessage);
   }
 

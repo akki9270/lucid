@@ -28,7 +28,7 @@ export class DatepickerRangePopupComponent implements OnInit {
     this.dateRangeObj.emit({ 'fromDate': fromDate, 'toDate': toDate })
   }
 
-  onDateSelection(date: NgbDate) {
+  onDateSelection(date: NgbDate, datepicker) {
     if (!this.fromDate && !this.toDate) {
       this.fromDate = date;
     } else if (this.fromDate && !this.toDate && date.after(this.fromDate)) {
@@ -39,7 +39,10 @@ export class DatepickerRangePopupComponent implements OnInit {
     }
     // console.log('---child-fromDate: ', this.fromDate)
     // console.log('---child-toDate: ', this.toDate)
-    this.sendDates(this.fromDate, this.toDate)
+    if (this.fromDate && this.toDate) {
+      this.sendDates(this.fromDate, this.toDate);
+      datepicker.close();
+    }
   }
 
   isHovered(date: NgbDate) {
