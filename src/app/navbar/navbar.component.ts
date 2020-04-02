@@ -40,7 +40,7 @@ export class NavbarComponent implements OnInit {
     this.user = user ? JSON.parse(user) : {};
     this.storageService.getUserData().subscribe((user: User) => {
       this.user = user;
-      console.log('User: ', user)
+      // console.log('User: ', user);
     });
     this.authService.isLoggedIn.subscribe(
       isLoggedIn => {

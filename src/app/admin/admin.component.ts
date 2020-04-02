@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { NgbModal, NgbModalOptions, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { LocalDataSource } from 'ng2-smart-table';
 import { RestApiService } from 'src/app/shared/rest-api.service';
@@ -15,7 +15,7 @@ import { AdminService } from './admin.service';
   templateUrl: './admin.component.html',
   styleUrls: ['./admin.component.css']
 })
-export class AdminComponent implements OnInit {
+export class AdminComponent implements OnInit, OnDestroy {
   // myData = [];
   newUser: any = {};
   user: any;
@@ -123,6 +123,7 @@ export class AdminComponent implements OnInit {
   adminFalseNote: string = `This will make ${this.selectedData.user_id} Non Admin`;
   isActiveConfirm: boolean;
   isAdminConfirm: boolean;
+  subscriptions: any[] = [];
   constructor(public restApi: RestApiService,
     private modalService: NgbModal,
     private storageService: StorageService,
@@ -137,14 +138,23 @@ export class AdminComponent implements OnInit {
     this.storageService.getUserData().subscribe(user => {
       this.user = user;
     });
-    this.adminService.showConfirmDialogue().subscribe(data => {
+   let sub = this.adminService.showConfirmDialogue().subscribe(data => {
       // console.log(' data', data);
       this.selectedData = data;
       this.isActiveConfirm = typeof data.is_active == "boolean";
       this.isAdminConfirm = typeof data.is_admin == "boolean";
       this.updateConfirmNotes();
       this.openConfirmModal(this.confimModalElementRef);
-    })
+    });
+    this.subscriptions.push(sub);
+  }
+
+  ngOnDestroy() {
+    if (this.subscriptions && this.subscriptions.length) {
+      this.subscriptions.forEach(subscr => {
+        subscr.unsubscribe();
+      })
+    }
   }
 
   updateConfirmNotes() {
