@@ -7,3 +7,8 @@ a:active {
     background-color: var(--purple-theme);
     color: var(--white-theme) !important;
 }
+.navbar-brand-anchor {
+    background-color: white;
+    border-radius: 15px;
+    padding: 5px 10px;
+}
