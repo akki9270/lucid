@@ -32,7 +32,7 @@ export class AnalyticsComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     // console.log('------------ngAfterViewInit-------------');
-    console.log(this.dateMSOC);
+    // console.log(this.dateMSOC);
     // console.log('---parent-fromDate: ', this.child.fromDate)
     // console.log('---parent-toDate: ', this.child.toDate)    
     if (this.child && this.child.fromDate && this.child.toDate) {
@@ -91,7 +91,7 @@ export class AnalyticsComponent implements OnInit, AfterViewInit {
 
   getPatientCallCount(fromDate, toDate) {
     this.restAPI.getPatientCallCount(fromDate, toDate).subscribe(result => {
-      console.log('Res---getPatientCallCount---result---: ', result);
+      // console.log('Res---getPatientCallCount---result---: ', result);
       this.patientCallCount = result;
       this.getPatient_CallCount();
     });
