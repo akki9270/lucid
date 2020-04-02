@@ -112,6 +112,20 @@ export class NavbarComponent implements OnInit {
       // delete result.user;
       // this.user = {...this.user, ...result};
       // sessionStorage.setItem('user', JSON.stringify(this.user));
+      if (result[0] == 1) {
+        let localUser = sessionStorage.getItem(USER);
+        let updatedUser = {...userData};
+        delete updatedUser.user;
+        for (let k in updatedUser) {
+          if ((!updatedUser[k] && typeof updatedUser[k] != 'boolean') || k == 'password' || k == 'newPassword') {
+            delete updatedUser[k];
+          }
+        }
+        let user = Object.assign(JSON.parse(localUser),updatedUser);
+        sessionStorage.setItem(USER, JSON.stringify(user));
+        // this.authService.updateUser(user);
+        this.user = user;
+      }
       this.closeProfileModal()
       this.toasterService.pop('success', 'Profile update successfully');
     })

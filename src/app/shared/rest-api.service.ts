@@ -57,7 +57,7 @@ export class RestApiService {
 
   updateUser(data): Observable<User> {
     let url = this.apiURL + '/user/update';
-    console.log('----updateUser: ', data)
+    // console.log('----updateUser: ', data)
     return this.http.post<User>(url, data)
       .pipe(
         retry(1),
@@ -99,7 +99,7 @@ export class RestApiService {
   // HttpClient API get() method => Fetch employees list
   getPatientFilterData(query: string, field: string): Observable<Patient> {
     let url = this.apiURL + '/getPatientsFilterData/' + query + '/' + field;
-    console.log('----this.apiURL: ', url)
+    // console.log('----this.apiURL: ', url)
     return this.http.get<Patient>(url)
       .pipe(
         retry(1),
@@ -108,7 +108,7 @@ export class RestApiService {
   }
   getPatientSortedData(direction: string): Observable<Patient> {
     let url = this.apiURL + '/getPatientsSortedData/' + direction;
-    console.log('----this.apiURL: ', url)
+    // console.log('----this.apiURL: ', url)
     return this.http.get<Patient>(url)
       .pipe(
         retry(1),
@@ -178,7 +178,7 @@ export class RestApiService {
 
   getPatientsAnalyticsData(fromDate: string, toDate: string): Observable<Patient> {
     let url = this.apiURL + '/getPatientsAnalyticsData/' + fromDate + '/' + toDate;
-    console.log('----this.apiURL: ', url)
+    // console.log('----this.apiURL: ', url)
     return this.http.get<Patient>(url)
       .pipe(
         retry(1),

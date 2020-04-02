@@ -3,3 +3,7 @@
     background-color: rgba(0,0,0,0.1);
     color: var(--purple-theme);
 }
+a:active {
+    background-color: var(--purple-theme);
+    color: var(--white-theme) !important;
+}

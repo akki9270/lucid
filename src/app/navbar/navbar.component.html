@@ -26,7 +26,7 @@
 
     <ul class="navbar-nav bd-navbar-nav flex-row" *ngIf="isLoggedIn">
       <li class="nav-item align-self-center">
-        <a class="nav-link custom-link mr-0" href="#">
+        <a class="nav-link custom-link mr-0" href="void:0">
           <span>
             <i class="far fa-user-circle"></i> {{user.first_name + ' ' + user.last_name}}
           </span>
@@ -39,7 +39,7 @@
           </button>
           <div class="arrow-up"></div>
           <div class="dropdown-menu profile-menu" style="left: -245%">
-            <a class="dropdown-item" href="#" style="color: var(--purple-theme)"
+            <a class="dropdown-item" href="void:0" style="color: var(--purple-theme)"
               (click)="openProfile(profileModal)">Settings</a>
             <a class="dropdown-item" href="#" style="color: var(--purple-theme)" (click)="signOut()">Sign Out</a>
           </div>
@@ -67,6 +67,7 @@
         <hr>
         <h5 class="profile-header mt-4">Update Password</h5>
 
+        <form autocomplete="off">
         <label>Current Password</label>
         <input type="password" class="form-control form-control-sm" name="password" [(ngModel)]="newUser.password">
 
@@ -75,7 +76,7 @@
 
         <label>Retype New Password</label>
         <input type="password" class="form-control form-control-sm" name="confPassword" [(ngModel)]="newUser.confPassword">
-
+      </form>
         <div *ngIf="isError" class="mt-2">
           <span class="text-danger">{{ errorMessage }}</span>
         </div>
