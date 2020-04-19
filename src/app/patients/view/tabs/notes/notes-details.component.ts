@@ -46,17 +46,24 @@ export class NotesDetailsComponent implements OnInit {
     this.htmlContent = '';
     let result = _.filter(this.notesData, item => item.intake_id == intakeId);
     result = _.sortBy(result, 'date').reverse();
-    let htmlContent = _.map(result, 'note_data').join('\n');
-    this.tags.forEach((tag: any) => {
-      if (htmlContent.indexOf(tag.tag_name) > -1) {
-        var regExp = new RegExp(`${tag.tag_name}`, 'gi');
-        tag.matchCount = htmlContent.match(regExp).length;
-        this.matchTags.push(tag);
-        let replaceContent = `<span style="background-color:${tag.tag_color}; color: white;" class='p-1'><b>${tag.tag_name}</b></span>`
-        htmlContent = htmlContent.replace(regExp, replaceContent);
+    let htmlContent = _.map(result, 'note_data').join('\n');    
+    this.tags.forEach((tag: any) => {      
+      let regExp = new RegExp(`${tag.associate_tag}`, 'gi');   
+      let matching = htmlContent.match(regExp);
+      if (!matching || !matching.length) {
+        return;
       }
+      tag.matchCount = htmlContent.match(regExp).length;
+      let foundIndex = this.matchTags.findIndex(tagObj => tagObj.tag_name == tag.tag_name);
+      if (foundIndex > -1) {
+        this.matchTags[foundIndex].matchCount += tag.matchCount;
+      } else {
+        this.matchTags.push(tag);
+      }
+      let replaceContent = `<span style="background-color:${tag.tag_color}; color: white;" class='p-1'><b>${tag.associate_tag}</b></span>`
+      htmlContent = htmlContent.replace(regExp, replaceContent);      
     });
-    this.htmlContent = htmlContent;
+    this.htmlContent = htmlContent;    
   }
 
   getInitNotes() {
