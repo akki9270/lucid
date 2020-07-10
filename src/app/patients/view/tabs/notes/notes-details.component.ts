@@ -48,7 +48,7 @@ export class NotesDetailsComponent implements OnInit {
     result = _.sortBy(result, 'date').reverse();
     let htmlContent = _.map(result, 'note_data').join('\n');    
     this.tags.forEach((tag: any) => {      
-      let regExp = new RegExp(`${tag.associate_tag}`, 'gi');   
+      let regExp = new RegExp(`${tag.associate_tag} `, 'gi');   
       let matching = htmlContent.match(regExp);
       if (!matching || !matching.length) {
         return;
